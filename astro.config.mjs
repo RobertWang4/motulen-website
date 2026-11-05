@@ -4,7 +4,7 @@ import sitemap from '@astrojs/sitemap';
 import { readdirSync, readFileSync, writeFileSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 
-// GitHub Pages serves the site under /<repo>/ — set BASE_PATH=/aiot-website in CI.
+// GitHub Pages serves the site under /<repo>/ — set BASE_PATH=/motulen-website in CI.
 // Templates use root-absolute links (/en/...), so on a non-root base we rewrite them after build.
 const BASE = process.env.BASE_PATH || '/';
 const SITE = process.env.SITE_URL || 'https://example.com';

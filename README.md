@@ -52,7 +52,7 @@ public/img/                 图片；logo.jpg 是站点 logo
 
 ## 部署
 
-已接 GitHub Pages：推送到 `main` 自动构建发布到 https://robertwang4.github.io/aiot-website/ （工作流在 `.github/workflows/deploy.yml`，子路径由 `astro.config.mjs` 里的 `BASE_PATH` 处理）。
+已接 GitHub Pages：推送到 `main` 自动构建发布到 https://robertwang4.github.io/motulen-website/ （工作流在 `.github/workflows/deploy.yml`，子路径由 `astro.config.mjs` 里的 `BASE_PATH` 处理）。
 
 换其他托管也可以，`dist/` 是纯静态：
 
