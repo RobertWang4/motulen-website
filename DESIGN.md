@@ -1,4 +1,4 @@
-# Design System — AIoT P.S.A.
+# Design System — MOTULEN GROUP
 
 ## Product Context
 - **What this is:** Corporate website for MOTULEN GROUP, a Poland-based European enterprise-services company: staffing and operations outsourcing, warehouse engineering, commercial fit-out, headhunting (incl. talent from China), with warehouse-robot service and cross-border teams in development. Bilingual **Chinese / Polish**, 24 static pages, content from JSON. Source of all copy: the company's Chinese corporate deck.
@@ -72,9 +72,9 @@
 ## Decisions Log
 | Date | Decision | Rationale |
 |------|----------|-----------|
+| 2026-11-04 | Page crossfade + hover prefetch; market names smaller and on one line | User: switching pages felt abrupt; 罗马尼亚 wrapped |
+| 2026-11-04 | Rebrand to MOTULEN GROUP, languages zh + pl, page patterns above | User: keep this visual style, rebuild from the MOTULEN deck, make it more 大气 while telling the story |
 | 2026-09-13 | Initial design system created via /design-consultation | Based on user brief: white-dominant, minimal, "现代、智能、领先", tender-ready; reference xchanneltech.com |
 | 2026-09-13 | Font: Satoshi chosen over Geist / General Sans / Cabinet / Clash / Manrope | User picked A from demo/font-preview.html |
 | 2026-09-13 | Hero: full-bleed photo with overlaid text (not split layout) | User preference |
-| 2026-11-04 | Page crossfade + hover prefetch; market names smaller and on one line | User: switching pages felt abrupt; 罗马尼亚 wrapped |
-| 2026-11-04 | Rebrand to MOTULEN GROUP, languages zh + pl, page patterns above | User: keep this visual style, rebuild from the MOTULEN deck, make it more 大气 while telling the story |
 | 2026-09-13 | Colour: white primary, blue as accent beyond just the CTA | User: "白蓝，白色为主，蓝色点缀" |

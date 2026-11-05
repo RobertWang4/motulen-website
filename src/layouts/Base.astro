@@ -20,6 +20,7 @@ const fullTitle = title === site.brand.name ? title : `${title} · ${site.brand.
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="alternate" hreflang={hreflang(lang)} href={new URL(path, Astro.site)} />
     <link rel="alternate" hreflang={hreflang(otherLang(lang))} href={new URL(alt, Astro.site)} />
+    <link rel="alternate" hreflang="x-default" href={new URL(lang === 'zh' ? path : alt, Astro.site)} />
     <script is:inline>document.documentElement.classList.add('js');</script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

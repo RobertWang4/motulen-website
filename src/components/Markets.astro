@@ -11,7 +11,7 @@ const ui = getUi(lang);
       <li class:list={['mk-item reveal', m.role === 'base' && 'mk-base']}>
         <span class="mk-role">{ui.roles[m.role]}</span>
         <span class="mk-name">{m.name}</span>
-        {m.local !== m.name && <span class="mk-local" lang="">{m.local}</span>}
+        {lang === 'zh' && m.local !== m.name && <span class="mk-local">{m.local}</span>}
       </li>
     ))}
   </ul>
@@ -22,7 +22,7 @@ const ui = getUi(lang);
   .mk-row { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(16px, 2vw, 32px); }
   .mk-item { border-top: 1px solid var(--line); padding-top: 18px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
   .mk-base { border-top: 2px solid var(--blue); padding-top: 17px; }
-  .mk-role { font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--faint); }
+  .mk-role { font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
   .mk-base .mk-role { color: var(--blue); }
   .mk-name {
     font-family: var(--display); font-weight: 700; line-height: 1.05;

@@ -63,6 +63,6 @@ const { tag, tagHref, title, lede, image, alt = '', overlay = false } = Astro.pr
   .pho-in { position: relative; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; padding-bottom: clamp(40px, 6vw, 88px); }
   .pho-tag { color: rgba(255, 255, 255, 0.7); }
   .pho-tag a:hover { color: #fff; }
-  .pho-title { color: #fff; display: flex; flex-wrap: wrap; align-items: center; gap: 0 20px; }
+  .pho-title { color: #fff; min-width: 0; overflow-wrap: anywhere; display: flex; flex-wrap: wrap; align-items: center; gap: 0 20px; }
   .pho-lede { color: rgba(255, 255, 255, 0.88); }
 </style>
