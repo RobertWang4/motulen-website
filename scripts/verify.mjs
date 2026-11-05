@@ -38,7 +38,29 @@ const must = [
   ['zh/about/', '不代表'],
   ['zh/projects/', 'dabar'],
   ['zh/projects/', '不代表与 Amazon 直接签约'],
+  ['zh/about/', '也不代表 MOTULEN 在相关国家设有办公室'],
+  ['zh/services/recruitment/', '全球招聘能力为发展方向'],
+  ['pl/services/robotics-service/', 'plan rozwoju'],
+  ['pl/about/', 'spółki matki'],
+  ['pl/about/', 'MOTULEN posiada biura'],
+  ['pl/projects/', 'nie oznacza bezpośredniej umowy z Amazon'],
+  ['pl/services/recruitment/', 'Rekrutacja globalna jest kierunkiem rozwoju'],
 ];
+const mustNot = [
+  ['zh/about/', '业务流程外包'],
+  ['pl/about/', 'outsourcingu procesów biznesowych'],
+  ...PAGES.map((p) => [`pl/${p}`, 'iedzib']),
+];
+for (const [p, s] of mustNot) {
+  const f = join(DIST, p, 'index.html');
+  if (existsSync(f) && readFileSync(f, 'utf8').includes(s)) problems.push(`/${p}: must not contain "${s}"`);
+}
+// the nav marks the current section (needs to survive the GitHub Pages base path)
+for (const lang of LANGS) for (const p of ['about/', 'services/', 'approach/', 'projects/', 'services/recruitment/']) {
+  const f = join(DIST, lang, p, 'index.html');
+  if (existsSync(f) && !/class="navlink current"[^>]*aria-current="page"|aria-current="page"[^>]*class="navlink current"/.test(readFileSync(f, 'utf8')))
+    problems.push(`/${lang}/${p}: nav has no current item`);
+}
 for (const [p, s] of must) {
   const f = join(DIST, p, 'index.html');
   if (existsSync(f) && !readFileSync(f, 'utf8').includes(s)) problems.push(`/${p}: missing required text "${s}"`);

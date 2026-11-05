@@ -1,12 +1,12 @@
 {
   "title": "O nas",
-  "description": "MOTULEN GROUP działa z siedzibą w Polsce i łączy firmy zagraniczne z projektami w Europie.",
+  "description": "MOTULEN GROUP działa z Polski i łączy firmy zagraniczne z projektami w Europie.",
   "lede": "Odpowiadając na potrzeby firm w Europie w zakresie zatrudnienia, budowy i operacji, organizujemy personel i zasoby specjalistyczne oraz wspieramy realizację projektów.",
   "photo": "/img/stock/header-building.jpg",
   "alt": "",
   "intro": {
     "headline": "Łączymy firmy zagraniczne z projektami w Europie",
-    "text": "MOTULEN GROUP działa z siedzibą w Polsce. Świadczy dla firm w Europie usługi outsourcingu procesów biznesowych, outsourcingu HR, rekrutacji i sprowadzania specjalistów, a także rozwija działalność w obszarze inżynierii magazynowej, przestrzeni komercyjnych i serwisu technicznego urządzeń."
+    "text": "MOTULEN GROUP działa z Polski. Główną linią działalności jest organizacja personelu i outsourcing operacyjny; prowadzimy też headhunting i rekrutację celowaną, a działalność rozwijamy w obszarze inżynierii magazynowej, projektów przestrzeni komercyjnych i serwisu technicznego urządzeń."
   },
   "markets": [
     {
@@ -35,7 +35,7 @@
       "role": "coverage"
     }
   ],
-  "marketsHeadline": "Z siedzibą w Polsce, łączymy Europę i rynki zagraniczne",
+  "marketsHeadline": "Działamy z Polski, łączymy Europę i rynki zagraniczne",
   "marketsNote": "Powyższe rynki to obszary działalności i współpracy transgranicznej; nie oznacza to posiadania biur ani takich samych uprawnień do prowadzenia działalności w każdym z tych krajów.",
   "operating": {
     "headline": "Dotychczasowe doświadczenie operacyjne wspiera rozwój działalności MOTULEN",
@@ -76,7 +76,7 @@
         ""
       ]
     ],
-    "note": "Wymienione firmy to doświadczenie operacyjne związane z zespołem; nie oznacza to relacji spółki matki i spółki zależnej z MOTULEN."
+    "note": "Wymienione firmy to doświadczenie operacyjne związane z zespołem; nie oznacza to relacji spółki matki i spółki zależnej z MOTULEN ani tego, że MOTULEN posiada biura lub uprawnienia w tych krajach."
   },
   "team": {
     "headline": "Organizacja zespołów międzynarodowych",

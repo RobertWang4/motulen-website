@@ -1,6 +1,6 @@
 {
   "title": "Usługi dla firm w Europie",
-  "description": "MOTULEN GROUP działa z siedzibą w Polsce. Odpowiadając na potrzeby firm w Europie w zakresie zatrudnienia, budowy i operacji, organizuje personel i zasoby specjalistyczne oraz wspiera realizację projektów.",
+  "description": "MOTULEN GROUP działa z Polski. Odpowiadając na potrzeby firm w Europie w zakresie zatrudnienia, budowy i operacji, organizuje personel i zasoby specjalistyczne oraz wspiera realizację projektów.",
   "hero": {
     "headline": "Łączymy firmy zagraniczne z projektami w Europie",
     "sub": "Usługi dla firm w Europie: organizacja personelu i outsourcing operacyjny, realizacja prac inżynieryjnych i rozwój usług technicznych.",
@@ -10,7 +10,7 @@
   "facts": [
     {
       "k": "Baza",
-      "v": "Siedziba w Polsce"
+      "v": "Działamy z Polski"
     },
     {
       "k": "Rynki",
@@ -35,7 +35,7 @@
     "alt": ""
   },
   "markets": {
-    "headline": "Z siedzibą w Polsce, łączymy Europę i rynki zagraniczne"
+    "headline": "Działamy z Polski, łączymy Europę i rynki zagraniczne"
   },
   "approach": {
     "headline": "Jeden punkt kontaktu w projekcie, od uruchomienia po bieżącą obsługę"

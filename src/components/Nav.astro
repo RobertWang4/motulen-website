@@ -3,7 +3,8 @@ import { site, getUi, otherLang, type Lang } from '../lib/content';
 interface Props { lang: Lang; altHref: string }
 const { lang, altHref } = Astro.props;
 const ui = getUi(lang);
-const current = Astro.url.pathname;
+// strip the GitHub Pages base path so /motulen-website/zh/about/ matches /zh/about/
+const current = '/' + Astro.url.pathname.slice(import.meta.env.BASE_URL.length).replace(/^\//, '');
 const all = (['home', 'about', 'services', 'approach', 'projects', 'contact'] as const).map((id) => ({
   id, label: ui.nav[id], href: id === 'home' ? `/${lang}/` : `/${lang}/${id}/`,
 }));
@@ -16,7 +17,7 @@ const other = otherLang(lang);
 
     <nav class="navlinks">
       {links.map((n) => (
-        <a href={n.href} class:list={['navlink', current.startsWith(n.href) && 'current']}>{n.label}</a>
+        <a href={n.href} class:list={['navlink', current.startsWith(n.href) && 'current']} aria-current={current.startsWith(n.href) ? 'page' : undefined}>{n.label}</a>
       ))}
       <a href={altHref} class="lang" hreflang={other === 'zh' ? 'zh-CN' : 'pl'} lang={other === 'zh' ? 'zh-CN' : 'pl'}>{ui.langName[other]}</a>
       <a href={`/${lang}/contact/`} class="navcta">{ui.nav.contact}</a>
