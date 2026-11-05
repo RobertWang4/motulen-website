@@ -1,18 +1,19 @@
 ---
-/** Mono tag ("02 / SERVICES") above a section h2. */
-interface Props { num?: string; tag: string; headline: string; light?: boolean }
-const { num, tag, headline, light = false } = Astro.props;
+/** Mono tag ("02 / SERVICES") above a section h2. **word** in the headline is highlighted; an array is set as lines. */
+import { hl } from '../lib/hl';
+interface Props { num?: string; tag: string; headline: string | string[]; light?: boolean; badge?: string }
+const { num, tag, headline, light = false, badge } = Astro.props;
+const html = (Array.isArray(headline) ? headline : [headline]).map(hl).join('<br />');
 ---
 <div class:list={['sh reveal', light && 'sh-light']}>
   <p class="tag">{num && <b>{num}</b>}{num && <span>/</span>}<span>{tag}</span></p>
-  <h2 class="h2">{headline}</h2>
+  <h2 class="h2"><Fragment set:html={html} />{badge && <>{' '}<span class="chip-plan">{badge}</span></>}</h2>
 </div>
 
 <style>
   .sh { margin-bottom: clamp(40px, 5vw, 72px); }
   .sh .h2 { max-width: 22ch; text-wrap: balance; }
-  /* balance splits Chinese phrases mid-word; let short headings stay on one line */
-  :global(:lang(zh)) .sh .h2 { max-width: 18em; text-wrap: pretty; }
+  :global(:lang(zh)) .sh .h2 { max-width: 18em; }
   .sh-light .tag { color: rgba(255, 255, 255, 0.55); }
   .sh-light .h2 { color: #fff; }
 </style>

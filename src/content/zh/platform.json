@@ -1,0 +1,117 @@
+{
+  "title": "MOTULEN 全球平台",
+  "description": "立足波兰，连接欧洲与海外",
+  "lede": "立足波兰，连接欧洲与海外",
+  "markets": {
+    "headline": "市场布局",
+    "sub": "业务覆盖与跨境协作市场",
+    "items": [
+      {
+        "name": "波兰",
+        "local": "Polska",
+        "role": "base"
+      },
+      {
+        "name": "捷克",
+        "local": "Czechy",
+        "role": "coverage"
+      },
+      {
+        "name": "匈牙利",
+        "local": "Węgry",
+        "role": "coverage"
+      },
+      {
+        "name": "罗马尼亚",
+        "local": "Rumunia",
+        "role": "coverage"
+      },
+      {
+        "name": "中国",
+        "local": "Chiny",
+        "role": "coverage"
+      }
+    ],
+    "note": "以上为业务覆盖与跨境协作市场，不代表在各国均设有办公室或持有同样经营资质。"
+  },
+  "operating": {
+    "headline": "现有运营经验支撑 MOTULEN 的业务拓展",
+    "columns": [
+      "公司",
+      "国家",
+      "年份"
+    ],
+    "rows": [
+      [
+        "MARASSI",
+        "波兰",
+        "2023"
+      ],
+      [
+        "Finex express",
+        "波兰",
+        "2023"
+      ],
+      [
+        "Armz s.r.o.",
+        "捷克",
+        ""
+      ],
+      [
+        "Mariza",
+        "波兰",
+        "2024"
+      ],
+      [
+        "Armz s.r.o.",
+        "德国",
+        ""
+      ],
+      [
+        "Vasi Planet",
+        "匈牙利",
+        ""
+      ]
+    ],
+    "note": "上述公司为团队相关运营经验，不代表与 MOTULEN 存在母子公司关系，也不代表 MOTULEN 在相关国家设有办公室或持有经营资质。"
+  },
+  "team": {
+    "headline": "跨国团队组织",
+    "lede": "根据项目需求配置组合团队",
+    "groups": [
+      {
+        "title": "中国专家与技术人员",
+        "items": [
+          "理解客户标准，支持技术沟通与项目执行"
+        ]
+      },
+      {
+        "title": "亚洲、非洲员工资源",
+        "items": [
+          "按岗位要求组织人员，匹配工作技能与语言条件"
+        ]
+      },
+      {
+        "title": "欧洲本地协调",
+        "items": [
+          "客户与现场沟通",
+          "入职与文件核验",
+          "考勤与后勤衔接",
+          "人员问题跟进"
+        ]
+      }
+    ],
+    "photo": "/img/ppt/team-table.jpg",
+    "alt": "技术人员围桌查看图纸",
+    "caption": "场景示意"
+  },
+  "talent": {
+    "headline": "亚洲人才引进计划",
+    "items": [
+      "跨国团队组织全球人才寻访",
+      "技术工人团队",
+      "长期项目支持"
+    ],
+    "linkLabel": "了解猎头与定向招聘"
+  }
+}

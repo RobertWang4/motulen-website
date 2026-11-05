@@ -1,78 +1,34 @@
 {
-  "title": "Usługi projektowe w Europie",
-  "description": "MOTULEN GROUP działa z Polski i łączy chińskie firmy z projektami w Europie: odpowiadając na potrzeby firm w Europie w zakresie zatrudnienia, budowy i operacji, organizuje personel i zasoby specjalistyczne oraz wspiera realizację projektów.",
+  "title": "Usługi dla firm w Europie",
+  "description": "MOTULEN GROUP działa z Polski i łączy firmy z zagranicy z projektami w Europie: odpowiadając na potrzeby firm w Europie w zakresie zatrudnienia, budowy i operacji, organizuje personel i zasoby specjalistyczne oraz wspiera realizację projektów.",
   "hero": {
-    "headline": "Łączymy chińskie firmy z projektami w Europie",
-    "sub": "Usługi projektowe w Europie: organizacja personelu i outsourcing operacyjny, realizacja prac inżynieryjnych i rozwój usług technicznych.",
-    "photo": "/img/stock/hero-aerial.jpg",
-    "alt": "Widok z lotu ptaka na europejski park logistyczny"
-  },
-  "facts": [
-    {
-      "k": "Baza",
-      "v": "Działamy z Polski"
-    },
-    {
-      "k": "Rynki",
-      "v": "5 rynków objętych działalnością"
-    },
-    {
-      "k": "Usługi",
-      "v": "4 linie usług"
-    },
-    {
-      "k": "Komunikacja",
-      "v": "Chiński · polski · angielski"
-    }
-  ],
-  "statement": "Organizujemy personel i zasoby specjalistyczne na potrzeby zatrudnienia, budowy i operacji firm w Europie.",
-  "services": {
-    "headline": "Obszary działalności"
-  },
-  "band": {
-    "text": "Komunikacja po chińsku, polsku i angielsku, łącząca wymagania klienta z realizacją na miejscu.",
-    "photo": "/img/stock/area-asrs.jpg",
-    "alt": ""
-  },
-  "markets": {
-    "headline": "Działamy z Polski, łączymy Europę i Chiny",
-    "items": [
-      {
-        "name": "Polska",
-        "local": "Polska",
-        "role": "base"
-      },
-      {
-        "name": "Czechy",
-        "local": "Česko",
-        "role": "coverage"
-      },
-      {
-        "name": "Węgry",
-        "local": "Magyarország",
-        "role": "coverage"
-      },
-      {
-        "name": "Rumunia",
-        "local": "România",
-        "role": "coverage"
-      },
-      {
-        "name": "Chiny",
-        "local": "China",
-        "role": "coverage"
-      }
+    "headline": [
+      "Łączymy firmy z zagranicy",
+      "z projektami w Europie"
     ],
-    "note": "Powyższe rynki to obszary działalności i współpracy transgranicznej; nie oznacza to posiadania biur ani takich samych uprawnień do prowadzenia działalności w każdym z tych krajów."
+    "sub": "Realizują Państwo projekt w Europie? Zbudujemy zespół i zadbamy o organizację pracy na miejscu.",
+    "small": "Od rekrutacji personelu, montażu regałów i instalacji urządzeń po bieżącą obsługę i wsparcie techniczne – koordynujemy prace na miejscu w kilku krajach Europy.",
+    "cta": "Porozmawiajmy o Państwa projekcie",
+    "video": "/video/hero.mp4",
+    "poster": "/img/ppt/hero-poster.jpg",
+    "alt": "Pracownicy na miejscu w magazynie"
   },
-  "approach": {
-    "headline": "Od ustalenia potrzeb do stałej współpracy"
+  "services": {
+    "headline": "Rozwój usług operacyjnych i **technicznych**"
   },
-  "values": {
-    "headline": "Wartość współpracy dla klienta"
+  "projects": {
+    "headline": "Dotychczasowe **doświadczenie projektowe**"
+  },
+  "value": {
+    "headline": "**Korzyści** dla klientów"
+  },
+  "platform": {
+    "headline": "Z Polski łączymy **Europę** z rynkami pozaeuropejskimi"
   },
   "closing": {
-    "headline": "Chcemy być Państwa długoterminowym partnerem projektowym w Europie",
-    "sub": "Organizacja personelu i outsourcing operacyjny · projekty inżynieryjne i rozwój usług technicznych"
+    "headline": "Chcemy zostać Państwa stałym partnerem w Europie.",
+    "sub": "Organizacja zespołów i outsourcing operacyjny · Projekty inżynieryjne i rozwój usług technicznych",
+    "photo": "/img/ppt/closing-night.jpg",
+    "alt": "Park logistyczny nocą"
   }
 }

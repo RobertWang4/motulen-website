@@ -1,72 +1,43 @@
 {
   "id": "operations-outsourcing",
   "number": "01",
-  "title": "人力资源与运营外包",
+  "group": "people",
+  "title": "人力资源外包",
   "short": "长期团队、短期增员、行政后勤",
   "subtitle": "围绕持续运营与阶段性需求，组织适合的团队",
-  "photo": "/img/stock/header-team.jpg",
-  "alt": "仓储运营团队",
+  "photos": [
+    {
+      "src": "/img/ppt/hr-team.jpg",
+      "alt": "仓库内身穿反光背心的团队在现场讨论"
+    },
+    {
+      "src": "/img/ppt/hr-warehouse-1.jpg",
+      "alt": "仓库内的货架与待整理的货物"
+    },
+    {
+      "src": "/img/ppt/hr-warehouse-2.jpg",
+      "alt": "仓库内堆放的待处理货物"
+    },
+    {
+      "src": "/img/ppt/hr-racks.jpg",
+      "alt": "仓库内的高位货架通道"
+    }
+  ],
   "groups": [
     {
-      "title": "长期运营团队",
+      "title": "公司运营团队",
       "items": [
-        "仓储、物流及生产岗位支持",
         "招聘、入职、考勤与日常协调",
         "持续跟进岗位适配和人员稳定性"
       ]
-    }
-  ],
-  "sections": [
-    {
-      "headline": "跨国团队组织",
-      "lede": "根据项目需求配置组合团队",
-      "photo": "/img/stock/area-engineers.jpg",
-      "alt": "中欧技术人员在仓库现场沟通",
-      "groups": [
-        {
-          "title": "中国专家与技术人员",
-          "items": [
-            "理解客户标准，支持技术沟通与项目执行"
-          ]
-        },
-        {
-          "title": "亚洲、非洲员工资源",
-          "items": [
-            "按岗位要求组织人员，匹配工作技能与语言条件"
-          ]
-        },
-        {
-          "title": "欧洲本地协调",
-          "items": [
-            "客户与现场沟通",
-            "入职与文件核验",
-            "考勤与后勤衔接",
-            "人员问题跟进"
-          ]
-        }
-      ]
     },
     {
-      "headline": "行政与后勤支持",
-      "photo": "/img/deck/admin.jpg",
-      "alt": "人事文件整理",
-      "groups": [
-        {
-          "title": "员工事务",
-          "items": [
-            "入职文件核验、工资与人事管理",
-            "日常沟通、问题处理与人员补充"
-          ]
-        },
-        {
-          "title": "项目后勤",
-          "items": [
-            "住宿、交通、工作服及必要装备",
-            "按项目需求安排并明确费用范围"
-          ]
-        }
+      "title": "物流仓储环节外包",
+      "items": [
+        "仓储、物流及生产岗位的业务完成"
       ]
     }
   ],
+  "caption": "华沙 · 2026",
   "note": "运营外包与临时用工的具体组织方式、服务主体及责任按项目确认。"
 }

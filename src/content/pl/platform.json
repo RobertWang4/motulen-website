@@ -1,0 +1,117 @@
+{
+  "title": "Globalna platforma MOTULEN",
+  "description": "Z Polski łączymy Europę z rynkami pozaeuropejskimi",
+  "lede": "Z Polski łączymy Europę z rynkami pozaeuropejskimi",
+  "markets": {
+    "headline": "Rynki działalności",
+    "sub": "Rynki działalności i współpracy międzynarodowej",
+    "items": [
+      {
+        "name": "Polska",
+        "local": "Polska",
+        "role": "base"
+      },
+      {
+        "name": "Czechy",
+        "local": "Czechy",
+        "role": "coverage"
+      },
+      {
+        "name": "Węgry",
+        "local": "Węgry",
+        "role": "coverage"
+      },
+      {
+        "name": "Rumunia",
+        "local": "Rumunia",
+        "role": "coverage"
+      },
+      {
+        "name": "Chiny",
+        "local": "Chiny",
+        "role": "coverage"
+      }
+    ],
+    "note": "Powyższe rynki to obszary działalności i współpracy transgranicznej; nie oznacza to posiadania biur ani takich samych uprawnień do prowadzenia działalności w każdym z tych krajów."
+  },
+  "operating": {
+    "headline": "Dotychczasowe doświadczenie operacyjne wspiera rozwój MOTULEN.",
+    "columns": [
+      "Firma",
+      "Kraj",
+      "Rok"
+    ],
+    "rows": [
+      [
+        "MARASSI",
+        "Polska",
+        "2023"
+      ],
+      [
+        "Finex express",
+        "Polska",
+        "2023"
+      ],
+      [
+        "Armz s.r.o.",
+        "Czechy",
+        ""
+      ],
+      [
+        "Mariza",
+        "Polska",
+        "2024"
+      ],
+      [
+        "Armz s.r.o.",
+        "Niemcy",
+        ""
+      ],
+      [
+        "Vasi Planet",
+        "Węgry",
+        ""
+      ]
+    ],
+    "note": "Wymienione firmy to doświadczenie operacyjne związane z zespołem; nie oznacza to relacji spółki matki i spółki zależnej z MOTULEN ani tego, że MOTULEN posiada biura lub uprawnienia w tych krajach."
+  },
+  "team": {
+    "headline": "Organizacja zespołów międzynarodowych",
+    "lede": "Skład zespołu dobieramy do potrzeb projektu",
+    "groups": [
+      {
+        "title": "Specjaliści i technicy z Chin",
+        "items": [
+          "Praca zgodnie ze standardami klienta, wsparcie komunikacji technicznej i realizacji projektu"
+        ]
+      },
+      {
+        "title": "Pracownicy z Azji i Afryki",
+        "items": [
+          "Dobór pracowników według wymagań stanowiska, umiejętności i znajomości języków"
+        ]
+      },
+      {
+        "title": "Koordynacja w Europie",
+        "items": [
+          "Kontakt z klientem i zespołem na miejscu",
+          "Wdrożenie i weryfikacja dokumentów",
+          "Ewidencja czasu pracy i wsparcie logistyczne",
+          "Bieżąca obsługa spraw pracowniczych"
+        ]
+      }
+    ],
+    "photo": "/img/ppt/team-table.jpg",
+    "alt": "Zespół przy stole nad rysunkami technicznymi",
+    "caption": "Wizualizacja poglądowa"
+  },
+  "talent": {
+    "headline": "Plan rekrutacji w Azji",
+    "items": [
+      "Globalna rekrutacja przez międzynarodowy zespół",
+      "Zespoły pracowników technicznych",
+      "Długoterminowe wsparcie projektów"
+    ],
+    "linkLabel": "Poznaj headhunting i rekrutację celowaną"
+  }
+}

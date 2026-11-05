@@ -1,57 +1,36 @@
 {
-  "title": "关于我们",
-  "description": "MOTULEN GROUP 立足波兰，连接中国企业与欧洲项目现场。",
-  "lede": "围绕企业在欧洲的用工、建设和运营需求，组织人员与专业资源，推进项目落地。",
-  "photo": "/img/stock/header-building.jpg",
-  "alt": "",
-  "intro": {
-    "headline": "连接中国企业与欧洲项目现场",
-    "text": "MOTULEN GROUP 立足波兰，以人员组织与运营外包为主线，开展仓储工程与配套建设、商业空间项目和猎头与定向招聘，并向技术服务拓展。"
+  "title": "关于 MOTULEN GROUP",
+  "description": "MOTULEN GROUP 立足波兰，连接海外企业与欧洲项目现场。",
+  "headline": [
+    "连接海外企业",
+    "与欧洲项目现场"
+  ],
+  "text": [
+    "我们服务于企业在欧洲的用工、建设和运营需求。",
+    "我们组织人员与专业资源，推进项目落地。"
+  ],
+  "photo": "/img/ppt/cover-trucks.jpg",
+  "alt": "日落时分的物流园区与卡车",
+  "scope": {
+    "title": "服务范围",
+    "items": [
+      "欧洲业务流程外包",
+      "欧洲人力资源外包",
+      "欧洲招聘服务",
+      "欧洲劳务派遣",
+      "海外人才引进"
+    ]
   },
-  "operating": {
-    "headline": "现有运营经验支撑 MOTULEN 的业务拓展",
-    "columns": [
-      "公司",
-      "国家",
-      "年份"
-    ],
-    "rows": [
-      [
-        "MARASSI",
-        "波兰",
-        "2023"
-      ],
-      [
-        "Finex express",
-        "波兰",
-        "2023"
-      ],
-      [
-        "Armz s.r.o.",
-        "捷克",
-        ""
-      ],
-      [
-        "Mariza",
-        "波兰",
-        "2024"
-      ],
-      [
-        "Armz s.r.o.",
-        "德国",
-        ""
-      ],
-      [
-        "Vasi Planet",
-        "匈牙利",
-        ""
-      ]
-    ],
-    "note": "上述公司为团队相关运营经验，不代表与 MOTULEN 存在母子公司关系，也不代表 MOTULEN 在相关国家设有办公室或持有经营资质。"
-  },
-  "band": {
-    "text": "中文、波兰语及英语沟通，衔接客户要求与现场执行。",
-    "photo": "/img/stock/area-engineers.jpg",
-    "alt": ""
+  "layout": {
+    "title": "MOTULEN GROUP 业务布局",
+    "headline": "持续运营与**技术服务**能力建设",
+    "extra": {
+      "number": "06",
+      "title": "亚洲人才引进计划",
+      "short": "跨国团队组织全球人才寻访、技术工人团队、长期项目支持",
+      "photo": "/img/ppt/team-table.jpg",
+      "alt": "技术人员围桌查看图纸",
+      "plan": true
+    }
   }
 }

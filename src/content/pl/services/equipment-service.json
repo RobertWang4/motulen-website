@@ -1,0 +1,39 @@
+{
+  "id": "equipment-service",
+  "number": "05",
+  "group": "engineering",
+  "title": "Plan serwisu robotów i urządzeń magazynowych",
+  "short": "Konserwacja sprzętu i wsparcie automatyki",
+  "subtitle": "Zakres obejmuje automatykę magazynową i przemysłową",
+  "photos": [
+    {
+      "src": "/img/ppt/rb-robots.jpg",
+      "alt": "Rzędy żółtych robotów magazynowych w hali"
+    },
+    {
+      "src": "/img/ppt/rb-install.jpg",
+      "alt": "Pracownicy montujący urządzenia w systemie regałowym"
+    }
+  ],
+  "groups": [
+    {
+      "title": "Przygotowanie prac",
+      "items": [
+        "Ustalenie marek i modeli urządzeń klienta",
+        "Rozwój zaplecza technicznego i sieci partnerów",
+        "Ocena dostępności części, czasu reakcji i zasad odbioru"
+      ]
+    },
+    {
+      "title": "Utrzymanie i serwis",
+      "items": [
+        "Bieżące przeglądy i konserwacja urządzeń",
+        "Diagnostyka usterek i wsparcie przy naprawach",
+        "Dobór personelu technicznego do obsługi robotów"
+      ]
+    }
+  ],
+  "caption": "Francja 2025",
+  "note": "Plan rozwoju usług. Slajd nie stanowi potwierdzenia uprawnień serwisowych ani wykonanych napraw.",
+  "plan": true
+}

@@ -1,29 +1,39 @@
 {
   "id": "recruitment",
   "number": "04",
+  "group": "people",
   "title": "Headhunting i rekrutacja celowana",
-  "short": "Rekrutacja celowana, specjaliści techniczni",
-  "subtitle": "Na podstawie potrzeb stanowiska wyszukujemy odpowiednich kandydatów",
-  "photo": "/img/stock/area-engineers.jpg",
-  "alt": "Pracownicy techniczni rozmawiają na miejscu realizacji",
+  "short": "Rekrutacja celowana, kadry techniczne",
+  "subtitle": "Wyszukujemy i rekomendujemy specjalistów oraz menedżerów dobranych do potrzeb firmy",
+  "photos": [
+    {
+      "src": "/img/ppt/rec-office.jpg",
+      "alt": "Rozmowa rekrutacyjna w biurze"
+    }
+  ],
   "groups": [
     {
-      "title": "Usługi rekrutacyjne",
+      "title": "Rekrutacja międzynarodowa",
       "items": [
-        "Określenie zakresu obowiązków, wymaganych umiejętności i znajomości języków",
-        "Poszukiwanie kandydatów, selekcja i koordynacja rozmów kwalifikacyjnych",
-        "Monitorowanie gotowości do podjęcia pracy i ustalenia terminu rozpoczęcia"
+        "Ustalenie obowiązków i wymagań kompetencyjnych oraz językowych",
+        "Wyszukiwanie i selekcja kandydatów, koordynacja rozmów",
+        "Potwierdzenie gotowości i terminu podjęcia pracy",
+        "Wsparcie przy podpisywaniu umów z wybranymi kandydatami",
+        "Zaproszenia dla kandydatów z zagranicy i wsparcie w lokalnych formalnościach"
       ]
     },
     {
-      "title": "Rozwój rekrutacji globalnej",
-      "status": "expanding",
+      "title": "Rekrutacja w Chinach",
       "items": [
-        "Rozszerzanie kanałów dla stanowisk technicznych i specjalistycznych",
-        "Wsparcie w zakresie pobytu, weryfikacji uprawnień do pracy i formalności",
-        "Budowa bazy talentów i monitorowanie dopasowania do stanowisk"
+        "Pozyskiwanie pracowników do pracy w Europie z partnerami rekrutacyjnymi w Chinach",
+        "Przygotowanie zaproszeń oraz dokumentów wizowych i pobytowych"
       ]
     }
   ],
-  "note": "Podjęcie pracy wymaga spełnienia legalnych warunków zatrudnienia i dopełnienia odpowiednich formalności. Rekrutacja globalna jest kierunkiem rozwoju; zakres usługi ustalany jest dla każdego projektu."
+  "caption": "Wizualizacja poglądowa",
+  "note": "Formę outsourcingu i pracy tymczasowej, wykonawcę oraz podział odpowiedzialności ustalamy dla każdego projektu.",
+  "link": {
+    "label": "jobs.marassi.pl",
+    "href": "https://jobs.marassi.pl/"
+  }
 }

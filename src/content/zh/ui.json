@@ -2,11 +2,17 @@
   "nav": {
     "home": "首页",
     "about": "关于我们",
-    "services": "业务",
-    "projects": "项目经验",
-    "direction": "发展方向",
-    "approach": "合作方式",
+    "company": "MOTULEN GROUP",
+    "value": "服务价值",
+    "projects": "成功案例",
+    "services": "欧洲服务",
+    "platform": "MOTULEN 全球平台",
     "contact": "联系我们"
+  },
+  "navDesc": {
+    "company": "公司介绍",
+    "value": "合作价值与项目管理",
+    "projects": "过往项目经验"
   },
   "langName": {
     "zh": "中文",
@@ -15,14 +21,11 @@
   "menu": "菜单",
   "cta": {
     "contact": "联系我们",
-    "allServices": "全部业务",
-    "approach": "了解合作方式",
-    "about": "关于我们",
-    "projects": "查看项目经验",
-    "direction": "查看发展方向"
+    "allCases": "查看全部案例",
+    "more": "了解更多"
   },
   "status": {
-    "expanding": "拓展中"
+    "planned": "规划中"
   },
   "roles": {
     "base": "基地",
@@ -31,22 +34,23 @@
   "tags": {
     "about": "About",
     "services": "Services",
+    "scope": "Scope",
     "markets": "Markets",
-    "approach": "Approach",
-    "values": "Value",
+    "value": "Value",
+    "management": "Management",
     "experience": "Experience",
     "projects": "Projects",
+    "platform": "Platform",
+    "team": "Team",
+    "talent": "Talent",
     "contact": "Contact",
-    "service": "Service",
-    "direction": "Direction",
-    "management": "Management"
+    "service": "Service"
   },
   "footer": {
-    "tagline": "欧洲项目服务：人员组织与运营外包，工程实施与技术服务拓展。",
+    "tagline": "欧洲企业服务：人员组织与运营外包，工程实施与技术服务拓展。",
     "navTitle": "导航",
     "contactTitle": "联系"
   },
   "nextStep": "下一步",
-  "relatedProjects": "相关项目",
-  "output": "输出"
+  "relatedProjects": "相关项目"
 }

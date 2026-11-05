@@ -1,31 +1,28 @@
 ---
-/** Compact project list (name, scenario, experience) with the projects note and a link to the full page. */
-import { getUi, type Lang } from '../lib/content';
-interface Props { lang: Lang; rows: string[][]; note: string }
-const { lang, rows, note } = Astro.props;
-const ui = getUi(lang);
+/** Case list (number + title), each row linking to its anchor on the projects page. */
+import type { Lang } from '../lib/content';
+interface Props { lang: Lang; cases: { id: string; number: string; title: string }[] }
+const { lang, cases } = Astro.props;
 ---
-<div class="pl">
-  <ul class="pl-list">
-    {rows.map((r) => (
-      <li class="pl-row reveal">
-        <span class="pl-name">{r[0]}</span>
-        <span class="pl-sc">{r[1]}</span>
-        {r[2] && <span class="pl-ex">{r[2]}</span>}
-      </li>
-    ))}
-  </ul>
-  <p class="note">{note}</p>
-  <a href={`/${lang}/projects/`} class="ul more">{ui.cta.projects}<i>→</i></a>
-</div>
+<ol class="pl-list">
+  {cases.map((c) => (
+    <li class="reveal">
+      <a href={`/${lang}/projects/#${c.id}`} class="pl-row">
+        <span class="pl-num">{c.number}</span>
+        <span class="pl-name">{c.title}</span>
+        <span class="pl-arrow" aria-hidden="true">→</span>
+      </a>
+    </li>
+  ))}
+</ol>
 
 <style>
   .pl-list { list-style: none; margin: 0; padding: 0; border-bottom: 1px solid var(--line); }
-  .pl-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.5fr); gap: 8px clamp(16px, 3vw, 48px); padding: 18px 0; border-top: 1px solid var(--line); align-items: baseline; }
-  .pl-name { font-family: var(--display); font-weight: 700; font-size: clamp(18px, 1.6vw, 22px); }
-  :global(:lang(zh)) .pl-name { font-weight: 600; }
-  .pl-sc, .pl-ex { font-size: 15px; color: var(--muted); }
-  .pl .note { margin-top: 20px; }
-  .pl .more { margin-top: clamp(28px, 3vw, 40px); }
-  @media (max-width: 760px) { .pl-row { grid-template-columns: 1fr; } }
+  .pl-row { display: grid; grid-template-columns: clamp(48px, 5vw, 80px) minmax(0, 1fr) 32px; gap: 16px; align-items: baseline; padding: 18px 0; border-top: 1px solid var(--line); }
+  .pl-num { font-family: var(--mono); font-size: clamp(18px, 1.8vw, 26px); color: var(--faint); font-variant-numeric: tabular-nums; transition: color 200ms ease-out; }
+  .pl-name { font-family: var(--display); font-weight: 700; font-size: clamp(18px, 1.6vw, 22px); line-height: 1.3; transition: color 200ms ease-out; }
+  :global(:lang(zh)) .pl-name { font-family: var(--display-zh); font-weight: 700; word-break: keep-all; overflow-wrap: anywhere; }
+  .pl-arrow { color: var(--faint); transition: color 200ms ease-out, transform 200ms ease-out; }
+  .pl-row:hover .pl-num, .pl-row:hover .pl-name, .pl-row:hover .pl-arrow { color: var(--teal); }
+  .pl-row:hover .pl-arrow { transform: translateX(4px); }
 </style>

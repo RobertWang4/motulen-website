@@ -2,11 +2,17 @@
   "nav": {
     "home": "Strona główna",
     "about": "O nas",
-    "services": "Usługi",
-    "projects": "Doświadczenie",
-    "direction": "Kierunki rozwoju",
-    "approach": "Współpraca",
+    "company": "MOTULEN GROUP",
+    "value": "Korzyści dla klientów",
+    "projects": "Zrealizowane projekty",
+    "services": "Usługi w Europie",
+    "platform": "Globalna platforma MOTULEN",
     "contact": "Kontakt"
+  },
+  "navDesc": {
+    "company": "O firmie",
+    "value": "Korzyści ze współpracy i zarządzanie projektami",
+    "projects": "Dotychczasowe doświadczenie projektowe"
   },
   "langName": {
     "zh": "中文",
@@ -15,14 +21,11 @@
   "menu": "Menu",
   "cta": {
     "contact": "Kontakt",
-    "allServices": "Wszystkie usługi",
-    "approach": "Poznaj zasady współpracy",
-    "about": "O nas",
-    "projects": "Zobacz doświadczenie projektowe",
-    "direction": "Zobacz kierunki rozwoju"
+    "allCases": "Zobacz wszystkie projekty",
+    "more": "Dowiedz się więcej"
   },
   "status": {
-    "expanding": "W rozwoju"
+    "planned": "Plan rozwoju"
   },
   "roles": {
     "base": "Baza",
@@ -31,22 +34,23 @@
   "tags": {
     "about": "About",
     "services": "Services",
+    "scope": "Scope",
     "markets": "Markets",
-    "approach": "Approach",
-    "values": "Value",
+    "value": "Value",
+    "management": "Management",
     "experience": "Experience",
     "projects": "Projects",
+    "platform": "Platform",
+    "team": "Team",
+    "talent": "Talent",
     "contact": "Contact",
-    "service": "Service",
-    "direction": "Direction",
-    "management": "Management"
+    "service": "Service"
   },
   "footer": {
-    "tagline": "Usługi projektowe w Europie: organizacja personelu i outsourcing operacyjny, realizacja prac inżynieryjnych i rozwój usług technicznych.",
+    "tagline": "Usługi dla firm w Europie: organizacja zespołów i outsourcing operacyjny, realizacja projektów i rozwój usług technicznych.",
     "navTitle": "Nawigacja",
     "contactTitle": "Kontakt"
   },
   "nextStep": "Następny krok",
-  "relatedProjects": "Powiązane projekty",
-  "output": "Rezultat"
+  "relatedProjects": "Powiązane projekty"
 }

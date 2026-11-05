@@ -1,49 +1,57 @@
 ---
-/** Home services block: the business lines as photo cards joined by one hairline rail. */
-import type { Lang, Service } from '../lib/content';
-interface Props { lang: Lang; services: Service[] }
-const { lang, services } = Astro.props;
+/** Home services block: the services as photo cards, one hairline rail per group (group name as a small heading). */
+import { getUi, type Lang, type Service } from '../lib/content';
+interface Props { lang: Lang; groups: { key: string; title: string; items: Service[] }[] }
+const { lang, groups } = Astro.props;
+const ui = getUi(lang);
 ---
-<ol class="sc" style={`--cols: ${services.length}`}>
-  {services.map((s) => (
-    <li class="sc-item reveal">
-      <a href={`/${lang}/services/${s.id}/`} class="sc-link">
-        <span class="sc-shot"><img src={s.photo} alt="" loading="lazy" /></span>
-        <span class="sc-rail" aria-hidden="true"><span class="sc-dot"></span></span>
-        <span class="sc-num">{s.number}</span>
-        <span class="sc-title">{s.title}<i aria-hidden="true">→</i></span>
-        <span class="sc-short">{s.short}</span>
-      </a>
-    </li>
-  ))}
-</ol>
+{groups.map((g) => (
+  <div class="sc-group">
+    <h3 class="gtitle sc-gtitle">{g.title}</h3>
+    <ol class="sc">
+      {g.items.map((s) => (
+        <li class="sc-item reveal">
+          <a href={`/${lang}/services/${s.id}/`} class="sc-link">
+            <span class="sc-shot"><img src={s.photos[0].src} alt="" loading="lazy" /></span>
+            <span class="sc-rail" aria-hidden="true"><span class="sc-dot"></span></span>
+            <span class="sc-num">{s.number}</span>
+            <span class="sc-title">{s.title}{s.plan && <span class="chip-plan">{ui.status.planned}</span>}<i aria-hidden="true">→</i></span>
+            <span class="sc-short">{s.short}</span>
+          </a>
+        </li>
+      ))}
+    </ol>
+  </div>
+))}
 
 <style>
-  .sc { --gap: clamp(20px, 2.4vw, 40px); list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(var(--cols), minmax(0, 1fr)); gap: var(--gap); }
+  .sc-group + .sc-group { margin-top: clamp(48px, 6vw, 88px); }
+  .sc-gtitle { margin: 0 0 24px; }
+  .sc { --gap: clamp(20px, 2.4vw, 40px); list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gap); }
   .sc-item { min-width: 0; }
   .sc-link { display: flex; flex-direction: column; }
-  .sc-shot { display: block; aspect-ratio: 4 / 5; overflow: hidden; border-radius: var(--r-sm); background: var(--surface); }
-  .sc-shot img { width: 100%; height: 100%; object-fit: cover; transition: transform 350ms ease-out; }
+  .sc-shot { display: block; aspect-ratio: 4 / 3; overflow: hidden; border-radius: var(--r-sm); background: var(--surface); }
+  .sc-shot img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 350ms ease-out; }
   .sc-link:hover .sc-shot img { transform: scale(1.03); }
   /* one continuous rail under the photos: each card draws its segment plus the gap to the next */
   .sc-rail { position: relative; display: block; height: 11px; margin: 24px 0 22px; }
   .sc-rail::before { content: ''; position: absolute; left: 0; right: calc(-1 * var(--gap)); top: 5px; height: 1px; background: var(--line); }
   .sc-item:last-child .sc-rail::before { right: 0; }
-  .sc-dot { position: absolute; top: 0; left: 0; width: 11px; height: 11px; border-radius: 50%; background: var(--blue); }
+  .sc-dot { position: absolute; top: 0; left: 0; width: 11px; height: 11px; border-radius: 50%; background: var(--teal); }
   .sc-num { font-family: var(--mono); font-size: clamp(36px, 3.6vw, 56px); line-height: 1; color: var(--line); font-variant-numeric: tabular-nums; }
   .sc-title {
-    margin-top: 18px; display: flex; justify-content: space-between; gap: 12px; align-items: baseline;
+    margin-top: 18px; display: flex; justify-content: space-between; gap: 12px; align-items: baseline; flex-wrap: wrap;
     font-family: var(--display); font-weight: 700; font-size: clamp(20px, 1.8vw, 26px); line-height: 1.25; letter-spacing: -0.015em;
     transition: color 200ms ease-out; overflow-wrap: anywhere;
   }
-  :global(:lang(zh)) .sc-title { font-weight: 600; letter-spacing: 0; }
+  :global(:lang(zh)) .sc-title { font-family: var(--display-zh); font-weight: 700; letter-spacing: 0; }
+  .sc-title .chip-plan { margin-right: auto; }
   .sc-title i { font-style: normal; color: var(--faint); transition: color 200ms ease-out, transform 200ms ease-out; }
-  .sc-link:hover .sc-title, .sc-link:hover .sc-title i { color: var(--blue); }
+  .sc-link:hover .sc-title, .sc-link:hover .sc-title i { color: var(--teal); }
   .sc-link:hover .sc-title i { transform: translateX(4px); }
   .sc-short { margin-top: 10px; color: var(--muted); font-size: 15px; line-height: 1.6; }
   @media (max-width: 899px) {
     .sc { grid-template-columns: 1fr 1fr; gap: 40px 20px; }
-    .sc-shot { aspect-ratio: 4 / 3; }
     .sc-rail { margin: 16px 0 14px; }
     .sc-rail::before { right: 0; }
   }

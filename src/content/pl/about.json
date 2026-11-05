@@ -1,57 +1,36 @@
 {
-  "title": "O nas",
-  "description": "MOTULEN GROUP działa z Polski i łączy chińskie firmy z projektami w Europie.",
-  "lede": "Odpowiadając na potrzeby firm w Europie w zakresie zatrudnienia, budowy i operacji, organizujemy personel i zasoby specjalistyczne oraz wspieramy realizację projektów.",
-  "photo": "/img/stock/header-building.jpg",
-  "alt": "",
-  "intro": {
-    "headline": "Łączymy chińskie firmy z projektami w Europie",
-    "text": "MOTULEN GROUP działa z Polski. Główną linią działalności jest organizacja personelu i outsourcing operacyjny; prowadzimy też inżynierię magazynową i prace towarzyszące, projekty przestrzeni komercyjnych oraz headhunting i rekrutację celowaną, a działalność rozwijamy w kierunku usług technicznych."
+  "title": "O MOTULEN GROUP",
+  "description": "MOTULEN GROUP działa z Polski i łączy firmy z zagranicy z projektami w Europie.",
+  "headline": [
+    "Łączymy firmy z zagranicy",
+    "z projektami w Europie"
+  ],
+  "text": [
+    "Wspieramy firmy w Europie w zakresie kadr, budowy i bieżącej działalności.",
+    "Dobieramy zespoły i specjalistów potrzebnych do realizacji projektów."
+  ],
+  "photo": "/img/ppt/cover-trucks.jpg",
+  "alt": "Park logistyczny o zachodzie słońca, ciężarówki przy rampach",
+  "scope": {
+    "title": "Zakres usług",
+    "items": [
+      "Outsourcing procesów w Europie",
+      "Outsourcing HR w Europie",
+      "Rekrutacja w Europie",
+      "Praca tymczasowa w Europie",
+      "Pozyskiwanie kadr z zagranicy"
+    ]
   },
-  "operating": {
-    "headline": "Dotychczasowe doświadczenie operacyjne wspiera rozwój działalności MOTULEN",
-    "columns": [
-      "Firma",
-      "Kraj",
-      "Rok"
-    ],
-    "rows": [
-      [
-        "MARASSI",
-        "Polska",
-        "2023"
-      ],
-      [
-        "Finex express",
-        "Polska",
-        "2023"
-      ],
-      [
-        "Armz s.r.o.",
-        "Czechy",
-        ""
-      ],
-      [
-        "Mariza",
-        "Polska",
-        "2024"
-      ],
-      [
-        "Armz s.r.o.",
-        "Niemcy",
-        ""
-      ],
-      [
-        "Vasi Planet",
-        "Węgry",
-        ""
-      ]
-    ],
-    "note": "Wymienione firmy to doświadczenie operacyjne związane z zespołem; nie oznacza to relacji spółki matki i spółki zależnej z MOTULEN ani tego, że MOTULEN posiada biura lub uprawnienia w tych krajach."
-  },
-  "band": {
-    "text": "Komunikacja po chińsku, polsku i angielsku, łącząca wymagania klienta z realizacją na miejscu.",
-    "photo": "/img/stock/area-engineers.jpg",
-    "alt": ""
+  "layout": {
+    "title": "Obszary działalności MOTULEN GROUP",
+    "headline": "Rozwój usług operacyjnych i **technicznych**",
+    "extra": {
+      "number": "06",
+      "title": "Plan rekrutacji w Azji",
+      "short": "Globalna rekrutacja przez międzynarodowy zespół, Zespoły pracowników technicznych, Długoterminowe wsparcie projektów",
+      "photo": "/img/ppt/team-table.jpg",
+      "alt": "Zespół przy stole nad rysunkami technicznymi",
+      "plan": true
+    }
   }
 }

@@ -1,21 +1,31 @@
 ---
-import { site, getUi, otherLang, type Lang } from '../lib/content';
+import { site, getNav, otherLang, type Lang } from '../lib/content';
 interface Props { lang: Lang; altHref: string }
 const { lang, altHref } = Astro.props;
-const ui = getUi(lang);
-const nav = (['home', 'about', 'services', 'projects', 'direction', 'approach', 'contact'] as const).map((id) => ({
-  label: ui.nav[id], href: id === 'home' ? `/${lang}/` : `/${lang}/${id}/`,
-}));
+const { ui, about, groups } = getNav(lang);
+const links = [
+  { label: ui.nav.home, href: `/${lang}/` },
+  { label: ui.nav.platform, href: `/${lang}/platform/` },
+  { label: ui.nav.contact, href: `/${lang}/contact/` },
+];
 ---
 <footer class="site-footer">
   <div class="fgrid">
     <div class="fbrand">
-      <a href={`/${lang}/`} class="fmark">{site.brand.name}</a>
+      <a href={`/${lang}/`} class="fmark"><img src="/img/brand/logo-white.png" alt={site.brand.name} width="1000" height="246" /></a>
       <p>{ui.footer.tagline}</p>
     </div>
     <div>
+      <h2>{ui.nav.about}</h2>
+      <ul>{about.map((c) => <li><a href={c.href}>{c.label}</a></li>)}</ul>
+    </div>
+    <div>
+      <h2>{ui.nav.services}</h2>
+      <ul>{groups.flatMap((g) => g.items).map((s) => <li><a href={s.href}>{s.title}</a></li>)}</ul>
+    </div>
+    <div>
       <h2>{ui.footer.navTitle}</h2>
-      <ul>{nav.map((n) => <li><a href={n.href}>{n.label}</a></li>)}</ul>
+      <ul>{links.map((n) => <li><a href={n.href}>{n.label}</a></li>)}</ul>
     </div>
     <div>
       <h2>{ui.footer.contactTitle}</h2>
@@ -34,14 +44,15 @@ const nav = (['home', 'about', 'services', 'projects', 'direction', 'approach', 
 
 <style>
   .site-footer {
-    background: var(--navy); color: rgba(255, 255, 255, 0.66);
+    background: var(--navy); color: rgba(255, 255, 255, 0.7);
     padding: clamp(56px, 8vw, 96px) var(--pad) 30px;
   }
   .fgrid {
     margin: 0 auto; max-width: 1360px;
-    display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: clamp(28px, 5vw, 72px); align-items: start;
+    display: grid; grid-template-columns: 1.4fr 1fr 1.3fr 1fr 1.3fr; gap: clamp(28px, 5vw, 72px); align-items: start;
   }
-  .fmark { font-family: var(--display); font-weight: 700; font-size: 20px; letter-spacing: 0.04em; color: #fff; }
+  .fmark { display: inline-block; }
+  .fmark img { display: block; height: 36px; width: auto; }
   .fbrand p { font-size: 15px; line-height: 1.7; max-width: 30ch; margin-top: 20px; }
   .fgrid h2 {
     font-family: var(--mono); font-size: 12px; font-weight: 400;

@@ -1,14 +1,13 @@
 {
-  "title": "Usługi",
-  "description": "Cztery linie usług MOTULEN GROUP: outsourcing HR i operacji, inżynieria magazynowa i prace towarzyszące, projekty przestrzeni komercyjnych, headhunting i rekrutacja celowana.",
-  "lede": "Organizacja personelu i outsourcing operacyjny to główna linia działalności; realizacja prac inżynieryjnych i usługi techniczne to jej rozwój.",
-  "photo": "/img/stock/header-conveyor.jpg",
-  "alt": "",
-  "headline": "Stała obsługa operacyjna i rozwój usług technicznych",
+  "groups": {
+    "people": "Organizacja zespołów i outsourcing operacyjny",
+    "engineering": "Realizacja projektów i rozwój usług technicznych"
+  },
   "order": [
     "operations-outsourcing",
     "warehouse-engineering",
     "commercial-spaces",
-    "recruitment"
+    "recruitment",
+    "equipment-service"
   ]
 }

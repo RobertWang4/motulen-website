@@ -1,32 +1,51 @@
 {
   "id": "warehouse-engineering",
   "number": "02",
-  "title": "Inżynieria magazynowa i prace towarzyszące",
-  "short": "Regały i urządzenia sortujące, instalacje silnoprądowe i słaboprądowe, prace budowlano-adaptacyjne i IT",
-  "subtitle": "Wsparcie przy budowie, adaptacji i instalacji urządzeń w magazynach",
-  "photo": "/img/stock/header-conveyor.jpg",
-  "alt": "Linia przenośników w magazynie",
+  "group": "engineering",
+  "title": "Infrastruktura magazynowa",
+  "short": "Regały, sortery, instalacje elektryczne i teletechniczne, prace budowlane oraz IT",
+  "subtitle": "Szkolimy specjalistów w obsłudze nowych urządzeń i zapewniamy serwis techniczny",
+  "photos": [
+    {
+      "src": "/img/ppt/wh-mezzanine.jpg",
+      "alt": "Żółta stalowa antresola w hali magazynowej"
+    },
+    {
+      "src": "/img/ppt/wh-shuttle.jpg",
+      "alt": "Wózek wahadłowy i przenośniki przy regale"
+    },
+    {
+      "src": "/img/ppt/wh-racks.jpg",
+      "alt": "Alejka regałowa w magazynie"
+    },
+    {
+      "src": "/img/ppt/wh-lift.jpg",
+      "alt": "Pionowa winda towarowa w hali"
+    },
+    {
+      "src": "/img/ppt/wh-motor.jpg",
+      "alt": "Silnik i elementy napędu urządzenia regałowego"
+    }
+  ],
   "groups": [
     {
-      "title": "Regały i instalacja urządzeń",
+      "title": "Prace wewnątrz magazynów",
       "items": [
-        "Montaż, demontaż i regulacja regałów",
-        "Instalacja urządzeń sortujących i organizacja prac na miejscu"
+        "Montaż i demontaż regałów",
+        "Instalacja urządzeń",
+        "Instalacje elektryczne i teletechniczne",
+        "Rozwiązania IT"
       ]
     },
     {
-      "title": "Prace inżynieryjne i systemy towarzyszące",
+      "title": "Stałe utrzymanie urządzeń",
       "items": [
-        "Instalacje silnoprądowe i słaboprądowe, prace budowlano-adaptacyjne",
-        "Rozwiązania IT i prace towarzyszące projektowi"
-      ]
-    },
-    {
-      "title": "Organizacja projektu",
-      "items": [
-        "Określenie zakresu prac i wymagań technicznych, dobór specjalistów, koordynacja harmonogramu i odbiór zgodnie z ustaleniami."
+        "Utrzymanie automatyki logistycznej",
+        "Obsługa towarzyszących urządzeń elektrycznych",
+        "Wsparcie w zakresie oprogramowania"
       ]
     }
   ],
-  "note": "Realizacja projektu wymaga zapewnienia odpowiednich specjalistów, uprawnień i odpowiedzialności umownej."
+  "caption": "Francja 2025",
+  "note": "Formę outsourcingu i pracy tymczasowej, wykonawcę oraz podział odpowiedzialności ustalamy dla każdego projektu."
 }

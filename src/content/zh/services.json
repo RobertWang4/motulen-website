@@ -1,14 +1,13 @@
 {
-  "title": "业务",
-  "description": "MOTULEN GROUP 四条业务线：人力资源与运营外包、仓储工程与配套建设、商业空间项目、猎头与定向招聘。",
-  "lede": "人员组织与运营外包为主线，工程实施与技术服务为拓展。",
-  "photo": "/img/stock/header-conveyor.jpg",
-  "alt": "",
-  "headline": "持续运营与技术服务能力建设",
+  "groups": {
+    "people": "人员组织与运营外包",
+    "engineering": "工程实施与技术服务拓展"
+  },
   "order": [
     "operations-outsourcing",
     "warehouse-engineering",
     "commercial-spaces",
-    "recruitment"
+    "recruitment",
+    "equipment-service"
   ]
 }

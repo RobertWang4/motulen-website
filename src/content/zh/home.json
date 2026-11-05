@@ -1,78 +1,34 @@
 {
-  "title": "欧洲项目服务",
+  "title": "欧洲企业服务",
   "description": "MOTULEN GROUP 立足波兰，连接中国企业与欧洲项目现场：围绕企业在欧洲的用工、建设和运营需求，组织人员与专业资源，推进项目落地。",
   "hero": {
-    "headline": "连接中国企业与欧洲项目现场",
-    "sub": "欧洲项目服务：人员组织与运营外包，工程实施与技术服务拓展。",
-    "photo": "/img/stock/hero-aerial.jpg",
-    "alt": "欧洲物流园区航拍"
-  },
-  "facts": [
-    {
-      "k": "基地",
-      "v": "立足波兰"
-    },
-    {
-      "k": "市场",
-      "v": "5 个业务覆盖市场"
-    },
-    {
-      "k": "业务",
-      "v": "4 条业务线"
-    },
-    {
-      "k": "沟通",
-      "v": "中文 · 波兰语 · 英语"
-    }
-  ],
-  "statement": "围绕企业在欧洲的用工、建设和运营需求，组织人员与专业资源，推进项目落地。",
-  "services": {
-    "headline": "业务布局"
-  },
-  "band": {
-    "text": "中文、波兰语及英语沟通，衔接客户要求与现场执行。",
-    "photo": "/img/stock/area-asrs.jpg",
-    "alt": ""
-  },
-  "markets": {
-    "headline": "立足波兰，连接欧洲与中国",
-    "items": [
-      {
-        "name": "波兰",
-        "local": "Polska",
-        "role": "base"
-      },
-      {
-        "name": "捷克",
-        "local": "Česko",
-        "role": "coverage"
-      },
-      {
-        "name": "匈牙利",
-        "local": "Magyarország",
-        "role": "coverage"
-      },
-      {
-        "name": "罗马尼亚",
-        "local": "România",
-        "role": "coverage"
-      },
-      {
-        "name": "中国",
-        "local": "China",
-        "role": "coverage"
-      }
+    "headline": [
+      "连接中国企业",
+      "与欧洲项目现场"
     ],
-    "note": "以上为业务覆盖与跨境协作市场，不代表在各国均设有办公室或持有同样经营资质。"
+    "sub": "在欧洲开展项目？我们帮您组建团队，把现场管起来。",
+    "small": "从人员招聘、货架搭建和设备安装，到日常运营与技术支持，我们在欧洲多国为您协调现场。",
+    "cta": "聊聊您的项目",
+    "video": "/video/hero.mp4",
+    "poster": "/img/ppt/hero-poster.jpg",
+    "alt": "仓库现场的工作人员"
   },
-  "approach": {
-    "headline": "从需求沟通到持续合作"
+  "services": {
+    "headline": "持续运营与**技术服务**能力建设"
   },
-  "values": {
-    "headline": "客户合作价值"
+  "projects": {
+    "headline": "过往**项目经验**"
+  },
+  "value": {
+    "headline": "提供给客户的**合作价值**"
+  },
+  "platform": {
+    "headline": "立足波兰，连接**欧洲与海外**"
   },
   "closing": {
     "headline": "期待成为您在欧洲的长期项目合作伙伴",
-    "sub": "人员组织与运营外包 · 工程项目与技术服务拓展"
+    "sub": "人员组织与运营外包 · 工程项目与技术服务拓展",
+    "photo": "/img/ppt/closing-night.jpg",
+    "alt": "夜幕下的物流园区"
   }
 }

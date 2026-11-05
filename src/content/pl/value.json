@@ -1,0 +1,73 @@
+{
+  "title": "Korzyści dla klientów",
+  "description": "Korzyści ze współpracy i sposób zarządzania projektami",
+  "lede": "Korzyści ze współpracy i sposób zarządzania projektami",
+  "values": {
+    "headline": "**Korzyści** dla klientów",
+    "items": [
+      {
+        "title": "Komunikacja wielojęzyczna",
+        "items": [
+          "Obsługa po polsku, angielsku, chińsku i w innych językach",
+          "Przekładanie wymagań klienta na działania zespołu na miejscu"
+        ]
+      },
+      {
+        "title": "Dopasowanie do cyklu projektu",
+        "items": [
+          "Budowa stałej bazy pracowników",
+          "Szybkie dostosowanie obsady do etapów projektu",
+          "Dobór specjalistów do zadań"
+        ]
+      },
+      {
+        "title": "Zespoły do różnych zadań",
+        "items": [
+          "Pracownicy fizyczni, techniczni i biurowi dobierani do potrzeb klienta"
+        ]
+      },
+      {
+        "title": "Lokalne wsparcie realizacji",
+        "items": [
+          "Dobór lokalnych zasobów i partnerów do realizacji usług"
+        ]
+      },
+      {
+        "title": "Zgodność z przepisami w Europie",
+        "items": [
+          "Kompleksowe wsparcie zagranicznych klientów w spełnianiu lokalnych wymogów"
+        ]
+      }
+    ]
+  },
+  "management": {
+    "headline": "Zarządzanie projektami",
+    "lede": "Jeden punkt kontaktu od uruchomienia po bieżącą obsługę",
+    "stages": [
+      {
+        "title": "Ustalenia przed startem",
+        "items": [
+          "Zakres usług i obowiązki stron",
+          "Plan obsady, warunki na miejscu i standardy odbioru",
+          "Pozycje wyceny i zasady rozliczeń"
+        ]
+      },
+      {
+        "title": "Nadzór nad realizacją",
+        "items": [
+          "Ewidencja czasu pracy, postępów i problemów na miejscu",
+          "Wyznaczenie osób odpowiedzialnych i terminów",
+          "Regularna ocena jakości i potrzeb kadrowych"
+        ]
+      },
+      {
+        "title": "Po odbiorze",
+        "items": [
+          "Odpowiedzialność za rezultat projektu",
+          "Konsultacje po zakończeniu projektu"
+        ]
+      }
+    ],
+    "note": "Wspólna dokumentacja i standardy ograniczają nieporozumienia oraz ułatwiają rozliczenia."
+  }
+}

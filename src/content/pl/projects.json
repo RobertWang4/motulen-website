@@ -1,59 +1,68 @@
 {
-  "title": "Doświadczenie",
-  "description": "Doświadczenie projektowe MARASSI i zespołu: obsługa magazynów, produkcja żywności, outsourcing produkcji i tworzenie krótkoterminowych magazynów.",
-  "lede": "Doświadczenie projektowe MARASSI i zespołu.",
-  "photo": "/img/stock/header-robot-detail.jpg",
-  "alt": "",
-  "headline": "Projekty personelu w magazynach, produkcji i logistyce",
-  "columns": [
-    "Projekt",
-    "Obszar działalności",
-    "Doświadczenie"
+  "title": "Zrealizowane projekty",
+  "description": "Dla klientów prowadzących w Europie działalność magazynową i produkcyjną zapewniamy outsourcing personelu, montaż techniczny i koordynację na miejscu.",
+  "headline": "Dotychczasowe doświadczenie projektowe",
+  "intro": "Dla klientów prowadzących w Europie działalność magazynową i produkcyjną zapewniamy outsourcing personelu, montaż techniczny i koordynację na miejscu. Poniższe pięć projektów obejmuje różne potrzeby: od uruchomienia nowego magazynu i krótkoterminowego montażu po długoterminową obsadę produkcji.",
+  "cases": [
+    {
+      "id": "case-01",
+      "number": "01",
+      "title": "Chińska firma tworzy magazyn zwrotów w Polsce",
+      "paragraphs": [
+        "Chińskie przedsiębiorstwo planowało uruchomić w Polsce magazyn zwrotów i musiało jednocześnie rozwiązać kwestie założenia spółki, wyboru lokalizacji magazynu, przygotowania infrastruktury i obsady personelu. Pomogliśmy klientowi w formalnościach związanych z założeniem spółki, nawiązaliśmy kontakt z właścicielem obiektu, koordynowaliśmy prace infrastrukturalne na miejscu i zgodnie z harmonogramem otwarcia organizowaliśmy wejście na magazyn pracowników operacyjnych.",
+        "Przed otwarciem magazynu klient oddelegował trenerów, którzy omawiali procedury obsługi zwrotów. Zapewniliśmy tłumaczenie ustne na miejscu, dzięki czemu lokalni pracownicy rozumieli kolejne kroki, a trenerzy mogli na bieżąco odpowiadać na pytania pojawiające się w praktyce. Od przygotowania obiektu po start zespołu wszystkie działania klienta w Polsce wspierał lokalny zespół."
+      ],
+      "services": [
+        "operations-outsourcing"
+      ]
+    },
+    {
+      "id": "case-02",
+      "number": "02",
+      "title": "Polski zakład przetwórstwa mrożonych owoców · pięcioletnia wyłączna współpraca w zakresie outsourcingu personelu",
+      "paragraphs": [
+        "Na początku współpracy personel produkcyjny dla tego polskiego zakładu przetwórstwa mrożonych owoców zapewniało trzech usługodawców, w tym my. W miarę pogłębiania współpracy klient skoncentrował outsourcing personelu u nas, a obie strony prowadziły pięcioletnią wyłączną współpracę przy skali usługi około 140 osób.",
+        "Przy zespole produkcyjnym tej wielkości priorytetem było nie tylko skierowanie ludzi do pracy, ale także dopasowanie obsady do potrzeb produkcji. Organizowaliśmy personel zgodnie z potrzebami zakładu dotyczącymi stanowisk i zmian oraz centralnie koordynowaliśmy bieżące sprawy zatrudnienia. Dla klienta oznaczało to jeden punkt kontaktu zamiast osobnej komunikacji z trzema dostawcami."
+      ],
+      "services": [
+        "operations-outsourcing"
+      ]
+    },
+    {
+      "id": "case-03",
+      "number": "03",
+      "title": "Polska fabryka mebli · wsparcie personelowe projektu produkcyjnego",
+      "paragraphs": [
+        "W projekcie outsourcingu produkcji w jednej z polskich fabryk mebli kierowaliśmy pracowników na stanowiska zgodnie z potrzebami klienta i planem produkcji, zapewniając wsparcie kadrowe na hali. W ramach współpracy odpowiadaliśmy za uzgadnianie zapotrzebowania na personel i terminów rozpoczęcia pracy, co ułatwiało fabryce koordynację prac zgodnie z planem produkcji."
+      ],
+      "services": [
+        "operations-outsourcing"
+      ]
+    },
+    {
+      "id": "case-04",
+      "number": "04",
+      "title": "Magazyn logistyczny dużego przedsiębiorstwa · montaż i koordynacja bezpieczeństwa na początku budowy magazynu",
+      "paragraphs": [
+        "W krótkoterminowym projekcie budowy magazynu dużego przedsiębiorstwa uczestniczyliśmy w montażu dużego sortera logistycznego, regałów magazynowych oraz towarzyszących modernizacji instalacji elektrycznych i teletechnicznych. Na terenie pracowało jednocześnie wiele specjalności, dlatego wspólnie z partnerską firmą zajmującą się bezpieczeństwem zorganizowaliśmy szkolenia wstępne i, z uwzględnieniem okolicznych zasobów medycznych, opracowaliśmy plan akcji ratunkowej, określając w nim kontakty i sposób dotarcia do pomocy medycznej w sytuacjach awaryjnych.",
+        "Do prac na wysokości kierowaliśmy osoby z odpowiednimi kwalifikacjami i stosowaliśmy zespoły, w których jeden doświadczony pracownik prowadził pięciu nowych, a jedna z tych pięciu osób porozumiewała się po angielsku. Doświadczeni pracownicy odpowiadali za szkolenie na miejscu, a osoba mówiąca po angielsku pomagała zespołowi zrozumieć wymagania montażowe i zgłaszała problemy z miejsca prac."
+      ],
+      "services": [
+        "warehouse-engineering",
+        "operations-outsourcing"
+      ]
+    },
+    {
+      "id": "case-05",
+      "number": "05",
+      "title": "Chińskie przedsiębiorstwo działające na Węgrzech · wsparcie personelu operacji magazynowych",
+      "paragraphs": [
+        "Zapewniamy wsparcie personelu operacji magazynowych dla chińskiego przedsiębiorstwa działającego na Węgrzech. Klient potrzebował przełożyć zapotrzebowanie na stanowiska na konkretną obsadę i utrzymać komunikację po wejściu pracowników na teren. Organizowaliśmy personel zgodnie z potrzebami operacyjnymi magazynu, koordynowaliśmy terminy rozpoczęcia pracy i śledziliśmy problemy zgłaszane przez pracowników na miejscu, wspierając codzienną działalność magazynową klienta."
+      ],
+      "services": [
+        "operations-outsourcing"
+      ]
+    }
   ],
-  "rows": [
-    [
-      "HUIMING",
-      "Obsługa magazynu",
-      "Organizacja personelu i wsparcie stanowisk magazynowych (2023.12–2024.12)"
-    ],
-    [
-      "OSMOFROST",
-      "Produkcja żywności",
-      "Rekrutacja, ewidencja czasu pracy, koordynacja i uzupełnianie obsady"
-    ],
-    [
-      "JANPOL Technologie",
-      "Outsourcing produkcji",
-      "Organizacja stanowisk, standardy wydajności i bieżące zarządzanie"
-    ],
-    [
-      "Projekt dabar–Amazon",
-      "Tworzenie krótkoterminowego magazynu",
-      "Wsparcie personalne etapów projektu"
-    ],
-    [
-      "NONKO",
-      "Obsługa magazynu",
-      "Wsparcie personalne w obsłudze magazynu"
-    ]
-  ],
-  "note": "Doświadczenie projektowe MARASSI i zespołu; konkretne podmioty współpracy i jej zakres określa dokumentacja danego projektu. Projekt dabar–Amazon nie oznacza bezpośredniej umowy z Amazon. Dane klientów udostępniamy po uzyskaniu zgody.",
-  "rowServices": [
-    [
-      "operations-outsourcing"
-    ],
-    [
-      "operations-outsourcing",
-      "recruitment"
-    ],
-    [
-      "operations-outsourcing"
-    ],
-    [
-      "operations-outsourcing"
-    ],
-    [
-      "operations-outsourcing"
-    ]
-  ]
+  "note": "Doświadczenie MARASSI i zespołu. Strony i zakres współpracy określa dokumentacja poszczególnych projektów."
 }

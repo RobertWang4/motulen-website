@@ -1,25 +1,41 @@
 {
   "id": "commercial-spaces",
   "number": "03",
-  "title": "Projekty przestrzeni komercyjnych",
-  "short": "Wykończenie biur i realizacja sklepów firmowych",
-  "subtitle": "Wykończenie biur i realizacja sklepów firmowych",
-  "photo": "/img/deck/office.jpg",
-  "alt": "Wykończona biurowa sala konferencyjna",
+  "group": "engineering",
+  "title": "Przestrzenie komercyjne",
+  "short": "Wykończenia biur i sklepów firmowych",
+  "subtitle": "Nasze ekipy realizują różnego rodzaju prace budowlane",
+  "photos": [
+    {
+      "src": "/img/ppt/cs-store.jpg",
+      "alt": "Wnętrze sklepu firmowego"
+    }
+  ],
   "groups": [
     {
-      "title": "Wykończenie biur",
+      "title": "Powierzchnie biurowe",
       "items": [
-        "Zgodnie z potrzebami użytkowymi firmy",
-        "Organizacja wykończenia i prac towarzyszących"
+        "Projektowanie i wykończenie biur",
+        "Szatnie dla pracowników magazynu",
+        "Strefy socjalne dla pracowników"
       ]
     },
     {
-      "title": "Realizacja sklepów firmowych",
+      "title": "Sklepy firmowe",
       "items": [
-        "Uwzględnienie wymagań marki i warunków na miejscu",
-        "Koordynacja harmonogramu prac i terminów przekazania"
+        "Projekt i wykończenie sklepów flagowych",
+        "Organizacja i budowa sklepów pop-up"
+      ]
+    },
+    {
+      "title": "Aranżacja wydarzeń",
+      "items": [
+        "Aranżacja wydarzeń biznesowych",
+        "Doroczne spotkania firmowe",
+        "Sezonowa aranżacja biur"
       ]
     }
-  ]
+  ],
+  "caption": "Wizualizacja poglądowa",
+  "note": "Formę outsourcingu i pracy tymczasowej, wykonawcę oraz podział odpowiedzialności ustalamy dla każdego projektu."
 }

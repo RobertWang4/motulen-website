@@ -1,27 +1,62 @@
 ---
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/inner/PageHeader.astro';
-import SectionHead from '../../components/SectionHead.astro';
-import DataTable from '../../components/DataTable.astro';
 import NextStep from '../../components/NextStep.astro';
 import ClosingBand from '../../components/ClosingBand.astro';
-import { LANGS, getProjects, getHome, getUi, type Lang } from '../../lib/content';
+import { LANGS, getProjects, getHome, getUi, getService, type Lang } from '../../lib/content';
 
 export const getStaticPaths = () => LANGS.map((lang) => ({ params: { lang } }));
 const lang = Astro.params.lang as Lang;
 const p = getProjects(lang);
 const ui = getUi(lang);
 const closing = getHome(lang).closing;
+const first = getService(lang, 'operations-outsourcing');
+const cases = p.cases.map((c) => ({ ...c, tags: c.services.map((id) => getService(lang, id)) }));
 ---
 <Base lang={lang} title={p.title} description={p.description}>
-  <PageHeader tag={ui.tags.projects} title={p.title} lede={p.lede} image={p.photo} alt={p.alt} />
-  <section class="sec">
-    <div class="wrap"><div style="max-width: 960px">
-      <SectionHead num="01" tag={ui.tags.experience} headline={p.headline} />
-      <DataTable columns={p.columns} rows={p.rows} note={p.note} />
-    </div></div>
-  </section>
-  <NextStep href={`/${lang}/direction/`} label={ui.nextStep} title={ui.nav.direction} />
+  <PageHeader tag={ui.tags.projects} title={p.headline} lede={p.intro} />
 
-  <ClosingBand headline={closing.headline} sub={closing.sub} cta={ui.cta.contact} href={`/${lang}/contact/`} />
+  <section class="sec cases">
+    <div class="wrap">
+      <ol class="cs">
+        {cases.map((c) => (
+          <li class="cs-row reveal" id={c.id}>
+            <div class="cs-head">
+              <span class="cs-num">{c.number}</span>
+              <h2 class="cs-title">{c.title}</h2>
+              <ul class="cs-tags">
+                {c.tags.map((s) => <li><a href={`/${lang}/services/${s.id}/`}>{s.title}</a></li>)}
+              </ul>
+            </div>
+            <div class="cs-body">{c.paragraphs.map((t) => <p>{t}</p>)}</div>
+          </li>
+        ))}
+      </ol>
+      <p class="note">{p.note}</p>
+    </div>
+  </section>
+
+  <NextStep href={`/${lang}/services/${first.id}/`} label={ui.nextStep} title={first.title} num={first.number} />
+
+  <ClosingBand headline={closing.headline} sub={closing.sub} cta={ui.cta.contact} href={`/${lang}/contact/`} photo={closing.photo} alt={closing.alt} />
 </Base>
+
+<style>
+  .cases { padding-top: clamp(24px, 3vw, 40px); }
+  .cs { list-style: none; margin: 0; padding: 0; }
+  .cs-row {
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px clamp(32px, 6vw, 96px);
+    padding: clamp(32px, 4vw, 56px) 0; border-top: 1px solid var(--line);
+    scroll-margin-top: calc(var(--nav-h) + 24px);
+  }
+  .cs-num { display: block; font-family: var(--mono); font-size: clamp(40px, 4.4vw, 64px); line-height: 1; color: var(--line); font-variant-numeric: tabular-nums; }
+  .cs-title { margin: 18px 0 0; font-family: var(--display); font-weight: 700; font-size: clamp(22px, 2.2vw, 32px); line-height: 1.25; letter-spacing: -0.015em; }
+  :global(:lang(zh)) .cs-title { font-family: var(--display-zh); font-weight: 700; letter-spacing: 0; word-break: keep-all; overflow-wrap: anywhere; }
+  .cs-tags { list-style: none; margin: 18px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .cs-tags a { display: inline-block; font-size: 13px; padding: 6px 10px; border: 1px solid var(--line); border-radius: var(--r-sm); color: var(--muted); transition: color 0.2s, border-color 0.2s; }
+  .cs-tags a:hover { color: var(--teal); border-color: var(--teal); }
+  .cs-body p { margin: 0 0 18px; font-size: 17px; line-height: 1.8; color: var(--muted); }
+  .cs-body p:last-child { margin-bottom: 0; }
+  .cs + .note { margin-top: 0; padding-top: 24px; border-top: 1px solid var(--line); }
+  @media (max-width: 860px) { .cs-row { grid-template-columns: 1fr; } }
+</style>

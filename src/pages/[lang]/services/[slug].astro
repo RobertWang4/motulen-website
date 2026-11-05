@@ -4,19 +4,18 @@ import NextStep from '../../../components/NextStep.astro';
 import ProjectList from '../../../components/ProjectList.astro';
 import GroupGrid from '../../../components/GroupGrid.astro';
 import ClosingBand from '../../../components/ClosingBand.astro';
-import { LANGS, getHome, getProjects, getUi, listServices, type Lang } from '../../../lib/content';
+import { LANGS, getHome, getProjects, getUi, groupedServices, listServices, type Lang } from '../../../lib/content';
 
 export function getStaticPaths() {
   return LANGS.flatMap((lang) => listServices(lang).map((s) => ({ params: { lang, slug: s.id } })));
 }
 const lang = Astro.params.lang as Lang;
-const all = listServices(lang);
-const i = all.findIndex((s) => s.id === Astro.params.slug);
-const s = all[i];
+const groups = groupedServices(lang);
+const s = listServices(lang).find((x) => x.id === Astro.params.slug)!;
 const ui = getUi(lang);
-const proj = getProjects(lang);
-const related = proj.rows.filter((_, k) => proj.rowServices[k].includes(s.id)).map((r) => [r[0], r[1], '']);
+const related = getProjects(lang).cases.filter((c) => c.services.includes(s.id));
 const closing = getHome(lang).closing;
+const [main, ...rest] = s.photos;
 ---
 <Base lang={lang} title={s.title} description={s.subtitle}>
   <!-- Side list and content start at the top, so switching services never jumps:
@@ -24,47 +23,52 @@ const closing = getHome(lang).closing;
   <section class="sv-sec">
     <div class="wrap sv">
       <nav class="sv-nav" aria-label={ui.nav.services}>
-        <a href={`/${lang}/services/`} class="tag">{ui.cta.allServices}</a>
-        <ol>
-          {all.map((x) => (
-            <li>
-              <a href={`/${lang}/services/${x.id}/`} class:list={[x.id === s.id && 'cur']} aria-current={x.id === s.id ? 'page' : undefined}>
-                <span>{x.number}</span>{x.title}
-              </a>
-            </li>
-          ))}
-        </ol>
+        {groups.map((g) => (
+          <div class="sv-group">
+            <p class="tag">{g.title}</p>
+            <ol>
+              {g.items.map((x) => (
+                <li>
+                  <a href={`/${lang}/services/${x.id}/`} class:list={[x.id === s.id && 'cur']} aria-current={x.id === s.id ? 'page' : undefined}>
+                    <span>{x.number}</span>{x.title}
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </div>
+        ))}
       </nav>
 
       <article class="sv-body" data-swap="body">
         <p class="tag"><b>{s.number}</b><span>/</span><span>{ui.tags.service}</span></p>
-        <h1 class="sv-title">{s.title}</h1>
+        <h1 class="sv-title">{s.title}{s.plan && <span class="chip-plan">{ui.status.planned}</span>}</h1>
         <p class="sv-lede">{s.subtitle}</p>
-        <figure class="sv-photo"><img src={s.photo} alt={s.alt} /></figure>
-        <GroupGrid lang={lang} groups={s.groups} />
-        {s.sections?.map((sec) => (
-          <section class="sv-sub">
-            <h2 class="sv-subhead">{sec.headline}</h2>
-            {sec.lede && <p class="sv-sublede">{sec.lede}</p>}
-            {sec.photo && <figure class="sv-subphoto"><img src={sec.photo} alt={sec.alt ?? ''} loading="lazy" /></figure>}
-            <GroupGrid lang={lang} groups={sec.groups} level={3} />
-          </section>
-        ))}
+        <figure class="sv-gallery">
+          <img class="sv-main" src={main.src} alt={main.alt} />
+          {rest.length > 0 && (
+            <div class="sv-thumbs" style={`--n: ${Math.min(rest.length, 4)}`}>
+              {rest.map((p) => <img src={p.src} alt={p.alt} loading="lazy" />)}
+            </div>
+          )}
+          {s.caption && <figcaption class="sv-cap">{s.caption}</figcaption>}
+        </figure>
+        <GroupGrid groups={s.groups} />
+        {s.link && <a href={s.link.href} class="ul sv-link" target="_blank" rel="noopener">{s.link.label}<i>↗</i></a>}
         {related.length > 0 && (
           <section class="sv-rel">
             <h2 class="sv-gtitle">{ui.relatedProjects}</h2>
-            <ProjectList lang={lang} rows={related} note={proj.note} />
+            <ProjectList lang={lang} cases={related} />
           </section>
         )}
-        {s.note && <p class="note">{s.note}</p>}
+        <p class="note">{s.note}</p>
       </article>
     </div>
   </section>
 
   <!-- services switch in the side list, so the page ends by moving on to the next part of the story -->
-  <NextStep href={`/${lang}/projects/`} label={ui.nextStep} title={ui.nav.projects} />
+  <NextStep href={`/${lang}/platform/`} label={ui.nextStep} title={ui.nav.platform} />
 
-  <ClosingBand headline={closing.headline} sub={closing.sub} cta={ui.cta.contact} href={`/${lang}/contact/`} />
+  <ClosingBand headline={closing.headline} sub={closing.sub} cta={ui.cta.contact} href={`/${lang}/contact/`} photo={closing.photo} alt={closing.alt} />
 </Base>
 
 <script>
@@ -142,36 +146,35 @@ const closing = getHome(lang).closing;
     margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 20px; min-width: 0; overflow-wrap: anywhere;
     font-family: var(--display); font-weight: 700; font-size: clamp(36px, 4.8vw, 72px); line-height: 1.08; letter-spacing: -0.025em;
   }
-  :global(:lang(zh)) .sv-title { font-weight: 600; letter-spacing: 0.01em; line-height: 1.2; }
+  :global(:lang(zh)) .sv-title { font-family: var(--display-zh); font-weight: 700; letter-spacing: 0.01em; line-height: 1.2; }
   .sv-lede { margin: 20px 0 0; max-width: 46ch; color: var(--muted); font-size: clamp(17px, 1.4vw, 21px); line-height: 1.6; }
-  .sv-photo { margin: clamp(32px, 4vw, 48px) 0 clamp(40px, 5vw, 64px); aspect-ratio: 16 / 7; overflow: hidden; border-radius: var(--r-sm); background: var(--surface); }
-  .sv-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .sv-gallery { margin: clamp(32px, 4vw, 48px) 0 clamp(40px, 5vw, 64px); }
+  .sv-gallery img { width: 100%; object-fit: cover; border-radius: var(--r-sm); background: var(--surface); }
+  .sv-main { aspect-ratio: 16 / 9; }
+  .sv-thumbs { margin-top: 12px; display: grid; grid-template-columns: repeat(var(--n), minmax(0, 1fr)); gap: 12px; }
+  .sv-thumbs img { aspect-ratio: 4 / 3; }
+  .sv-cap { margin-top: 10px; font-size: 13px; color: var(--muted); }
+  .sv-nav .sv-group + .sv-group { margin-top: 28px; }
+  .sv-nav .tag { margin-bottom: 12px; }
   .sv-nav ol { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
   .sv-nav li a {
     display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line);
     font-size: 15px; font-weight: 500; color: var(--muted); transition: color 0.2s;
   }
   .sv-nav li a span { font-family: var(--mono); font-size: 12px; color: var(--faint); padding-top: 3px; }
-  .sv-nav li a:hover, .sv-nav li a.cur { color: var(--blue); }
-  .sv-nav li a.cur span { color: var(--blue); }
+  .sv-nav li a:hover, .sv-nav li a.cur { color: var(--teal); }
+  .sv-nav li a.cur span { color: var(--teal); }
 
   .sv-gtitle { margin: 0; font-family: var(--display); font-weight: 700; font-size: clamp(22px, 2vw, 28px); line-height: 1.2; letter-spacing: -0.015em; }
-  :global(:lang(zh)) .sv-gtitle { font-weight: 600; letter-spacing: 0; }
+  :global(:lang(zh)) .sv-gtitle { font-family: var(--display-zh); font-weight: 700; letter-spacing: 0; }
   .sv-body > .note { margin-top: clamp(40px, 5vw, 64px); padding-top: 20px; border-top: 1px solid var(--line); }
 
+  .sv-link { margin-top: clamp(32px, 4vw, 48px); }
   .sv-rel { margin-top: clamp(40px, 5vw, 64px); }
   .sv-rel .sv-gtitle { margin-bottom: 20px; }
 
   @media (max-width: 900px) {
     .sv { grid-template-columns: 1fr; }
     .sv-nav { position: static; order: 2; }
-    .sv-photo { aspect-ratio: 3 / 2; }
   }
-  .sv-sub { margin-top: clamp(64px, 8vw, 112px); padding-top: clamp(28px, 3vw, 40px); border-top: 1px solid var(--line); }
-  .sv-subhead { margin: 0; font-family: var(--display); font-weight: 700; font-size: clamp(28px, 3vw, 44px); line-height: 1.15; letter-spacing: -0.02em; }
-  :global(:lang(zh)) .sv-subhead { font-weight: 600; letter-spacing: 0; }
-  .sv-sublede { margin: 14px 0 0; color: var(--muted); font-size: clamp(16px, 1.3vw, 19px); }
-  .sv-subphoto { margin: clamp(24px, 3vw, 36px) 0 clamp(32px, 4vw, 48px); aspect-ratio: 16 / 6; overflow: hidden; border-radius: var(--r-sm); background: var(--surface); }
-  .sv-subphoto img { width: 100%; height: 100%; object-fit: cover; }
-  .sv-sub + .sv-rel, .sv-sub ~ .note { margin-top: clamp(48px, 6vw, 80px); }
 </style>

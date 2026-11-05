@@ -3,55 +3,57 @@ import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/inner/PageHeader.astro';
 import SectionHead from '../../components/SectionHead.astro';
 import NextStep from '../../components/NextStep.astro';
-import DataTable from '../../components/DataTable.astro';
-import Markets from '../../components/Markets.astro';
-import PhotoBand from '../../components/PhotoBand.astro';
+import ServiceIndex from '../../components/ServiceIndex.astro';
 import ClosingBand from '../../components/ClosingBand.astro';
-import { LANGS, getAbout, getHome, getUi, type Lang } from '../../lib/content';
+import { LANGS, getAbout, getHome, getUi, listServices, type Lang } from '../../lib/content';
 
 export const getStaticPaths = () => LANGS.map((lang) => ({ params: { lang } }));
 const lang = Astro.params.lang as Lang;
 const a = getAbout(lang);
 const ui = getUi(lang);
-const home = getHome(lang);
-const closing = home.closing;
+const closing = getHome(lang).closing;
+const items = [
+  ...listServices(lang).map((s) => ({ href: `/${lang}/services/${s.id}/`, number: s.number, title: s.title, short: s.short, photo: s.photos[0].src, plan: s.plan })),
+  { href: `/${lang}/platform/`, number: a.layout.extra.number, title: a.layout.extra.title, short: a.layout.extra.short, photo: a.layout.extra.photo, plan: a.layout.extra.plan },
+];
 ---
 <Base lang={lang} title={a.title} description={a.description}>
-  <PageHeader tag={ui.tags.about} title={a.title} lede={a.lede} image={a.photo} alt={a.alt} />
+  <PageHeader tag={ui.tags.about} title={a.title} image={a.photo} alt={a.alt} />
 
   <section class="sec">
     <div class="wrap intro">
-      <SectionHead num="01" tag={ui.tags.about} headline={a.intro.headline} />
-      <p class="intro-text reveal">{a.intro.text}</p>
+      <SectionHead num="01" tag={ui.tags.about} headline={a.headline} />
+      <div class="intro-text reveal">{a.text.map((t) => <p>{t}</p>)}</div>
     </div>
   </section>
 
   <section class="sec sec-line">
     <div class="wrap">
-      <SectionHead num="02" tag={ui.tags.markets} headline={home.markets.headline} />
-      <Markets lang={lang} markets={home.markets.items} note={home.markets.note} />
+      <SectionHead num="02" tag={ui.tags.scope} headline={a.scope.title} />
+      <ul class="scope">{a.scope.items.map((it) => <li class="reveal">{it}</li>)}</ul>
     </div>
   </section>
 
   <section class="sec sec-line">
-    <div class="wrap"><div class="narrow">
-      <SectionHead num="03" tag={ui.tags.experience} headline={a.operating.headline} />
-      <DataTable columns={a.operating.columns} rows={a.operating.rows} note={a.operating.note} />
-    </div></div>
+    <div class="wrap">
+      <SectionHead num="03" tag={a.layout.title} headline={a.layout.headline} />
+      <ServiceIndex lang={lang} items={items} />
+    </div>
   </section>
 
-  <PhotoBand photo={a.band.photo} alt={a.band.alt} text={a.band.text} />
+  <NextStep href={`/${lang}/value/`} label={ui.nextStep} title={ui.nav.value} />
 
-  <NextStep href={`/${lang}/services/`} label={ui.nextStep} title={ui.nav.services} />
-
-  <ClosingBand headline={closing.headline} sub={closing.sub} cta={ui.cta.contact} href={`/${lang}/contact/`} />
+  <ClosingBand headline={closing.headline} sub={closing.sub} cta={ui.cta.contact} href={`/${lang}/contact/`} photo={closing.photo} alt={closing.alt} />
 </Base>
 
 <style>
   .sec-line { border-top: 1px solid var(--line); }
   .intro { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 96px); align-items: end; }
   .intro .sh { margin-bottom: 0; }
-  .intro-text { margin: 0; font-size: clamp(18px, 1.5vw, 22px); line-height: 1.75; color: var(--muted); }
-  .narrow { max-width: 960px; }
+  .intro-text { font-size: clamp(18px, 1.5vw, 22px); line-height: 1.75; color: var(--muted); }
+  .intro-text p { margin: 0 0 16px; }
+  .scope { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; }
+  .scope li { border-top: 1px solid var(--ink); padding-top: 18px; font-family: var(--display); font-weight: 700; font-size: clamp(18px, 1.6vw, 22px); line-height: 1.3; }
+  :global(:lang(zh)) .scope li { font-weight: 600; }
   @media (max-width: 860px) { .intro { grid-template-columns: 1fr; } }
 </style>

@@ -1,36 +1,102 @@
 ---
-import { site, getUi, otherLang, type Lang } from '../lib/content';
+import { site, getNav, otherLang, type Lang } from '../lib/content';
 interface Props { lang: Lang; altHref: string }
 const { lang, altHref } = Astro.props;
-const ui = getUi(lang);
+const { ui, about, groups } = getNav(lang);
 // strip the GitHub Pages base path so /motulen-website/zh/about/ matches /zh/about/
 const current = '/' + Astro.url.pathname.slice(import.meta.env.BASE_URL.length).replace(/^\//, '');
-const all = (['home', 'about', 'services', 'projects', 'direction', 'approach', 'contact'] as const).map((id) => ({
-  id, label: ui.nav[id], href: id === 'home' ? `/${lang}/` : `/${lang}/${id}/`,
-}));
-const links = all.filter((n) => n.id !== 'home' && n.id !== 'contact');
+const home = `/${lang}/`;
+const items = [
+  { id: 'home', label: ui.nav.home, href: home, on: current === home },
+  { id: 'about', label: ui.nav.about, href: about[0].href, on: about.some((c) => current.startsWith(c.href)), panel: true },
+  { id: 'services', label: ui.nav.services, href: groups[0].items[0].href, on: current.startsWith(`/${lang}/services/`), panel: true },
+  { id: 'platform', label: ui.nav.platform, href: `/${lang}/platform/`, on: current.startsWith(`/${lang}/platform/`) },
+];
+const contact = { label: ui.nav.contact, href: `/${lang}/contact/` };
 const other = otherLang(lang);
 ---
 <header id="site-nav" class="site-nav">
   <div class="nav-in">
-    <a href={`/${lang}/`} class="brand">{site.brand.name}</a>
+    <a href={home} class="brand"><img src="/img/brand/logo.png" alt={site.brand.name} width="1000" height="246" /></a>
 
-    <nav class="navlinks">
-      {links.map((n) => (
-        <a href={n.href} class:list={['navlink', current.startsWith(n.href) && 'current']} aria-current={current.startsWith(n.href) ? 'page' : undefined}>{n.label}</a>
+    <nav class="navlinks" aria-label={ui.menu}>
+      {items.map((n) => (
+        <div class="navitem" data-item={n.id}>
+          {n.panel ? (
+            <>
+              <button type="button" class:list={['navlink', n.on && 'current']} aria-expanded="false" aria-controls={`panel-${n.id}`} aria-current={n.on ? 'page' : undefined}>
+                {n.label}<svg class="chev" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" /></svg>
+              </button>
+              <div class="panel" id={`panel-${n.id}`}>
+                <div class="wrap">
+                  {n.id === 'about' && (
+                    <ul class="pgrid pabout">
+                      {about.map((c) => (
+                        <li><a href={c.href} class="pitem"><span class="ptitle">{c.label}</span><span class="pshort">{c.desc}</span></a></li>
+                      ))}
+                    </ul>
+                  )}
+                  {n.id === 'services' && (
+                    <div class="pgrid psvc">
+                      {groups.map((g) => (
+                        <div>
+                          <p class="gtitle">{g.title}</p>
+                          <ul>
+                            {g.items.map((s) => (
+                              <li>
+                                <a href={s.href} class="pitem pservice">
+                                  <span class="pnum">{s.number}</span>
+                                  <span>
+                                    <span class="ptitle">{s.title}{s.plan && <span class="chip-plan">{ui.status.planned}</span>}</span>
+                                    <span class="pshort">{s.short}</span>
+                                  </span>
+                                </a>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+            </>
+          ) : (
+            <a href={n.href} class:list={['navlink', n.on && 'current']} aria-current={n.on ? 'page' : undefined}>{n.label}</a>
+          )}
+        </div>
       ))}
       <a href={altHref} data-alt class="lang" hreflang={other === 'zh' ? 'zh-CN' : 'pl'} lang={other === 'zh' ? 'zh-CN' : 'pl'}>{ui.langName[other]}</a>
-      <a href={`/${lang}/contact/`} class="navcta">{ui.nav.contact}</a>
+      <a href={contact.href} class="navcta">{contact.label}</a>
     </nav>
 
-    <button id="nav-toggle" class="navtoggle" aria-label={ui.menu} aria-expanded="false">
+    <button id="nav-toggle" class="navtoggle" aria-label={ui.menu} aria-expanded="false" aria-controls="nav-mobile">
       <span></span><span></span>
     </button>
   </div>
 
-  <nav id="nav-mobile" class="navmobile" hidden>
-    {all.map((n) => <a href={n.href}>{n.label}</a>)}
-    <a href={altHref} data-alt class="lang">{ui.langName[lang]} / {ui.langName[other]}</a>
+  <nav id="nav-mobile" class="navmobile" aria-label={ui.menu} hidden>
+    <a href={home} class="mlink">{ui.nav.home}</a>
+    <div class="mfold">
+      <button type="button" class="mlink" aria-expanded="false" aria-controls="m-about">{ui.nav.about}<svg class="chev" width="12" height="7" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" /></svg></button>
+      <ul id="m-about" hidden>{about.map((c) => <li><a href={c.href}>{c.label}</a></li>)}</ul>
+    </div>
+    <div class="mfold">
+      <button type="button" class="mlink" aria-expanded="false" aria-controls="m-services">{ui.nav.services}<svg class="chev" width="12" height="7" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" /></svg></button>
+      <div id="m-services" hidden>
+        {groups.map((g) => (
+          <>
+            <p class="gtitle">{g.title}</p>
+            <ul>{g.items.map((s) => <li><a href={s.href}><span class="pnum">{s.number}</span>{s.title}{s.plan && <span class="chip-plan">{ui.status.planned}</span>}</a></li>)}</ul>
+          </>
+        ))}
+      </div>
+    </div>
+    <a href={`/${lang}/platform/`} class="mlink">{ui.nav.platform}</a>
+    <div class="mfoot">
+      <a href={contact.href} class="navcta">{contact.label}</a>
+      <a href={altHref} data-alt class="lang" hreflang={other === 'zh' ? 'zh-CN' : 'pl'} lang={other === 'zh' ? 'zh-CN' : 'pl'}>{ui.langName[other]}</a>
+    </div>
   </nav>
 </header>
 
@@ -44,52 +110,95 @@ const other = otherLang(lang);
     display: flex; align-items: center; gap: 24px;
     height: var(--nav-h); padding-inline: var(--pad);
   }
-  .brand {
-    flex: none; font-family: var(--display); font-size: 17px; font-weight: 700;
-    letter-spacing: 0.04em; color: var(--ink); white-space: nowrap;
-  }
+  .brand { flex: none; display: block; }
+  .brand img { display: block; height: 40px; width: auto; }
 
-  .navlinks { margin-left: auto; display: flex; align-items: center; gap: clamp(16px, 2vw, 34px); }
-  .navlink { font-size: 15px; font-weight: 500; color: var(--ink); position: relative; white-space: nowrap; }
+  .navlinks { margin-left: auto; display: flex; align-items: center; gap: clamp(18px, 2.2vw, 36px); }
+  .navlink {
+    display: inline-flex; align-items: center; gap: 6px;
+    font: inherit; font-size: 15px; font-weight: 500; color: var(--navy);
+    background: none; border: 0; padding: 0; cursor: pointer;
+    position: relative; white-space: nowrap;
+  }
   .navlink::after {
-    content: ''; position: absolute; left: 0; right: 0; bottom: -5px; height: 1px;
-    background: var(--blue); transform: scaleX(0); transform-origin: left;
+    content: ''; position: absolute; left: 0; right: 0; bottom: -6px; height: 2px;
+    background: var(--teal); transform: scaleX(0); transform-origin: left;
     transition: transform 200ms ease-out;
   }
-  .navlink:hover { color: var(--blue); }
-  .navlink:hover::after, .navlink.current::after { transform: scaleX(1); }
-  .navlink.current { color: var(--blue); }
-  .lang { font-size: 14px; font-weight: 500; color: var(--muted); white-space: nowrap; }
-  .lang:hover { color: var(--blue); }
+  .navlink:hover { color: var(--teal); }
+  .navlink:hover::after, .navlink.current::after, .navitem[data-open] .navlink::after { transform: scaleX(1); }
+  .navlink.current, .navitem[data-open] .navlink { color: var(--teal); }
+  .chev { transition: transform 200ms ease-out; }
+  .navitem[data-open] .chev { transform: rotate(180deg); }
+
+  .lang { font-size: 14px; font-weight: 500; color: var(--muted); white-space: nowrap; transition: color 0.2s; }
+  .lang:hover { color: var(--teal); }
   .navcta {
-    border: 1px solid var(--ink); border-radius: var(--r-md);
-    padding: 10px 20px; font-size: 14px; font-weight: 600;
-    transition: color 0.2s, border-color 0.2s;
+    display: inline-block; white-space: nowrap;
+    background: var(--teal); color: #fff; border-radius: var(--r-md);
+    padding: 10px 20px; font-size: 15px; font-weight: 600;
+    transition: background 0.2s;
   }
-  .navcta:hover { border-color: var(--blue); color: var(--blue); }
+  .navcta:hover { background: var(--teal-hover); }
+
+  /* mega panel: full width under the bar, content aligned to .wrap */
+  .panel {
+    position: absolute; top: 100%; left: 0; right: 0; z-index: 70;
+    background: #fff; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+    box-shadow: 0 24px 48px rgba(4, 23, 52, 0.08);
+    padding-block: 28px 36px;
+    opacity: 0; visibility: hidden; transform: translateY(-4px);
+    transition: opacity 200ms ease-out, transform 200ms ease-out, visibility 0s linear 200ms;
+  }
+  .navitem[data-open] .panel, html:not(.js) .navitem:hover .panel, html:not(.js) .navitem:focus-within .panel {
+    opacity: 1; visibility: visible; transform: none; transition-delay: 0s;
+  }
+  .pgrid { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px 32px; }
+  .pgrid ul { list-style: none; margin: 0; padding: 0; }
+  .pabout { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .psvc { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; }
+  .psvc .gtitle { margin-bottom: 12px; }
+  .pitem { display: block; padding: 14px 16px; border-radius: var(--r-sm); transition: background 0.2s; }
+  .pitem:hover, .pitem:focus-visible { background: var(--surface); }
+  .pservice { display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 12px; }
+  .pnum { font-family: var(--mono); font-size: 13px; color: var(--teal); font-variant-numeric: tabular-nums; padding-top: 4px; }
+  .ptitle { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; font-size: 17px; font-weight: 600; line-height: 1.4; color: var(--navy); }
+  .pshort { display: block; margin-top: 2px; font-size: 14px; line-height: 1.55; color: var(--muted); }
 
   .navtoggle {
     display: none; margin-left: auto; background: none; border: 0; cursor: pointer;
     width: 30px; height: 24px; flex-direction: column; justify-content: center; gap: 6px; padding: 0;
   }
-  .navtoggle span { display: block; height: 1.5px; width: 22px; background: var(--ink); transition: transform 200ms ease-out; }
+  .navtoggle span { display: block; height: 1.5px; width: 22px; background: var(--navy); transition: transform 200ms ease-out; }
   .navtoggle[aria-expanded='true'] span:first-child { transform: translateY(3.75px) rotate(45deg); }
   .navtoggle[aria-expanded='true'] span:last-child { transform: translateY(-3.75px) rotate(-45deg); }
 
+  /* mobile drawer */
   .navmobile {
     display: none; flex-direction: column;
+    position: absolute; top: 100%; left: 0; right: 0; height: calc(100dvh - var(--nav-h));
+    overflow-y: auto; overscroll-behavior: contain;
     background: #fff; border-top: 1px solid var(--line);
-    padding: 4px var(--pad) 18px;
+    padding: 4px var(--pad) 28px;
   }
-  .navmobile a {
-    font-size: 17px; font-weight: 500; padding: 13px 0; border-bottom: 1px solid var(--line);
+  .mlink {
+    display: flex; width: 100%; align-items: center; justify-content: space-between;
+    font: inherit; font-size: 18px; font-weight: 500; color: var(--navy); text-align: left;
+    background: none; border: 0; border-bottom: 1px solid var(--line); padding: 16px 0; cursor: pointer;
   }
-  .navmobile a:last-child {
-    border-bottom: 0; color: var(--muted);
-    font-size: 15px;
+  .mfold button[aria-expanded='true'] .chev { transform: rotate(180deg); }
+  .mfold ul { list-style: none; margin: 0; padding: 0; }
+  .mfold li a {
+    display: flex; align-items: center; gap: 12px; padding: 12px 0 12px 16px;
+    font-size: 16px; color: var(--navy); border-bottom: 1px solid var(--line);
   }
+  .mfold .gtitle { margin: 16px 0 4px 16px; }
+  .mfold .pnum { padding: 0; min-width: 24px; }
+  .mfoot { margin-top: auto; padding-top: 28px; display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
+  .mfoot .navcta { display: block; width: 100%; text-align: center; padding: 14px 20px; }
+  :global(html.nav-lock) { overflow: hidden; }
 
-  @media (max-width: 900px) {
+  @media (max-width: 1023px) {
     .navlinks { display: none; }
     .navtoggle { display: flex; }
     .navmobile:not([hidden]) { display: flex; }
@@ -97,10 +206,56 @@ const other = otherLang(lang);
 </style>
 
 <script>
-  const m = document.getElementById('nav-mobile') as HTMLElement;
-  const btn = document.getElementById('nav-toggle')!;
-  btn.addEventListener('click', () => {
-    m.hidden = !m.hidden;
-    btn.setAttribute('aria-expanded', String(!m.hidden));
+  const header = document.getElementById('site-nav')!;
+  const items = [...header.querySelectorAll<HTMLElement>('.navitem')].filter((i) => i.querySelector('.panel'));
+  const desktop = matchMedia('(min-width: 1024px)');
+  const timers = new Map<HTMLElement, number>();
+
+  const setOpen = (item: HTMLElement, open: boolean) => {
+    clearTimeout(timers.get(item));
+    item.toggleAttribute('data-open', open);
+    item.querySelector('button')!.setAttribute('aria-expanded', String(open));
+  };
+  const openOnly = (item: HTMLElement | null) => items.forEach((i) => setOpen(i, i === item));
+
+  items.forEach((item) => {
+    const btn = item.querySelector('button')!;
+    btn.addEventListener('click', () => (item.hasAttribute('data-open') ? setOpen(item, false) : openOnly(item)));
+    item.addEventListener('mouseenter', () => { if (desktop.matches) openOnly(item); });
+    item.addEventListener('mouseleave', () => {
+      if (!desktop.matches) return;
+      timers.set(item, window.setTimeout(() => setOpen(item, false), 150));
+    });
+    item.addEventListener('focusout', (e) => {
+      if (!item.contains((e as FocusEvent).relatedTarget as Node | null)) setOpen(item, false);
+    });
+  });
+  document.addEventListener('click', (e) => {
+    if (!(e.target as Element).closest('.navitem')) openOnly(null);
+  });
+
+  // mobile drawer
+  const drawer = document.getElementById('nav-mobile') as HTMLElement;
+  const toggle = document.getElementById('nav-toggle')!;
+  const setDrawer = (open: boolean) => {
+    drawer.hidden = !open;
+    toggle.setAttribute('aria-expanded', String(open));
+    document.documentElement.classList.toggle('nav-lock', open);
+  };
+  toggle.addEventListener('click', () => setDrawer(drawer.hidden));
+  drawer.querySelectorAll<HTMLButtonElement>('.mfold > button').forEach((b) => {
+    b.addEventListener('click', () => {
+      const open = b.getAttribute('aria-expanded') !== 'true';
+      b.setAttribute('aria-expanded', String(open));
+      document.getElementById(b.getAttribute('aria-controls')!)!.hidden = !open;
+    });
+  });
+  desktop.addEventListener('change', () => { if (desktop.matches) setDrawer(false); });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return;
+    const open = items.find((i) => i.hasAttribute('data-open'));
+    if (open) { setOpen(open, false); open.querySelector('button')!.focus(); }
+    else if (!drawer.hidden) { setDrawer(false); toggle.focus(); }
   });
 </script>
