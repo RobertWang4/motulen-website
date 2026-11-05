@@ -2,29 +2,28 @@
   "id": "recruitment",
   "number": "04",
   "title": "Headhunting i rekrutacja celowana",
-  "short": "Rekrutacja globalna i sprowadzanie specjalistów z Chin",
-  "subtitle": "Na podstawie potrzeb firmy aktywnie wyszukujemy i rekomendujemy odpowiednich specjalistów i kadrę zarządzającą",
-  "status": "current",
+  "short": "Rekrutacja celowana, specjaliści techniczni",
+  "subtitle": "Na podstawie potrzeb stanowiska wyszukujemy odpowiednich kandydatów",
   "photo": "/img/stock/area-engineers.jpg",
   "alt": "Pracownicy techniczni rozmawiają na miejscu realizacji",
   "groups": [
     {
-      "title": "Rekrutacja globalna",
+      "title": "Usługi rekrutacyjne",
       "items": [
         "Określenie zakresu obowiązków, wymaganych umiejętności i znajomości języków",
         "Poszukiwanie kandydatów, selekcja i koordynacja rozmów kwalifikacyjnych",
-        "Monitorowanie gotowości do podjęcia pracy i ustalenia terminu rozpoczęcia",
-        "Obsługa zawierania umów z wybranymi kandydatami dla firmy",
-        "Zaproszenia dla kandydatów z zagranicy i wsparcie w zakresie zgodności z lokalnymi przepisami"
+        "Monitorowanie gotowości do podjęcia pracy i ustalenia terminu rozpoczęcia"
       ]
     },
     {
-      "title": "Sprowadzanie specjalistów z Chin",
+      "title": "Rozwój rekrutacji globalnej",
+      "status": "expanding",
       "items": [
-        "Rekrutacja specjalistów do Europy z wykorzystaniem chińskich zasobów headhuntingowych",
-        "Przygotowanie zaproszeń oraz dokumentów wizowych i legalizacji pobytu"
+        "Rozszerzanie kanałów dla stanowisk technicznych i specjalistycznych",
+        "Wsparcie w zakresie pobytu, weryfikacji uprawnień do pracy i formalności",
+        "Budowa bazy talentów i monitorowanie dopasowania do stanowisk"
       ]
     }
   ],
-  "note": "Rekrutacja globalna jest kierunkiem rozwoju; zakres usługi ustalany jest dla każdego projektu. Szczegółowy sposób organizacji outsourcingu operacyjnego i pracy tymczasowej, podmiot świadczący usługi oraz odpowiedzialność są ustalane dla każdego projektu."
+  "note": "Podjęcie pracy wymaga spełnienia legalnych warunków zatrudnienia i dopełnienia odpowiednich formalności. Rekrutacja globalna jest kierunkiem rozwoju; zakres usługi ustalany jest dla każdego projektu."
 }

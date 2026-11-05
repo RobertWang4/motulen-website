@@ -1,9 +1,9 @@
 {
-  "title": "Usługi dla firm w Europie",
-  "description": "MOTULEN GROUP działa z Polski. Odpowiadając na potrzeby firm w Europie w zakresie zatrudnienia, budowy i operacji, organizuje personel i zasoby specjalistyczne oraz wspiera realizację projektów.",
+  "title": "Usługi projektowe w Europie",
+  "description": "MOTULEN GROUP działa z Polski i łączy chińskie firmy z projektami w Europie: odpowiadając na potrzeby firm w Europie w zakresie zatrudnienia, budowy i operacji, organizuje personel i zasoby specjalistyczne oraz wspiera realizację projektów.",
   "hero": {
-    "headline": "Łączymy firmy zagraniczne z projektami w Europie",
-    "sub": "Usługi dla firm w Europie: organizacja personelu i outsourcing operacyjny, realizacja prac inżynieryjnych i rozwój usług technicznych.",
+    "headline": "Łączymy chińskie firmy z projektami w Europie",
+    "sub": "Usługi projektowe w Europie: organizacja personelu i outsourcing operacyjny, realizacja prac inżynieryjnych i rozwój usług technicznych.",
     "photo": "/img/stock/hero-aerial.jpg",
     "alt": "Widok z lotu ptaka na europejski park logistyczny"
   },
@@ -18,7 +18,7 @@
     },
     {
       "k": "Usługi",
-      "v": "6 linii usług"
+      "v": "4 linie usług"
     },
     {
       "k": "Komunikacja",
@@ -26,45 +26,16 @@
     }
   ],
   "statement": "Organizujemy personel i zasoby specjalistyczne na potrzeby zatrudnienia, budowy i operacji firm w Europie.",
-  "lifecycle": {
-    "headline": "Jeden magazyn, od budowy do codziennej pracy",
-    "steps": [
-      {
-        "title": "Budowa",
-        "text": "Montaż i demontaż regałów, instalacja urządzeń, instalacje silno- i słaboprądowe oraz IT",
-        "service": "warehouse-engineering"
-      },
-      {
-        "title": "Zaplecze",
-        "text": "Strefy biurowe, szatnie dla pracowników i strefy socjalne",
-        "service": "commercial-spaces"
-      },
-      {
-        "title": "Rekrutacja",
-        "text": "Celowana rekrutacja specjalistów i kadry zarządzającej, pozyskiwanie talentów z Chin",
-        "service": "recruitment"
-      },
-      {
-        "title": "Operacje",
-        "text": "Stałe zespoły i krótkoterminowe uzupełnianie obsady na stanowiskach magazynowych, logistycznych i produkcyjnych",
-        "service": "operations-outsourcing"
-      },
-      {
-        "title": "Utrzymanie",
-        "text": "Bieżące kontrole i konserwacja urządzeń, wsparcie w diagnozowaniu awarii",
-        "service": "robotics-service"
-      }
-    ],
-    "footer": "Zespoły międzynarodowe i lokalna koordynacja w Europie towarzyszą projektowi na każdym etapie, z jednym punktem kontaktu w projekcie.",
-    "footerService": "cross-border-teams"
+  "services": {
+    "headline": "Obszary działalności"
   },
   "band": {
-    "text": "Łączymy wymagania klienta z realizacją na miejscu.",
+    "text": "Komunikacja po chińsku, polsku i angielsku, łącząca wymagania klienta z realizacją na miejscu.",
     "photo": "/img/stock/area-asrs.jpg",
     "alt": ""
   },
   "markets": {
-    "headline": "Działamy z Polski, łączymy Europę i rynki zagraniczne",
+    "headline": "Działamy z Polski, łączymy Europę i Chiny",
     "items": [
       {
         "name": "Polska",
@@ -95,7 +66,7 @@
     "note": "Powyższe rynki to obszary działalności i współpracy transgranicznej; nie oznacza to posiadania biur ani takich samych uprawnień do prowadzenia działalności w każdym z tych krajów."
   },
   "approach": {
-    "headline": "Jeden punkt kontaktu w projekcie, od uruchomienia po bieżącą obsługę"
+    "headline": "Od ustalenia potrzeb do stałej współpracy"
   },
   "values": {
     "headline": "Wartość współpracy dla klienta"

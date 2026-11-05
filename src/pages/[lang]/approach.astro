@@ -18,34 +18,44 @@ const closing = getHome(lang).closing;
 
   <section class="sec">
     <div class="wrap">
-      <SectionHead num="01" tag={ui.tags.approach} headline={a.headline} />
-      <Stages stages={a.stages} />
-      <p class="note reveal stages-note">{a.stagesNote}</p>
+      <SectionHead num="01" tag={ui.tags.approach} headline={a.cooperation.headline} />
+      <Stages stages={a.cooperation.stages} outputLabel={ui.output} />
+      <p class="note reveal stages-note">{a.cooperation.note}</p>
+    </div>
+  </section>
+
+  <section class="sec sec-line">
+    <div class="wrap">
+      <SectionHead num="02" tag={ui.tags.management} headline={a.management.headline} />
+      <p class="mg-lede reveal">{a.management.lede}</p>
+      <Stages stages={a.management.stages} />
+      <p class="note reveal stages-note">{a.management.note}</p>
     </div>
   </section>
 
   <section class="sec values">
     <div class="wrap">
-      <SectionHead num="02" tag={ui.tags.values} headline={a.valuesHeadline} />
+      <SectionHead num="03" tag={ui.tags.values} headline={a.values.headline} />
       <ol class="vl">
-        {a.values.map((v, i) => (
+        {a.values.items.map((v, i) => (
           <li class="vl-row reveal">
             <span class="vl-num">{String(i + 1).padStart(2, '0')}</span>
             <h3 class="vl-title">{v.title}</h3>
-            <ul>{v.items.map((it) => <li>{it}</li>)}</ul>
+            {v.items.length > 0 && <ul>{v.items.map((it) => <li>{it}</li>)}</ul>}
           </li>
         ))}
       </ol>
     </div>
   </section>
 
-  <NextStep href={`/${lang}/projects/`} label={ui.nextStep} title={ui.nav.projects} />
-
+  <NextStep href={`/${lang}/contact/`} label={ui.nextStep} title={ui.nav.contact} />
   <ClosingBand headline={closing.headline} sub={closing.sub} cta={ui.cta.contact} href={`/${lang}/contact/`} />
 </Base>
 
 <style>
   .stages-note { margin-top: clamp(40px, 5vw, 64px); }
+  .sec-line { border-top: 1px solid var(--line); }
+  .mg-lede { margin: -24px 0 clamp(40px, 5vw, 64px); color: var(--blue); font-weight: 600; font-size: clamp(17px, 1.4vw, 21px); }
   .values { background: var(--surface); }
   .vl { list-style: none; margin: 0; padding: 0; border-bottom: 1px solid var(--line); }
   .vl-row {

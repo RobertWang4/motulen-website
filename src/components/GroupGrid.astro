@@ -1,0 +1,32 @@
+---
+/** Grid of titled lists (deck columns). Groups marked status 'expanding' get a chip. */
+import { getUi, type Lang } from '../lib/content';
+interface Props { lang: Lang; groups: { title: string; items: string[]; status?: 'expanding' }[]; level?: 2 | 3 }
+const { lang, groups, level = 2 } = Astro.props;
+const ui = getUi(lang);
+const H = level === 2 ? 'h2' : 'h3';
+---
+<div class="gg">
+  {groups.map((g) => (
+    <div class="gg-group">
+      <H class="gg-title">
+        {g.title}
+        {g.status === 'expanding' && <span class="chip-plan">{ui.status.expanding}</span>}
+      </H>
+      {g.items.length > 0 && <ul>{g.items.map((it) => <li>{it}</li>)}</ul>}
+    </div>
+  ))}
+</div>
+
+<style>
+  .gg { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: clamp(32px, 4vw, 56px) clamp(24px, 3vw, 48px); }
+  .gg-group { border-top: 1px solid var(--ink); padding-top: 22px; min-width: 0; }
+  .gg-title {
+    margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px;
+    font-family: var(--display); font-weight: 700; font-size: clamp(22px, 2vw, 28px); line-height: 1.2; letter-spacing: -0.015em;
+  }
+  :global(:lang(zh)) .gg-title { font-weight: 600; letter-spacing: 0; }
+  .gg-group ul { list-style: none; margin: 20px 0 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+  .gg-group li { position: relative; padding-left: 18px; font-size: 17px; line-height: 1.6; }
+  .gg-group li::before { content: ''; position: absolute; left: 0; top: 0.8em; width: 8px; height: 1px; background: var(--blue); }
+</style>

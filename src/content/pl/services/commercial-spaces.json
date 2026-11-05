@@ -2,35 +2,24 @@
   "id": "commercial-spaces",
   "number": "03",
   "title": "Projekty przestrzeni komercyjnych",
-  "short": "Wykończenie biur i sklepów firmowych",
-  "subtitle": "Własny zespół wykonawczy realizuje różne rodzaje prac budowlanych",
-  "status": "current",
-  "photo": "/img/stock/header-building.jpg",
-  "alt": "Budynek biurowy i komercyjny",
+  "short": "Wykończenie biur i realizacja sklepów firmowych",
+  "subtitle": "Wykończenie biur i realizacja sklepów firmowych",
+  "photo": "/img/deck/office.jpg",
+  "alt": "Wykończona biurowa sala konferencyjna",
   "groups": [
     {
-      "title": "Przestrzeń biurowa",
+      "title": "Wykończenie biur",
       "items": [
-        "Projekt i wykonanie stref biurowych",
-        "Szatnie dla pracowników magazynu",
-        "Strefy socjalne dla pracowników"
+        "Zgodnie z potrzebami użytkowymi firmy",
+        "Organizacja wykończenia i prac towarzyszących"
       ]
     },
     {
-      "title": "Budowa sklepów firmowych",
+      "title": "Realizacja sklepów firmowych",
       "items": [
-        "Projekt i wykończenie sklepów flagowych marek",
-        "Organizacja i montaż sklepów pop-up"
-      ]
-    },
-    {
-      "title": "Aranżacja miejsc wydarzeń",
-      "items": [
-        "Aranżacja miejsc wydarzeń komercyjnych",
-        "Firmowe imprezy roczne",
-        "Sezonowa aranżacja przestrzeni biurowej"
+        "Uwzględnienie wymagań marki i warunków na miejscu",
+        "Koordynacja harmonogramu prac i terminów przekazania"
       ]
     }
-  ],
-  "note": "Szczegółowy sposób organizacji outsourcingu operacyjnego i pracy tymczasowej, podmiot świadczący usługi oraz odpowiedzialność są ustalane dla każdego projektu."
+  ]
 }

@@ -2,13 +2,14 @@
 import Base from '../../layouts/Base.astro';
 import SectionHead from '../../components/SectionHead.astro';
 import Markets from '../../components/Markets.astro';
-import Lifecycle from '../../components/Lifecycle.astro';
+import ServiceCards from '../../components/ServiceCards.astro';
 import ProjectList from '../../components/ProjectList.astro';
+import Tiers from '../../components/Tiers.astro';
 import NextStep from '../../components/NextStep.astro';
 import Stages from '../../components/Stages.astro';
 import PhotoBand from '../../components/PhotoBand.astro';
 import ClosingBand from '../../components/ClosingBand.astro';
-import { LANGS, getHome, getUi, getApproach, getProjects, type Lang } from '../../lib/content';
+import { LANGS, getHome, getUi, getApproach, getProjects, getDirection, listServices, type Lang } from '../../lib/content';
 
 export const getStaticPaths = () => LANGS.map((lang) => ({ params: { lang } }));
 const lang = Astro.params.lang as Lang;
@@ -16,6 +17,8 @@ const h = getHome(lang);
 const ui = getUi(lang);
 const projects = getProjects(lang);
 const approach = getApproach(lang);
+const direction = getDirection(lang);
+const services = listServices(lang);
 ---
 <Base lang={lang} title={h.title} description={h.description}>
   <!-- who we are -->
@@ -40,7 +43,7 @@ const approach = getApproach(lang);
     </div>
   </section>
 
-  <!-- positioning statement -->
+  <!-- the order follows the deck's page numbers: about, markets, business lines, projects, value, direction, cooperation -->
   <section class="sec">
     <div class="wrap">
       <p class="tag reveal"><b>01</b><span>/</span><span>{ui.tags.about}</span></p>
@@ -49,60 +52,62 @@ const approach = getApproach(lang);
     </div>
   </section>
 
-  <!-- one warehouse, end to end -->
   <section class="sec sec-line">
     <div class="wrap">
-      <SectionHead num="02" tag={ui.tags.services} headline={h.lifecycle.headline} />
-      <Lifecycle lang={lang} steps={h.lifecycle.steps} footer={h.lifecycle.footer} footerService={h.lifecycle.footerService} />
-      <a href={`/${lang}/services/`} class="ul more reveal">{ui.cta.allServices}<i>→</i></a>
-    </div>
-  </section>
-
-
-  <PhotoBand photo={h.band.photo} alt={h.band.alt} text={h.band.text} />
-
-  <!-- where -->
-  <section class="sec">
-    <div class="wrap">
-      <SectionHead num="03" tag={ui.tags.markets} headline={h.markets.headline} />
+      <SectionHead num="02" tag={ui.tags.markets} headline={h.markets.headline} />
       <Markets lang={lang} markets={h.markets.items} note={h.markets.note} />
     </div>
   </section>
 
-  <!-- how we work -->
   <section class="sec sec-line">
     <div class="wrap">
-      <SectionHead num="04" tag={ui.tags.approach} headline={h.approach.headline} />
-      <Stages stages={approach.stages} />
-      <a href={`/${lang}/approach/`} class="ul more reveal">{ui.cta.approach}<i>→</i></a>
+      <SectionHead num="03" tag={ui.tags.services} headline={h.services.headline} />
+      <ServiceCards lang={lang} services={services} />
+      <a href={`/${lang}/services/`} class="ul more reveal">{ui.cta.allServices}<i>→</i></a>
     </div>
   </section>
 
-  <!-- experience -->
-  <section class="sec sec-line">
+  <PhotoBand photo={h.band.photo} alt={h.band.alt} text={h.band.text} />
+
+  <section class="sec">
     <div class="wrap">
-      <SectionHead num="05" tag={ui.tags.projects} headline={projects.headline} />
+      <SectionHead num="04" tag={ui.tags.projects} headline={projects.headline} />
       <ProjectList lang={lang} rows={projects.rows} note={projects.note} />
     </div>
   </section>
 
-  <!-- why us -->
   <section class="sec values">
     <div class="wrap">
-      <SectionHead num="06" tag={ui.tags.values} headline={h.values.headline} />
+      <SectionHead num="05" tag={ui.tags.values} headline={h.values.headline} />
       <ul class="vals">
-        {approach.values.map((v) => (
+        {approach.values.items.map((v) => (
           <li class="val reveal">
             <h3 class="val-title">{v.title}</h3>
-            <ul class="val-list">{v.items.map((it) => <li>{it}</li>)}</ul>
+            {v.items.length > 0 && <ul class="val-list">{v.items.map((it) => <li>{it}</li>)}</ul>}
           </li>
         ))}
       </ul>
     </div>
   </section>
 
-  <NextStep href={`/${lang}/about/`} label={ui.nextStep} title={ui.nav.about} />
+  <section class="sec">
+    <div class="wrap">
+      <SectionHead num="06" tag={ui.tags.direction} headline={direction.headline} />
+      <Tiers tiers={direction.tiers} note={direction.note} />
+      <a href={`/${lang}/direction/`} class="ul more reveal">{ui.cta.direction}<i>→</i></a>
+    </div>
+  </section>
 
+  <section class="sec sec-line">
+    <div class="wrap">
+      <SectionHead num="07" tag={ui.tags.approach} headline={h.approach.headline} />
+      <Stages stages={approach.cooperation.stages} outputLabel={ui.output} />
+      <p class="note reveal coop-note">{approach.cooperation.note}</p>
+      <a href={`/${lang}/approach/`} class="ul more reveal">{ui.cta.approach}<i>→</i></a>
+    </div>
+  </section>
+
+  <NextStep href={`/${lang}/about/`} label={ui.nextStep} title={ui.nav.about} />
   <ClosingBand headline={h.closing.headline} sub={h.closing.sub} cta={ui.cta.contact} href={`/${lang}/contact/`} />
 </Base>
 
@@ -151,6 +156,7 @@ const approach = getApproach(lang);
   :global(:lang(zh)) .statement { max-width: 17em; font-weight: 600; letter-spacing: 0.01em; line-height: 1.3; }
   .sec-line { border-top: 1px solid var(--line); }
   .more { margin-top: clamp(40px, 5vw, 64px); }
+  .coop-note { margin-top: clamp(32px, 4vw, 48px); }
 
   .values { background: var(--surface); }
   .vals { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(20px, 2.4vw, 36px); }

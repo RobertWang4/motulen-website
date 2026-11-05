@@ -1,0 +1,48 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/inner/PageHeader.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import Tiers from '../../components/Tiers.astro';
+import GroupGrid from '../../components/GroupGrid.astro';
+import NextStep from '../../components/NextStep.astro';
+import ClosingBand from '../../components/ClosingBand.astro';
+import { LANGS, getDirection, getHome, getUi, type Lang } from '../../lib/content';
+
+export const getStaticPaths = () => LANGS.map((lang) => ({ params: { lang } }));
+const lang = Astro.params.lang as Lang;
+const d = getDirection(lang);
+const ui = getUi(lang);
+const closing = getHome(lang).closing;
+---
+<Base lang={lang} title={d.title} description={d.description}>
+  <PageHeader tag={ui.tags.direction} title={d.title} lede={d.lede} image={d.photo} alt={d.alt} />
+
+  <section class="sec">
+    <div class="wrap">
+      <SectionHead num="01" tag={ui.tags.direction} headline={d.headline} />
+      <Tiers tiers={d.tiers} note={d.note} />
+    </div>
+  </section>
+
+  <section class="sec sec-line">
+    <div class="wrap plan">
+      <SectionHead num="02" tag={ui.tags.direction} headline={d.plan.headline} />
+      <p class="plan-sub reveal">{d.plan.subtitle}</p>
+      <figure class="plan-photo reveal"><img src={d.plan.photo} alt={d.plan.alt} loading="lazy" /></figure>
+      <GroupGrid lang={lang} groups={d.plan.groups} level={3} />
+      <p class="note plan-note">{d.plan.note}</p>
+    </div>
+  </section>
+
+  <NextStep href={`/${lang}/approach/`} label={ui.nextStep} title={ui.nav.approach} />
+  <ClosingBand headline={closing.headline} sub={closing.sub} cta={ui.cta.contact} href={`/${lang}/contact/`} />
+</Base>
+
+<style>
+  .sec-line { border-top: 1px solid var(--line); }
+  .plan .sh { margin-bottom: 16px; }
+  .plan-sub { margin: 0; color: var(--muted); font-size: clamp(17px, 1.4vw, 21px); }
+  .plan-photo { margin: clamp(32px, 4vw, 48px) 0 clamp(40px, 5vw, 64px); aspect-ratio: 16 / 6; overflow: hidden; border-radius: var(--r-sm); background: var(--surface); }
+  .plan-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .plan-note { margin-top: clamp(32px, 4vw, 48px); }
+</style>

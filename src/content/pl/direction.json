@@ -1,0 +1,60 @@
+{
+  "title": "Kierunki rozwoju",
+  "description": "Kierunki rozwoju MOTULEN GROUP: na bazie obecnej działalności rozwijamy globalne poszukiwanie talentów i zespoły pracowników technicznych oraz planujemy konserwację urządzeń i serwis robotów.",
+  "lede": "Dotychczasowa działalność, główne kierunki rozwoju i planowane usługi",
+  "photo": "/img/stock/area-control-room.jpg",
+  "alt": "",
+  "headline": "Stała obsługa operacyjna i rozwój usług technicznych",
+  "tiers": [
+    {
+      "title": "Dotychczasowa działalność",
+      "items": [
+        "Zasoby ludzkie i outsourcing operacyjny",
+        "Projekty inżynieryjne i przestrzeni komercyjnych",
+        "Koordynacja z klientami i na miejscu realizacji"
+      ]
+    },
+    {
+      "title": "Główne kierunki rozwoju",
+      "items": [
+        "Globalne poszukiwanie talentów",
+        "Zespoły pracowników technicznych",
+        "Długoterminowe wsparcie projektów"
+      ]
+    },
+    {
+      "title": "Planowane usługi",
+      "items": [
+        "Konserwacja i utrzymanie urządzeń",
+        "Wsparcie techniczne w zakresie automatyki",
+        "Serwis robotów"
+      ]
+    }
+  ],
+  "note": "Usługi techniczne będą rozwijane stopniowo, wraz z potrzebami klientów, poprzez zapewnienie wyspecjalizowanych zespołów, uprawnień i zakresu usług.",
+  "plan": {
+    "headline": "Plan rozwoju serwisu robotów i urządzeń",
+    "subtitle": "Dla magazynów i automatyki przemysłowej",
+    "photo": "/img/stock/header-robot-arm.jpg",
+    "alt": "Robot magazynowy",
+    "groups": [
+      {
+        "title": "Planowany zakres usług",
+        "items": [
+          "Codzienne kontrole i konserwacja urządzeń",
+          "Diagnozowanie awarii i wsparcie napraw",
+          "Zapewnienie techników do obsługi robotów"
+        ]
+      },
+      {
+        "title": "Ścieżka budowania kompetencji",
+        "items": [
+          "Ustalenie marek i modeli urządzeń klienta",
+          "Zbudowanie zaplecza technicznego i zasobów partnerskich",
+          "Ocena części zamiennych, czasu reakcji i zasad odbioru"
+        ]
+      }
+    ],
+    "note": "Niniejsza sekcja opisuje plan rozwoju i nie stanowi oświadczenia o posiadanych uprawnieniach serwisowych ani o zrealizowanych projektach naprawczych."
+  }
+}

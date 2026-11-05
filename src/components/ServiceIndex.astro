@@ -1,6 +1,6 @@
 ---
 /**
- * The six business lines as full-width numbered rows. On wide screens a photo frame
+ * The business lines as full-width numbered rows. On wide screens a photo frame
  * sits to the right and shows the hovered row's photo (pure CSS, :has()).
  */
 import { getUi, type Lang, type Service } from '../lib/content';
@@ -17,7 +17,6 @@ const ui = getUi(lang);
           <span class="sx-main">
             <span class="sx-title">
               {s.title}
-              {s.status === 'planned' && <span class="chip-plan">{ui.status.planned}</span>}
             </span>
             <span class="sx-short">{s.short}</span>
           </span>

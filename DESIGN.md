@@ -53,8 +53,10 @@
 - **Business index:** six full-width numbered rows with hairlines; desktop shows the hovered row's photo in a sticky frame (CSS `:has()`, opacity 200ms). Planned lines carry a quiet grey chip.
 - **Markets row:** five country names in large type; Poland marked "base" with a blue top rule. No map, so nothing implies offices.
 - **Stages:** three columns joined by one hairline with blue dots and large `line`-grey numerals.
-- **Lifecycle (home services block):** the only services section on home. Five steps of one warehouse, each with its service photo (4:5, hover scale 1.03), a continuous hairline rail with blue dots under the photos, `line`-grey mono numeral, h3, short text and a hairline-topped link to its service; closing sentence linking service 06, then an "all services" link. The full six-row business index lives on the services page only. Two columns under 900px, one under 600px.
-- **Next step link:** full-width link before the closing band (mono label, large title with arrow, hairline on top; arrow nudges 8px on hover). Follows the talk track between big sections: home > about > services > approach > projects > contact. The services page and every service page point to approach; single services are switched in the side list, never by a bottom link.
+- **Service cards (home):** the four business lines as photo cards (4:5, hover scale 1.03) joined by one hairline rail with blue dots; mono number, title with arrow, short line. Two columns under 900px, one under 600px. The full business index lives on the services page.
+- **Tiers (direction):** the deck's growth story in three columns — existing base, priority expansion, planned services. Top rule changes from solid ink to blue to dashed grey so "now" vs "planned" reads at a glance.
+- **Group grid:** titled lists as in the deck's columns; a group the deck calls a development direction carries the grey "expanding" chip. Service pages may add sub-sections (headline, optional lede and 16:6 photo, group grid) — service 01 carries the team and admin & logistics sections, as in the deck.
+- **Next step link:** full-width link before the closing band (mono label, large title with arrow, hairline on top; arrow nudges 8px on hover). Follows the talk track between big sections: home > about > services > projects > direction > approach > contact (the deck's page-number order). The services page and every service page point to projects; single services are switched in the side list, never by a bottom link.
 - **Service detail:** no tall header. Side list of the six services and the content start right under the nav; side list is sticky at the same offset it starts at, so switching services never moves it. Content: tag, h1 + planned chip, subtitle, 16:7 photo, grouped lists with blue dash bullets, note; then the next-step link to approach. On switch only the content crossfades (view-transition names `svc-nav`, `svc-body`).
 - **Footnotes:** compliance and scope notes use `.note` (14px muted) and are never hidden.
 
@@ -74,6 +76,7 @@
 ## Decisions Log
 | Date | Decision | Rationale |
 |------|----------|-----------|
+| 2026-11-05 | Rebuilt on the 20-slide deck: 4 business lines, direction page, approach = cooperation + management + value; talk track follows the deck's page numbers | User: build strictly from the deck's content and logic |
 | 2026-11-04 | Page crossfade + hover prefetch; market names smaller and on one line | User: switching pages felt abrupt; 罗马尼亚 wrapped |
 | 2026-11-04 | Rebrand to MOTULEN GROUP, languages zh + pl, page patterns above | User: keep this visual style, rebuild from the MOTULEN deck, make it more 大气 while telling the story |
 | 2026-09-13 | Initial design system created via /design-consultation | Based on user brief: white-dominant, minimal, "现代、智能、领先", tender-ready; reference xchanneltech.com |

@@ -5,8 +5,8 @@ import { execSync } from 'node:child_process';
 
 const DIST = 'dist';
 const LANGS = ['zh', 'pl'];
-const SERVICES = ['operations-outsourcing', 'warehouse-engineering', 'commercial-spaces', 'recruitment', 'robotics-service', 'cross-border-teams'];
-const PAGES = ['', 'about/', 'services/', 'approach/', 'projects/', 'contact/', ...SERVICES.map((s) => `services/${s}/`)];
+const SERVICES = ['operations-outsourcing', 'warehouse-engineering', 'commercial-spaces', 'recruitment'];
+const PAGES = ['', 'about/', 'services/', 'projects/', 'direction/', 'approach/', 'contact/', ...SERVICES.map((s) => `services/${s}/`)];
 const BANNED = /RECON|recon\.org|AIoT|BHP|Safety culture|href="[^"]*\/en\//;
 const problems = [];
 const base = (process.env.BASE_PATH || '').replace(/\/$/, '');
@@ -34,13 +34,13 @@ const tl = execSync('grep -rlE "(^|[^A-Za-z_])t\\(lang," src || true').toString(
 if (tl) problems.push(`hardcoded copy via t(lang…) in: ${tl.replace(/\n/g, ', ')}`);
 
 const must = [
-  ['zh/services/robotics-service/', '本页为发展规划'],
+  ['zh/direction/', '本页为发展规划'],
   ['zh/about/', '不代表'],
   ['zh/projects/', 'dabar'],
   ['zh/projects/', '不代表与 Amazon 直接签约'],
   ['zh/about/', '也不代表 MOTULEN 在相关国家设有办公室'],
   ['zh/services/recruitment/', '全球招聘能力为发展方向'],
-  ['pl/services/robotics-service/', 'plan rozwoju'],
+  ['pl/direction/', 'plan rozwoju'],
   ['pl/about/', 'spółki matki'],
   ['pl/about/', 'MOTULEN posiada biura'],
   ['pl/projects/', 'nie oznacza bezpośredniej umowy z Amazon'],
@@ -56,7 +56,7 @@ for (const [p, s] of mustNot) {
   if (existsSync(f) && readFileSync(f, 'utf8').includes(s)) problems.push(`/${p}: must not contain "${s}"`);
 }
 // the nav marks the current section (needs to survive the GitHub Pages base path)
-for (const lang of LANGS) for (const p of ['about/', 'services/', 'approach/', 'projects/', 'services/recruitment/']) {
+for (const lang of LANGS) for (const p of ['about/', 'services/', 'projects/', 'direction/', 'approach/', 'services/recruitment/']) {
   const f = join(DIST, lang, p, 'index.html');
   if (existsSync(f) && !/class="navlink current"[^>]*aria-current="page"|aria-current="page"[^>]*class="navlink current"/.test(readFileSync(f, 'utf8')))
     problems.push(`/${lang}/${p}: nav has no current item`);

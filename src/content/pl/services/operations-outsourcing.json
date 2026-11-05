@@ -4,29 +4,67 @@
   "title": "Outsourcing HR i operacji",
   "short": "Zespoły długoterminowe, krótkoterminowe zwiększenie obsady, zaplecze administracyjne",
   "subtitle": "Organizujemy odpowiednie zespoły do stałej obsługi operacyjnej i potrzeb etapowych",
-  "status": "current",
   "photo": "/img/stock/header-team.jpg",
   "alt": "Zespół obsługi magazynu",
   "groups": [
     {
-      "title": "Zespół operacyjny firmy",
+      "title": "Długoterminowy zespół operacyjny",
       "items": [
+        "Wsparcie stanowisk magazynowych, logistycznych i produkcyjnych",
         "Rekrutacja, przyjęcie do pracy, ewidencja czasu pracy i bieżąca koordynacja",
         "Stałe monitorowanie dopasowania do stanowisk i stabilności obsady"
       ]
-    },
+    }
+  ],
+  "sections": [
     {
-      "title": "Outsourcing etapów logistyki i magazynowania",
-      "items": [
-        "Realizacja zadań na stanowiskach magazynowych, logistycznych i produkcyjnych"
+      "headline": "Organizacja zespołów międzynarodowych",
+      "lede": "Skład zespołu dobieramy do potrzeb projektu",
+      "photo": "/img/stock/area-engineers.jpg",
+      "alt": "Technicy z Chin i Europy rozmawiają w magazynie",
+      "groups": [
+        {
+          "title": "Specjaliści i pracownicy techniczni z Chin",
+          "items": [
+            "Rozumieją standardy klienta, wspierają komunikację techniczną i realizację projektu"
+          ]
+        },
+        {
+          "title": "Pracownicy z Azji i Afryki",
+          "items": [
+            "Organizujemy personel zgodnie z wymaganiami stanowiska, dopasowując umiejętności zawodowe i znajomość języków"
+          ]
+        },
+        {
+          "title": "Koordynacja lokalna w Europie",
+          "items": [
+            "Komunikacja z klientem i na miejscu realizacji",
+            "Przyjęcie do pracy i weryfikacja dokumentów",
+            "Ewidencja czasu pracy i zaplecze logistyczne",
+            "Obsługa spraw dotyczących personelu"
+          ]
+        }
       ]
     },
     {
-      "title": "Formy usługi",
-      "items": [
-        "Zespoły długoterminowe",
-        "Krótkoterminowe zwiększenie obsady",
-        "Zaplecze administracyjne"
+      "headline": "Wsparcie administracyjne i logistyczne",
+      "photo": "/img/deck/admin.jpg",
+      "alt": "Porządkowanie dokumentów kadrowych",
+      "groups": [
+        {
+          "title": "Sprawy pracownicze",
+          "items": [
+            "Weryfikacja dokumentów przy przyjęciu, wynagrodzenia i administracja kadrowa",
+            "Bieżąca komunikacja, rozwiązywanie problemów i uzupełnianie obsady"
+          ]
+        },
+        {
+          "title": "Logistyka projektu",
+          "items": [
+            "Zakwaterowanie, transport, odzież robocza i niezbędny sprzęt",
+            "Organizacja zgodnie z potrzebami projektu, z jasno określonym zakresem kosztów"
+          ]
+        }
       ]
     }
   ],

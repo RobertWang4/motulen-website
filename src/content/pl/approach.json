@@ -1,70 +1,101 @@
 {
   "title": "Współpraca",
-  "description": "Sposób zarządzania projektami i wartość współpracy z MOTULEN GROUP: jeden punkt kontaktu w projekcie, od uruchomienia po bieżącą obsługę.",
-  "lede": "Jeden punkt kontaktu w projekcie, od uruchomienia po bieżącą obsługę.",
+  "description": "Sposób współpracy, zarządzania projektami i wartość współpracy z MOTULEN GROUP.",
+  "lede": "Sposób współpracy, zarządzanie projektem i wartość współpracy dla klienta",
   "photo": "/img/stock/header-forklift.jpg",
   "alt": "",
-  "headline": "Sposób zarządzania projektem",
-  "stages": [
-    {
-      "title": "Ustalenia przed startem",
-      "items": [
-        "Zakres usług i odpowiedzialność obu stron",
-        "Plan obsady, warunki na miejscu i standardy odbioru",
-        "Pozycje wyceny i zasady rozliczeń"
-      ]
-    },
-    {
-      "title": "Nadzór w trakcie realizacji",
-      "items": [
-        "Rejestrowanie czasu pracy, postępów i problemów na miejscu",
-        "Wskazanie osób odpowiedzialnych i terminów rozwiązania",
-        "Regularny przegląd jakości i potrzeb kadrowych"
-      ]
-    },
-    {
-      "title": "Odpowiedzialność po odbiorze",
-      "items": [
-        "Odpowiedzialność za rezultat realizacji projektu",
-        "Doradztwo po zakończeniu projektu"
-      ]
-    }
-  ],
-  "stagesNote": "Wspólnie potwierdzone zapisy i standardy ograniczają nieporozumienia oraz powtarzanie rozliczeń.",
-  "valuesHeadline": "Wartość współpracy dla klienta",
-  "values": [
-    {
-      "title": "Komunikacja wielojęzyczna",
-      "items": [
-        "Komunikacja po polsku, angielsku, chińsku i w innych językach",
-        "Łączenie wymagań klienta z realizacją na miejscu"
-      ]
-    },
-    {
-      "title": "Współpraca wielu obszarów usług",
-      "items": [
-        "Usługi dla pracowników fizycznych, technicznych i biurowych, zależnie od scenariusza biznesowego klienta"
-      ]
-    },
-    {
-      "title": "Wsparcie w realizacji lokalnej",
-      "items": [
-        "Dostosowanie do potrzeb klienta i wykorzystanie lokalnych zasobów do realizacji usług"
-      ]
-    },
-    {
-      "title": "Dopasowanie do cyklu projektu",
-      "items": [
-        "Rozbudowana, stabilna baza pracowników",
-        "Szybka reakcja na cykl projektu klienta",
-        "Dobór zasobów o odpowiednich kwalifikacjach"
-      ]
-    },
-    {
-      "title": "Zgodność z przepisami w Europie",
-      "items": [
-        "Obsługa zagranicznych klientów na każdym etapie w zakresie zgodności z lokalnymi przepisami"
-      ]
-    }
-  ]
+  "cooperation": {
+    "headline": "Od ustalenia potrzeb do stałej współpracy",
+    "stages": [
+      {
+        "title": "Ustalenie potrzeb",
+        "items": [
+          "Zakres działalności, lokalizacja, skala i terminy"
+        ],
+        "output": "Lista wymagań"
+      },
+      {
+        "title": "Plan projektu",
+        "items": [
+          "Odpowiedzialność za personel, technologię, logistykę i zarządzanie"
+        ],
+        "output": "Plan usług i wycena"
+      },
+      {
+        "title": "Uruchomienie i realizacja",
+        "items": [
+          "Warunki rozpoczęcia pracy, harmonogram i wymagania odbioru"
+        ],
+        "output": "Plan uruchomienia"
+      },
+      {
+        "title": "Stała współpraca",
+        "items": [
+          "Jakość usług, zmiany potrzeb i kwestie do optymalizacji"
+        ],
+        "output": "Podsumowanie i dalsze ustalenia"
+      }
+    ],
+    "note": "Konkretne strony umowy, podmiot realizujący i granice usług są określone w umowie projektowej."
+  },
+  "management": {
+    "headline": "Sposób zarządzania projektem",
+    "lede": "Jeden punkt kontaktu w projekcie, od uruchomienia po bieżącą obsługę",
+    "stages": [
+      {
+        "title": "Ustalenia przed startem",
+        "items": [
+          "Zakres usług i odpowiedzialność obu stron",
+          "Plan obsady, warunki na miejscu i standardy odbioru",
+          "Pozycje wyceny i zasady rozliczeń"
+        ]
+      },
+      {
+        "title": "Nadzór w trakcie realizacji",
+        "items": [
+          "Rejestrowanie czasu pracy, postępów i problemów na miejscu",
+          "Wskazanie osób odpowiedzialnych i terminów rozwiązania",
+          "Regularny przegląd jakości i potrzeb kadrowych"
+        ]
+      }
+    ],
+    "note": "Wspólnie potwierdzone zapisy i standardy ograniczają nieporozumienia oraz powtarzanie rozliczeń."
+  },
+  "values": {
+    "headline": "Wartość współpracy dla klienta",
+    "items": [
+      {
+        "title": "Komunikacja wielojęzyczna",
+        "items": [
+          "Komunikacja po chińsku, polsku i angielsku",
+          "Łączenie wymagań klienta z realizacją na miejscu"
+        ]
+      },
+      {
+        "title": "Współpraca wielu obszarów usług",
+        "items": [
+          "W zakresie potrzeb dotyczących personelu, prac inżynieryjnych i zaplecza logistycznego",
+          "Wskazanie osób odpowiedzialnych i granic realizacji na każdym etapie"
+        ]
+      },
+      {
+        "title": "Dopasowanie do cyklu projektu",
+        "items": [
+          "Uwzględnienie stałej działalności i zadań etapowych",
+          "Organizacja personelu i zasobów specjalistycznych"
+        ]
+      },
+      {
+        "title": "Wsparcie w realizacji lokalnej",
+        "items": [
+          "Obsługa dokumentów, personelu i warunków na miejscu",
+          "Wsparcie chińskich firm w realizacji projektów w Europie"
+        ]
+      },
+      {
+        "title": "Zgodność z przepisami w Europie",
+        "items": []
+      }
+    ]
+  }
 }

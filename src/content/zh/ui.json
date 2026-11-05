@@ -3,8 +3,9 @@
     "home": "首页",
     "about": "关于我们",
     "services": "业务",
-    "approach": "合作方式",
     "projects": "项目经验",
+    "direction": "发展方向",
+    "approach": "合作方式",
     "contact": "联系我们"
   },
   "langName": {
@@ -14,15 +15,14 @@
   "menu": "菜单",
   "cta": {
     "contact": "联系我们",
-    "more": "了解详情",
     "allServices": "全部业务",
     "approach": "了解合作方式",
     "about": "关于我们",
     "projects": "查看项目经验",
-    "team": "查看跨国团队组织"
+    "direction": "查看发展方向"
   },
   "status": {
-    "planned": "发展中"
+    "expanding": "拓展中"
   },
   "roles": {
     "base": "基地",
@@ -34,17 +34,19 @@
     "markets": "Markets",
     "approach": "Approach",
     "values": "Value",
-    "team": "Team",
     "experience": "Experience",
     "projects": "Projects",
     "contact": "Contact",
-    "service": "Service"
+    "service": "Service",
+    "direction": "Direction",
+    "management": "Management"
   },
   "footer": {
-    "tagline": "欧洲企业服务：人员组织与运营外包，工程实施与技术服务拓展。",
+    "tagline": "欧洲项目服务：人员组织与运营外包，工程实施与技术服务拓展。",
     "navTitle": "导航",
     "contactTitle": "联系"
   },
   "nextStep": "下一步",
-  "relatedProjects": "相关项目"
+  "relatedProjects": "相关项目",
+  "output": "输出"
 }

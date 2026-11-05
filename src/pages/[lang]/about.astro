@@ -4,6 +4,7 @@ import PageHeader from '../../components/inner/PageHeader.astro';
 import SectionHead from '../../components/SectionHead.astro';
 import NextStep from '../../components/NextStep.astro';
 import DataTable from '../../components/DataTable.astro';
+import Markets from '../../components/Markets.astro';
 import PhotoBand from '../../components/PhotoBand.astro';
 import ClosingBand from '../../components/ClosingBand.astro';
 import { LANGS, getAbout, getHome, getUi, type Lang } from '../../lib/content';
@@ -12,7 +13,8 @@ export const getStaticPaths = () => LANGS.map((lang) => ({ params: { lang } }));
 const lang = Astro.params.lang as Lang;
 const a = getAbout(lang);
 const ui = getUi(lang);
-const closing = getHome(lang).closing;
+const home = getHome(lang);
+const closing = home.closing;
 ---
 <Base lang={lang} title={a.title} description={a.description}>
   <PageHeader tag={ui.tags.about} title={a.title} lede={a.lede} image={a.photo} alt={a.alt} />
@@ -25,30 +27,20 @@ const closing = getHome(lang).closing;
   </section>
 
   <section class="sec sec-line">
+    <div class="wrap">
+      <SectionHead num="02" tag={ui.tags.markets} headline={home.markets.headline} />
+      <Markets lang={lang} markets={home.markets.items} note={home.markets.note} />
+    </div>
+  </section>
+
+  <section class="sec sec-line">
     <div class="wrap"><div class="narrow">
-      <SectionHead num="02" tag={ui.tags.experience} headline={a.operating.headline} />
+      <SectionHead num="03" tag={ui.tags.experience} headline={a.operating.headline} />
       <DataTable columns={a.operating.columns} rows={a.operating.rows} note={a.operating.note} />
     </div></div>
   </section>
 
   <PhotoBand photo={a.band.photo} alt={a.band.alt} text={a.band.text} />
-
-  <section class="sec">
-    <div class="wrap">
-      <SectionHead num="03" tag={ui.tags.team} headline={a.team.headline} />
-      <div class="team">
-        {a.team.groups.map((g) => (
-          <div class="tg reveal">
-            <h3 class="h3">{g.title}</h3>
-            {g.text && <p>{g.text}</p>}
-            {g.items.length > 0 && <ul>{g.items.map((it) => <li>{it}</li>)}</ul>}
-          </div>
-        ))}
-      </div>
-      <p class="team-foot reveal">{a.team.footer}</p>
-      <a href={`/${lang}/services/cross-border-teams/`} class="ul team-more reveal">{ui.cta.team}<i>→</i></a>
-    </div>
-  </section>
 
   <NextStep href={`/${lang}/services/`} label={ui.nextStep} title={ui.nav.services} />
 
@@ -61,13 +53,5 @@ const closing = getHome(lang).closing;
   .intro .sh { margin-bottom: 0; }
   .intro-text { margin: 0; font-size: clamp(18px, 1.5vw, 22px); line-height: 1.75; color: var(--muted); }
   .narrow { max-width: 960px; }
-  .team { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(24px, 3vw, 48px); }
-  .tg { border-top: 1px solid var(--ink); padding-top: 22px; }
-  .tg p { margin: 14px 0 0; color: var(--muted); }
-  .tg ul { list-style: none; margin: 14px 0 0; padding: 0; display: flex; flex-direction: column; gap: 8px; color: var(--muted); }
-  .tg li::before { content: '— '; color: var(--faint); }
-  .team-foot { margin: clamp(36px, 4vw, 56px) 0 0; font-family: var(--display); font-weight: 700; font-size: clamp(20px, 2vw, 28px); color: var(--blue); }
-  .team-more { margin-top: 20px; }
-  :global(:lang(zh)) .team-foot { font-weight: 600; }
-  @media (max-width: 860px) { .intro, .team { grid-template-columns: 1fr; } }
+  @media (max-width: 860px) { .intro { grid-template-columns: 1fr; } }
 </style>

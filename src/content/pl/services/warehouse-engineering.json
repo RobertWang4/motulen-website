@@ -3,28 +3,30 @@
   "number": "02",
   "title": "Inżynieria magazynowa i prace towarzyszące",
   "short": "Regały i urządzenia sortujące, instalacje silnoprądowe i słaboprądowe, prace budowlano-adaptacyjne i IT",
-  "subtitle": "Rozwijamy wyspecjalizowane zespoły zgodnie z typami urządzeń na rynku, kształcimy odpowiednich pracowników technicznych i zapewniamy wysokiej jakości usługi towarzyszące",
-  "status": "current",
+  "subtitle": "Wsparcie przy budowie, adaptacji i instalacji urządzeń w magazynach",
   "photo": "/img/stock/header-conveyor.jpg",
   "alt": "Linia przenośników w magazynie",
   "groups": [
     {
-      "title": "Prace budowlane i montażowe wewnątrz magazynu",
+      "title": "Regały i instalacja urządzeń",
       "items": [
-        "Montaż i demontaż regałów",
-        "Montaż urządzeń",
-        "Instalacje silnoprądowe i słaboprądowe",
-        "Rozwiązania IT"
+        "Montaż, demontaż i regulacja regałów",
+        "Instalacja urządzeń sortujących i organizacja prac na miejscu"
       ]
     },
     {
-      "title": "Długoterminowa obsługa i utrzymanie urządzeń",
+      "title": "Prace inżynieryjne i systemy towarzyszące",
       "items": [
-        "Obsługa i utrzymanie inteligentnych urządzeń logistycznych",
-        "Obsługa i utrzymanie powiązanych urządzeń elektrycznych",
-        "Wsparcie oprogramowania"
+        "Instalacje silnoprądowe i słaboprądowe, prace budowlano-adaptacyjne",
+        "Rozwiązania IT i prace towarzyszące projektowi"
+      ]
+    },
+    {
+      "title": "Organizacja projektu",
+      "items": [
+        "Określenie zakresu prac i wymagań technicznych, dobór specjalistów, koordynacja harmonogramu i odbiór zgodnie z ustaleniami."
       ]
     }
   ],
-  "note": "Szczegółowy sposób organizacji outsourcingu operacyjnego i pracy tymczasowej, podmiot świadczący usługi oraz odpowiedzialność są ustalane dla każdego projektu."
+  "note": "Realizacja projektu wymaga zapewnienia odpowiednich specjalistów, uprawnień i odpowiedzialności umownej."
 }

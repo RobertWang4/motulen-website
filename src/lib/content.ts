@@ -10,7 +10,8 @@ export const otherLang = (lang: Lang): Lang => (lang === 'zh' ? 'pl' : 'zh');
 
 const Meta = { title: z.string(), description: z.string() };
 const Photo = { photo: z.string(), alt: z.string() };
-const Group = z.object({ title: z.string(), items: z.array(z.string()) });
+/** status 'expanding' marks a group the deck lists as a development direction (shown with a chip) */
+const Group = z.object({ title: z.string(), items: z.array(z.string()), status: z.enum(['expanding']).optional() });
 const Table = { columns: z.array(z.string()).length(3), rows: z.array(z.array(z.string()).length(3)), note: z.string() };
 
 const Site = z.object({
@@ -22,17 +23,19 @@ const Site = z.object({
 
 const Ui = z.object({
   nav: z.object({
-    home: z.string(), about: z.string(), services: z.string(),
-    approach: z.string(), projects: z.string(), contact: z.string(),
+    home: z.string(), about: z.string(), services: z.string(), projects: z.string(),
+    direction: z.string(), approach: z.string(), contact: z.string(),
   }),
   langName: z.record(z.enum(LANGS), z.string()),
   menu: z.string(),
-  cta: z.object({ contact: z.string(), more: z.string(), allServices: z.string(), approach: z.string(), about: z.string(), projects: z.string(), team: z.string() }),
-  status: z.object({ planned: z.string() }),
+  cta: z.object({ contact: z.string(), allServices: z.string(), approach: z.string(), about: z.string(), projects: z.string(), direction: z.string() }),
+  status: z.object({ expanding: z.string() }),
+  output: z.string(),
   roles: z.object({ base: z.string(), coverage: z.string() }),
   tags: z.object({
     about: z.string(), services: z.string(), markets: z.string(), approach: z.string(),
-    values: z.string(), team: z.string(), experience: z.string(), projects: z.string(), contact: z.string(), service: z.string(),
+    values: z.string(), experience: z.string(), projects: z.string(), contact: z.string(), service: z.string(),
+    direction: z.string(), management: z.string(),
   }),
   nextStep: z.string(),
   relatedProjects: z.string(),
@@ -46,12 +49,7 @@ const Home = z.object({
   hero: z.object({ headline: z.string(), sub: z.string(), ...Photo }),
   facts: z.array(z.object({ k: z.string(), v: z.string() })),
   statement: z.string(),
-  lifecycle: z.object({
-    headline: z.string(),
-    steps: z.array(z.object({ title: z.string(), text: z.string(), service: z.string() })).length(5),
-    footer: z.string(),
-    footerService: z.string(),
-  }),
+  services: z.object({ headline: z.string() }),
   band: z.object({ text: z.string(), ...Photo }),
   markets: z.object({ headline: z.string(), items: z.array(Market), note: z.string() }),
   approach: z.object({ headline: z.string() }),
@@ -63,21 +61,24 @@ const About = z.object({
   ...Meta, lede: z.string(), ...Photo,
   intro: z.object({ headline: z.string(), text: z.string() }),
   operating: z.object({ headline: z.string(), ...Table }),
-  team: z.object({
-    headline: z.string(),
-    groups: z.array(z.object({ title: z.string(), text: z.string(), items: z.array(z.string()) })),
-    footer: z.string(),
-  }),
   band: z.object({ text: z.string(), ...Photo }),
 });
 
+const Stage = Group.extend({ output: z.string().optional() });
+
 const Approach = z.object({
   ...Meta, lede: z.string(), ...Photo,
+  cooperation: z.object({ headline: z.string(), stages: z.array(Stage).length(4), note: z.string() }),
+  management: z.object({ headline: z.string(), lede: z.string(), stages: z.array(Group).min(1), note: z.string() }),
+  values: z.object({ headline: z.string(), items: z.array(Group) }),
+});
+
+const Direction = z.object({
+  ...Meta, lede: z.string(), ...Photo,
   headline: z.string(),
-  stages: z.array(Group).length(3),
-  stagesNote: z.string(),
-  valuesHeadline: z.string(),
-  values: z.array(Group),
+  tiers: z.array(z.object({ title: z.string(), items: z.array(z.string()) })).length(3),
+  note: z.string(),
+  plan: z.object({ headline: z.string(), subtitle: z.string(), ...Photo, groups: z.array(Group), note: z.string() }),
 });
 
 const Projects = z.object({ ...Meta, lede: z.string(), ...Photo, headline: z.string(), ...Table, rowServices: z.array(z.array(z.string())) })
@@ -88,7 +89,7 @@ const Contact = z.object({
   labels: z.object({ email: z.string(), phone: z.string(), address: z.string() }),
 });
 
-const ServicesPage = z.object({ ...Meta, lede: z.string(), ...Photo, headline: z.string(), order: z.array(z.string()).length(6) });
+const ServicesPage = z.object({ ...Meta, lede: z.string(), ...Photo, headline: z.string(), order: z.array(z.string()).length(4) });
 
 const Service = z.object({
   id: z.string(),
@@ -96,10 +97,15 @@ const Service = z.object({
   title: z.string(),
   short: z.string(),
   subtitle: z.string(),
-  status: z.enum(['current', 'planned']),
   ...Photo,
   groups: z.array(Group).min(1),
-  note: z.string(),
+  /** extra sub-sections the deck places under this business line (e.g. team, admin & logistics) */
+  sections: z.array(z.object({
+    headline: z.string(), lede: z.string().optional(),
+    groups: z.array(Group), footer: z.string().optional(),
+    photo: z.string().optional(), alt: z.string().optional(),
+  })).optional(),
+  note: z.string().optional(),
 });
 export type Service = z.infer<typeof Service>;
 export type Market = z.infer<typeof Market>;
@@ -122,8 +128,9 @@ export const getAbout = (lang: Lang) => load(`${lang}/about.json`, About);
 export const getApproach = (lang: Lang) => load(`${lang}/approach.json`, Approach);
 export const getProjects = (lang: Lang) => load(`${lang}/projects.json`, Projects);
 export const getContact = (lang: Lang) => load(`${lang}/contact.json`, Contact);
+export const getDirection = (lang: Lang) => load(`${lang}/direction.json`, Direction);
 export const getService = (lang: Lang, id: string) => load(`${lang}/services/${id}.json`, Service);
 
-/** all six business lines, in the order set by services.json */
+/** the four business lines, in the order set by services.json */
 export const getServicesPage = (lang: Lang) => load(`${lang}/services.json`, ServicesPage);
 export const listServices = (lang: Lang): Service[] => getServicesPage(lang).order.map((id) => getService(lang, id));

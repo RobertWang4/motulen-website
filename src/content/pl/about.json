@@ -1,12 +1,12 @@
 {
   "title": "O nas",
-  "description": "MOTULEN GROUP działa z Polski i łączy firmy zagraniczne z projektami w Europie.",
+  "description": "MOTULEN GROUP działa z Polski i łączy chińskie firmy z projektami w Europie.",
   "lede": "Odpowiadając na potrzeby firm w Europie w zakresie zatrudnienia, budowy i operacji, organizujemy personel i zasoby specjalistyczne oraz wspieramy realizację projektów.",
   "photo": "/img/stock/header-building.jpg",
   "alt": "",
   "intro": {
-    "headline": "Łączymy firmy zagraniczne z projektami w Europie",
-    "text": "MOTULEN GROUP działa z Polski. Główną linią działalności jest organizacja personelu i outsourcing operacyjny; prowadzimy też headhunting i rekrutację celowaną, a działalność rozwijamy w obszarze inżynierii magazynowej, projektów przestrzeni komercyjnych i serwisu technicznego urządzeń."
+    "headline": "Łączymy chińskie firmy z projektami w Europie",
+    "text": "MOTULEN GROUP działa z Polski. Główną linią działalności jest organizacja personelu i outsourcing operacyjny; prowadzimy też inżynierię magazynową i prace towarzyszące, projekty przestrzeni komercyjnych oraz headhunting i rekrutację celowaną, a działalność rozwijamy w kierunku usług technicznych."
   },
   "operating": {
     "headline": "Dotychczasowe doświadczenie operacyjne wspiera rozwój działalności MOTULEN",
@@ -49,34 +49,8 @@
     ],
     "note": "Wymienione firmy to doświadczenie operacyjne związane z zespołem; nie oznacza to relacji spółki matki i spółki zależnej z MOTULEN ani tego, że MOTULEN posiada biura lub uprawnienia w tych krajach."
   },
-  "team": {
-    "headline": "Organizacja zespołów międzynarodowych",
-    "groups": [
-      {
-        "title": "Specjaliści i pracownicy techniczni z Chin",
-        "text": "Rozumieją standardy klienta, wspierają komunikację techniczną i realizację projektu.",
-        "items": []
-      },
-      {
-        "title": "Pracownicy z Azji i Afryki",
-        "text": "Organizujemy personel zgodnie z wymaganiami stanowiska, dopasowując umiejętności zawodowe i znajomość języków.",
-        "items": []
-      },
-      {
-        "title": "Koordynacja lokalna w Europie",
-        "text": "",
-        "items": [
-          "Komunikacja z klientem i na miejscu realizacji",
-          "Przyjęcie do pracy i weryfikacja dokumentów",
-          "Ewidencja czasu pracy i zaplecze logistyczne",
-          "Obsługa spraw dotyczących personelu"
-        ]
-      }
-    ],
-    "footer": "Skład zespołu dobieramy do potrzeb projektu."
-  },
   "band": {
-    "text": "Komunikacja po polsku, angielsku, chińsku i w innych językach.",
+    "text": "Komunikacja po chińsku, polsku i angielsku, łącząca wymagania klienta z realizacją na miejscu.",
     "photo": "/img/stock/area-engineers.jpg",
     "alt": ""
   }

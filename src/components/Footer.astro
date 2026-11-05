@@ -3,7 +3,7 @@ import { site, getUi, otherLang, type Lang } from '../lib/content';
 interface Props { lang: Lang; altHref: string }
 const { lang, altHref } = Astro.props;
 const ui = getUi(lang);
-const nav = (['home', 'about', 'services', 'approach', 'projects', 'contact'] as const).map((id) => ({
+const nav = (['home', 'about', 'services', 'projects', 'direction', 'approach', 'contact'] as const).map((id) => ({
   label: ui.nav[id], href: id === 'home' ? `/${lang}/` : `/${lang}/${id}/`,
 }));
 ---

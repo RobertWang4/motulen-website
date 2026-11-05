@@ -1,9 +1,9 @@
 {
-  "title": "欧洲企业服务",
-  "description": "MOTULEN GROUP 立足波兰，围绕企业在欧洲的用工、建设和运营需求，组织人员与专业资源，推进项目落地。",
+  "title": "欧洲项目服务",
+  "description": "MOTULEN GROUP 立足波兰，连接中国企业与欧洲项目现场：围绕企业在欧洲的用工、建设和运营需求，组织人员与专业资源，推进项目落地。",
   "hero": {
-    "headline": "连接海外企业与欧洲项目现场",
-    "sub": "欧洲企业服务：人员组织与运营外包，工程实施与技术服务拓展。",
+    "headline": "连接中国企业与欧洲项目现场",
+    "sub": "欧洲项目服务：人员组织与运营外包，工程实施与技术服务拓展。",
     "photo": "/img/stock/hero-aerial.jpg",
     "alt": "欧洲物流园区航拍"
   },
@@ -18,7 +18,7 @@
     },
     {
       "k": "业务",
-      "v": "6 条业务线"
+      "v": "4 条业务线"
     },
     {
       "k": "沟通",
@@ -26,45 +26,16 @@
     }
   ],
   "statement": "围绕企业在欧洲的用工、建设和运营需求，组织人员与专业资源，推进项目落地。",
-  "lifecycle": {
-    "headline": "一座仓库，从建设到日常运转",
-    "steps": [
-      {
-        "title": "建设",
-        "text": "货架拆装、设备安装、强弱电工程与 IT",
-        "service": "warehouse-engineering"
-      },
-      {
-        "title": "配套",
-        "text": "办公区域、员工更衣区与活动区域",
-        "service": "commercial-spaces"
-      },
-      {
-        "title": "招人",
-        "text": "定向招聘专业人才与管理人员，中国人才引进",
-        "service": "recruitment"
-      },
-      {
-        "title": "运营",
-        "text": "仓储、物流及生产岗位的长期团队与短期增员",
-        "service": "operations-outsourcing"
-      },
-      {
-        "title": "维护",
-        "text": "设备日常检查与保养、故障排查支持",
-        "service": "robotics-service"
-      }
-    ],
-    "footer": "跨国团队与欧洲本地协调贯穿全程，一个项目接口对接。",
-    "footerService": "cross-border-teams"
+  "services": {
+    "headline": "业务布局"
   },
   "band": {
-    "text": "衔接客户要求与现场执行。",
+    "text": "中文、波兰语及英语沟通，衔接客户要求与现场执行。",
     "photo": "/img/stock/area-asrs.jpg",
     "alt": ""
   },
   "markets": {
-    "headline": "立足波兰，连接欧洲与海外",
+    "headline": "立足波兰，连接欧洲与中国",
     "items": [
       {
         "name": "波兰",
@@ -95,10 +66,10 @@
     "note": "以上为业务覆盖与跨境协作市场，不代表在各国均设有办公室或持有同样经营资质。"
   },
   "approach": {
-    "headline": "一个项目接口，贯穿启动与日常运营"
+    "headline": "从需求沟通到持续合作"
   },
   "values": {
-    "headline": "提供给客户的合作价值"
+    "headline": "客户合作价值"
   },
   "closing": {
     "headline": "期待成为您在欧洲的长期项目合作伙伴",

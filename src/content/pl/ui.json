@@ -3,8 +3,9 @@
     "home": "Strona główna",
     "about": "O nas",
     "services": "Usługi",
-    "approach": "Współpraca",
     "projects": "Doświadczenie",
+    "direction": "Kierunki rozwoju",
+    "approach": "Współpraca",
     "contact": "Kontakt"
   },
   "langName": {
@@ -14,15 +15,14 @@
   "menu": "Menu",
   "cta": {
     "contact": "Kontakt",
-    "more": "Dowiedz się więcej",
     "allServices": "Wszystkie usługi",
     "approach": "Poznaj zasady współpracy",
     "about": "O nas",
     "projects": "Zobacz doświadczenie projektowe",
-    "team": "Zobacz organizację zespołów międzynarodowych"
+    "direction": "Zobacz kierunki rozwoju"
   },
   "status": {
-    "planned": "W rozwoju"
+    "expanding": "W rozwoju"
   },
   "roles": {
     "base": "Baza",
@@ -34,17 +34,19 @@
     "markets": "Markets",
     "approach": "Approach",
     "values": "Value",
-    "team": "Team",
     "experience": "Experience",
     "projects": "Projects",
     "contact": "Contact",
-    "service": "Service"
+    "service": "Service",
+    "direction": "Direction",
+    "management": "Management"
   },
   "footer": {
-    "tagline": "Usługi dla firm w Europie: organizacja personelu i outsourcing operacyjny, realizacja prac inżynieryjnych i rozwój usług technicznych.",
+    "tagline": "Usługi projektowe w Europie: organizacja personelu i outsourcing operacyjny, realizacja prac inżynieryjnych i rozwój usług technicznych.",
     "navTitle": "Nawigacja",
     "contactTitle": "Kontakt"
   },
   "nextStep": "Następny krok",
-  "relatedProjects": "Powiązane projekty"
+  "relatedProjects": "Powiązane projekty",
+  "output": "Rezultat"
 }
