@@ -1,79 +1,24 @@
 ---
 import Base from '../../../layouts/Base.astro';
 import PageHeader from '../../../components/inner/PageHeader.astro';
-import { pagePhoto } from '../../../components/inner/photos';
-import { LANGS, getPage, getServiceIndex, getService, sentenceCase, t, type Lang } from '../../../lib/content';
-export const getStaticPaths = () => LANGS.map((lang) => ({ params: { lang } }));
+import SectionHead from '../../../components/SectionHead.astro';
+import ServiceIndex from '../../../components/ServiceIndex.astro';
+import ClosingBand from '../../../components/ClosingBand.astro';
+import { LANGS, getServicesPage, getHome, getUi, listServices, type Lang } from '../../../lib/content';
 
+export const getStaticPaths = () => LANGS.map((lang) => ({ params: { lang } }));
 const lang = Astro.params.lang as Lang;
-const p = getPage(lang, 'services');
-const cats = getServiceIndex(lang).categories.map((c) => {
-  const items = c.services.map((id) => getService(lang, id));
-  return {
-    id: c.id,
-    label: sentenceCase(c.label),
-    count: items.length,
-    lead: sentenceCase(items[0]?.menuLabel ?? items[0]?.title ?? ''),
-  };
-});
-const num = (i: number) => String(i + 1).padStart(2, '0');
-const total = cats.reduce((n, c) => n + c.count, 0);
+const p = getServicesPage(lang);
+const ui = getUi(lang);
+const closing = getHome(lang).closing;
 ---
 <Base lang={lang} title={p.title} description={p.description}>
-  <PageHeader
-    eyebrow={t(lang, `${cats.length} dziedzin · ${total} usług`, `${cats.length} disciplines · ${total} services`)}
-    title={p.title}
-    lede={p.description}
-    image={pagePhoto.services}
-    alt={t(lang, 'Inżynier przy ramieniu robota', 'Engineer at a robotic arm')}
-  />
-
+  <PageHeader tag={ui.tags.services} title={p.title} lede={p.lede} image={p.photo} alt={p.alt} />
   <section class="sec">
-    <div class="wrap grid">
-      {cats.map((c, i) => (
-        <a href={`/${lang}/services/c/${c.id}/`} class="cell reveal">
-          <span class="num">{num(i)}</span>
-          <h2 class="h3">{c.label}</h2>
-          <p>{c.lead}</p>
-          <span class="meta">
-            {c.count} {t(lang, c.count === 1 ? 'usługa' : 'usług', c.count === 1 ? 'service' : 'services')}
-            <i>→</i>
-          </span>
-        </a>
-      ))}
+    <div class="wrap">
+      <SectionHead tag={ui.tags.services} headline={p.headline} />
+      <ServiceIndex lang={lang} services={listServices(lang)} />
     </div>
   </section>
+  <ClosingBand headline={closing.headline} sub={closing.sub} cta={ui.cta.contact} href={`/${lang}/contact/`} />
 </Base>
-
-<style>
-  .grid {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    column-gap: clamp(20px, 3vw, 48px);
-  }
-  .cell {
-    display: flex; flex-direction: column;
-    padding: clamp(26px, 3vw, 40px) 0;
-    border-top: 1px solid var(--line);
-    transition: color 0.2s;
-  }
-  .num {
-    font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: 0.12em;
-    color: var(--faint); font-variant-numeric: tabular-nums;
-  }
-  .cell h2 { margin: 14px 0 0; max-width: 18ch; }
-  .cell p {
-    margin: 10px 0 0; font-size: 15px; line-height: 1.6; color: var(--muted); max-width: 32ch;
-    display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;
-  }
-  .meta {
-    display: inline-flex; align-items: center; gap: 8px; margin-top: auto; padding-top: 18px;
-    font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--faint); transition: color 0.2s;
-  }
-  .meta i { font-style: normal; }
-  .cell:hover h2 { color: var(--blue); }
-  .cell:hover .num { color: var(--blue); }
-  .cell:hover .meta { color: var(--blue); }
-  @media (max-width: 980px) { .grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 620px) { .grid { grid-template-columns: 1fr; } .cell p { max-width: none; } }
-</style>

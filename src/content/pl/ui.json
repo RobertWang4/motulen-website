@@ -1,0 +1,47 @@
+{
+  "nav": {
+    "home": "Strona główna",
+    "about": "O nas",
+    "services": "Usługi",
+    "approach": "Współpraca",
+    "projects": "Doświadczenie",
+    "contact": "Kontakt"
+  },
+  "langName": {
+    "zh": "中文",
+    "pl": "Polski"
+  },
+  "menu": "Menu",
+  "cta": {
+    "contact": "Kontakt",
+    "more": "Dowiedz się więcej",
+    "allServices": "Wszystkie usługi",
+    "next": "Następna usługa",
+    "approach": "Poznaj zasady współpracy",
+    "about": "O nas"
+  },
+  "status": {
+    "planned": "W rozwoju"
+  },
+  "roles": {
+    "base": "Baza",
+    "coverage": "Rynek działalności"
+  },
+  "tags": {
+    "about": "About",
+    "services": "Services",
+    "markets": "Markets",
+    "approach": "Approach",
+    "values": "Value",
+    "team": "Team",
+    "experience": "Experience",
+    "projects": "Projects",
+    "contact": "Contact",
+    "service": "Service"
+  },
+  "footer": {
+    "tagline": "Usługi dla firm w Europie: organizacja personelu i outsourcing operacyjny, realizacja prac inżynieryjnych i rozwój usług technicznych.",
+    "navTitle": "Nawigacja",
+    "contactTitle": "Kontakt"
+  }
+}

@@ -1,52 +1,68 @@
 ---
-/** Light page header: white type block, then an optional full-width photo band. */
+/**
+ * Inner page header. Default: white type block (tag, h1, lede) then an edge-to-edge photo band.
+ * overlay: the photo is the header and the type sits bottom-left on the DESIGN.md gradient.
+ */
 interface Props {
-  eyebrow?: string;
-  eyebrowHref?: string;
+  tag?: string;
+  tagHref?: string;
   title: string;
   lede?: string;
   image?: string;
   alt?: string;
+  overlay?: boolean;
 }
-const { eyebrow, eyebrowHref, title, lede, image, alt = '' } = Astro.props;
+const { tag, tagHref, title, lede, image, alt = '', overlay = false } = Astro.props;
 ---
-<header class="ph">
-  <div class="ph-in wrap">
-    {eyebrow && (
-      <p class="ph-eyebrow reveal">
-        {eyebrowHref ? <a href={eyebrowHref}>{eyebrow}</a> : eyebrow}
-      </p>
-    )}
-    <h1 class="ph-title reveal">{title}</h1>
-    {lede && <p class="ph-lede reveal">{lede}</p>}
-    <slot />
-  </div>
-</header>
-{image && (
-  <div class="ph-band">
+{overlay && image ? (
+  <header class="pho">
     <img src={image} alt={alt} />
-  </div>
+    <div class="pho-veil"></div>
+    <div class="wrap pho-in">
+      {tag && <p class="tag pho-tag">{tagHref ? <a href={tagHref}>{tag}</a> : tag}</p>}
+      <h1 class="ph-title pho-title">{title}<slot name="after-title" /></h1>
+      {lede && <p class="ph-lede pho-lede">{lede}</p>}
+    </div>
+  </header>
+) : (
+  <>
+    <header class="ph">
+      <div class="ph-in wrap">
+        {tag && <p class="tag reveal">{tagHref ? <a href={tagHref}>{tag}</a> : tag}</p>}
+        <h1 class="ph-title reveal">{title}</h1>
+        {lede && <p class="ph-lede reveal">{lede}</p>}
+      </div>
+    </header>
+    {image && <div class="ph-band"><img src={image} alt={alt} /></div>}
+  </>
 )}
 
 <style>
   .ph { border-bottom: 1px solid var(--line); }
-  .ph-in { padding-block: clamp(56px, 9vw, 140px); }
-  .ph-eyebrow {
-    font-family: var(--mono); font-size: 12px; font-weight: 400;
-    letter-spacing: 0.12em; text-transform: uppercase; font-variant-numeric: tabular-nums;
-    color: var(--faint); margin: 0 0 24px;
-  }
-  .ph-eyebrow a { border-bottom: 1px solid var(--line); padding-bottom: 3px; transition: color 0.2s, border-color 0.2s; }
-  .ph-eyebrow a:hover { color: var(--blue); border-color: var(--blue); }
+  .ph-in { padding-block: clamp(56px, 9vw, 140px) clamp(48px, 7vw, 104px); }
+  .tag a { border-bottom: 1px solid currentColor; padding-bottom: 2px; transition: color 0.2s; }
+  .tag a:hover { color: var(--blue); }
   .ph-title {
-    margin: 0; max-width: 19ch; font-family: var(--display);
-    font-size: clamp(40px, 6vw, 84px); font-weight: 700;
-    letter-spacing: -0.025em; line-height: 1.02; text-wrap: balance;
+    margin: 0; max-width: 18ch; font-family: var(--display);
+    font-size: clamp(40px, 6vw, 88px); font-weight: 700;
+    letter-spacing: -0.025em; line-height: 1.04; text-wrap: balance;
   }
-  .ph-lede {
-    margin: 28px 0 0; max-width: 52ch; color: var(--muted);
-    font-size: clamp(17px, 1.4vw, 20px); line-height: 1.6;
-  }
-  .ph-band { height: clamp(280px, 46vw, 640px); overflow: hidden; background: var(--surface); }
+  :lang(zh) .ph-title { font-weight: 600; letter-spacing: 0.01em; line-height: 1.2; }
+  .ph-lede { margin: 28px 0 0; max-width: 46ch; color: var(--muted); font-size: clamp(17px, 1.4vw, 21px); line-height: 1.6; }
+  .ph-band { height: clamp(280px, 42vw, 600px); overflow: hidden; background: var(--surface); }
   .ph-band img { width: 100%; height: 100%; object-fit: cover; }
+
+  .pho { position: relative; height: clamp(440px, 72vh, 760px); overflow: hidden; background: var(--surface); }
+  .pho > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .pho-veil {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(90deg, rgba(14, 17, 22, 0.55) 0%, rgba(14, 17, 22, 0.35) 50%, rgba(14, 17, 22, 0) 85%),
+      linear-gradient(0deg, rgba(14, 17, 22, 0.6) 0%, rgba(14, 17, 22, 0) 65%);
+  }
+  .pho-in { position: relative; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; padding-bottom: clamp(40px, 6vw, 88px); }
+  .pho-tag { color: rgba(255, 255, 255, 0.7); }
+  .pho-tag a:hover { color: #fff; }
+  .pho-title { color: #fff; display: flex; flex-wrap: wrap; align-items: center; gap: 0 20px; }
+  .pho-lede { color: rgba(255, 255, 255, 0.88); }
 </style>

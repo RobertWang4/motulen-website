@@ -110,7 +110,8 @@ a { color: inherit; text-decoration: none; }
 :lang(zh) body, body:lang(zh) { line-height: 1.75; }
 :lang(zh) :is(.h1, .h2, .h3, h1, h2, h3, .display) { letter-spacing: 0; font-weight: 600; line-height: 1.22; }
 :lang(zh) .lede { line-height: 1.8; }
-:lang(pl) :is(.h1, .h2, .h3, h1, h2, h3, .display) { hyphens: auto; overflow-wrap: break-word; }
+:lang(pl) :is(.h1, .h2, .h3, h1, h2, h3, .display) { overflow-wrap: break-word; }
+:lang(zh) .h2 { max-width: 18em; }
 
 /* ---------- buttons ---------- */
 .btn {

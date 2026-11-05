@@ -1,0 +1,12 @@
+{
+  "title": "Kontakt",
+  "description": "Skontaktuj się z MOTULEN GROUP, aby omówić swoje potrzeby w Europie w zakresie zatrudnienia, budowy i operacji.",
+  "lede": "Prosimy opisać potrzeby Państwa firmy w Europie w zakresie zatrudnienia, budowy lub operacji.",
+  "photo": "/img/stock/header-team.jpg",
+  "alt": "",
+  "labels": {
+    "email": "E-mail",
+    "phone": "Telefon",
+    "address": "Adres"
+  }
+}

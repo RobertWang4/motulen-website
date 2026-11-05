@@ -30,7 +30,7 @@ for (const f of walk(DIST).filter((f) => /\.(html|js|css|xml)$/.test(f))) {
   if (m) problems.push(`${f}: old-site text "${m[0]}"`);
 }
 
-const tl = execSync('grep -rln "t(lang" src || true').toString().trim();
+const tl = execSync('grep -rlE "(^|[^A-Za-z_])t\\(lang," src || true').toString().trim();
 if (tl) problems.push(`hardcoded copy via t(lang…) in: ${tl.replace(/\n/g, ', ')}`);
 
 const must = [

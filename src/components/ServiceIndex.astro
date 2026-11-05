@@ -1,0 +1,78 @@
+---
+/**
+ * The six business lines as full-width numbered rows. On wide screens a photo frame
+ * sits to the right and shows the hovered row's photo (pure CSS, :has()).
+ */
+import { getUi, type Lang, type Service } from '../lib/content';
+interface Props { lang: Lang; services: Service[] }
+const { lang, services } = Astro.props;
+const ui = getUi(lang);
+---
+<div class="sx">
+  <ol class="sx-list">
+    {services.map((s, i) => (
+      <li class="reveal">
+        <a href={`/${lang}/services/${s.id}/`} class="sx-row" data-i={i}>
+          <span class="sx-num">{s.number}</span>
+          <span class="sx-main">
+            <span class="sx-title">
+              {s.title}
+              {s.status === 'planned' && <span class="chip-plan">{ui.status.planned}</span>}
+            </span>
+            <span class="sx-short">{s.short}</span>
+          </span>
+          <span class="sx-arrow" aria-hidden="true">→</span>
+        </a>
+      </li>
+    ))}
+  </ol>
+  <div class="sx-media" aria-hidden="true">
+    {services.map((s, i) => <img src={s.photo} alt="" data-i={i} loading="lazy" />)}
+  </div>
+</div>
+
+<style>
+  .sx { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.62fr); gap: clamp(32px, 4vw, 64px); align-items: start; }
+  .sx-list { list-style: none; margin: 0; padding: 0; border-bottom: 1px solid var(--line); }
+  .sx-row {
+    display: grid; grid-template-columns: clamp(56px, 6vw, 96px) minmax(0, 1fr) 32px; align-items: center; gap: 16px;
+    padding: clamp(22px, 2.4vw, 34px) 0; border-top: 1px solid var(--line);
+  }
+  .sx-num {
+    font-family: var(--mono); font-size: clamp(22px, 2.2vw, 34px); line-height: 1;
+    color: var(--faint); font-variant-numeric: tabular-nums; transition: color 200ms ease-out;
+  }
+  .sx-main { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+  .sx-title {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 12px;
+    font-family: var(--display); font-weight: 700; font-size: clamp(22px, 2.3vw, 34px);
+    line-height: 1.15; letter-spacing: -0.015em; transition: color 200ms ease-out;
+  }
+  .sx-short { font-size: 15px; color: var(--muted); }
+  .sx-arrow { font-size: 22px; color: var(--faint); transition: color 200ms ease-out, transform 200ms ease-out; }
+  .sx-row:hover .sx-num, .sx-row:hover .sx-title, .sx-row:hover .sx-arrow { color: var(--blue); }
+  .sx-row:hover .sx-arrow { transform: translateX(4px); }
+  :lang(zh) .sx-title { font-weight: 600; letter-spacing: 0; }
+
+  .sx-media {
+    position: sticky; top: calc(var(--nav-h) + 32px);
+    aspect-ratio: 4 / 5; overflow: hidden; border-radius: var(--r-sm); background: var(--surface);
+  }
+  .sx-media img {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+    opacity: 0; transition: opacity 200ms ease-out;
+  }
+  .sx-media img[data-i='0'] { opacity: 1; }
+  .sx:has(.sx-row:hover) .sx-media img { opacity: 0; }
+  .sx:has(.sx-row[data-i='0']:hover) .sx-media img[data-i='0'],
+  .sx:has(.sx-row[data-i='1']:hover) .sx-media img[data-i='1'],
+  .sx:has(.sx-row[data-i='2']:hover) .sx-media img[data-i='2'],
+  .sx:has(.sx-row[data-i='3']:hover) .sx-media img[data-i='3'],
+  .sx:has(.sx-row[data-i='4']:hover) .sx-media img[data-i='4'],
+  .sx:has(.sx-row[data-i='5']:hover) .sx-media img[data-i='5'] { opacity: 1; }
+
+  @media (max-width: 900px) {
+    .sx { grid-template-columns: 1fr; }
+    .sx-media { display: none; }
+  }
+</style>

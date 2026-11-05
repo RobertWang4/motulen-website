@@ -1,0 +1,50 @@
+{
+  "title": "Usługi dla firm w Europie",
+  "description": "MOTULEN GROUP działa z siedzibą w Polsce. Odpowiadając na potrzeby firm w Europie w zakresie zatrudnienia, budowy i operacji, organizuje personel i zasoby specjalistyczne oraz wspiera realizację projektów.",
+  "hero": {
+    "headline": "Łączymy firmy zagraniczne z projektami w Europie",
+    "sub": "Usługi dla firm w Europie: organizacja personelu i outsourcing operacyjny, realizacja prac inżynieryjnych i rozwój usług technicznych.",
+    "photo": "/img/stock/hero-aerial.jpg",
+    "alt": "Widok z lotu ptaka na europejski park logistyczny"
+  },
+  "facts": [
+    {
+      "k": "Baza",
+      "v": "Siedziba w Polsce"
+    },
+    {
+      "k": "Rynki",
+      "v": "5 rynków objętych działalnością"
+    },
+    {
+      "k": "Usługi",
+      "v": "6 linii usług"
+    },
+    {
+      "k": "Komunikacja",
+      "v": "Chiński · polski · angielski"
+    }
+  ],
+  "statement": "Organizujemy personel i zasoby specjalistyczne na potrzeby zatrudnienia, budowy i operacji firm w Europie.",
+  "services": {
+    "headline": "Stała obsługa operacyjna i usługi techniczne"
+  },
+  "band": {
+    "text": "Łączymy wymagania klienta z realizacją na miejscu.",
+    "photo": "/img/stock/area-asrs.jpg",
+    "alt": ""
+  },
+  "markets": {
+    "headline": "Z siedzibą w Polsce, łączymy Europę i rynki zagraniczne"
+  },
+  "approach": {
+    "headline": "Jeden punkt kontaktu w projekcie, od uruchomienia po bieżącą obsługę"
+  },
+  "values": {
+    "headline": "Wartość współpracy dla klienta"
+  },
+  "closing": {
+    "headline": "Chcemy być Państwa długoterminowym partnerem projektowym w Europie",
+    "sub": "Organizacja personelu i outsourcing operacyjny · projekty inżynieryjne i rozwój usług technicznych"
+  }
+}

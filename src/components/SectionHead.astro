@@ -1,0 +1,17 @@
+---
+/** Mono tag ("02 / SERVICES") above a section h2. */
+interface Props { num?: string; tag: string; headline: string; light?: boolean }
+const { num, tag, headline, light = false } = Astro.props;
+---
+<div class:list={['sh reveal', light && 'sh-light']}>
+  <p class="tag">{num && <b>{num}</b>}{num && <span>/</span>}<span>{tag}</span></p>
+  <h2 class="h2">{headline}</h2>
+</div>
+
+<style>
+  .sh { margin-bottom: clamp(40px, 5vw, 72px); }
+  .sh .h2 { max-width: 22ch; text-wrap: balance; }
+  :lang(zh) .sh .h2 { max-width: 18em; }
+  .sh-light .tag { color: rgba(255, 255, 255, 0.55); }
+  .sh-light .h2 { color: #fff; }
+</style>

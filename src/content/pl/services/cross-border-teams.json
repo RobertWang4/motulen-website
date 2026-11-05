@@ -1,0 +1,34 @@
+{
+  "id": "cross-border-teams",
+  "number": "06",
+  "title": "Organizacja zespołów międzynarodowych",
+  "short": "Poszukiwanie specjalistów na świecie, zespoły pracowników technicznych, wsparcie długoterminowych projektów",
+  "subtitle": "Skład zespołu dobieramy do potrzeb projektu",
+  "status": "planned",
+  "photo": "/img/stock/header-amr.jpg",
+  "alt": "Magazyn z automatyzacją",
+  "groups": [
+    {
+      "title": "Specjaliści i pracownicy techniczni z Chin",
+      "items": [
+        "Rozumieją standardy klienta, wspierają komunikację techniczną i realizację projektu"
+      ]
+    },
+    {
+      "title": "Pracownicy z Azji i Afryki",
+      "items": [
+        "Organizujemy personel zgodnie z wymaganiami stanowiska, dopasowując umiejętności zawodowe i znajomość języków"
+      ]
+    },
+    {
+      "title": "Koordynacja lokalna w Europie",
+      "items": [
+        "Komunikacja z klientem i na miejscu realizacji",
+        "Przyjęcie do pracy i weryfikacja dokumentów",
+        "Ewidencja czasu pracy i zaplecze logistyczne",
+        "Obsługa spraw dotyczących personelu"
+      ]
+    }
+  ],
+  "note": "Skład zespołu jest ustalany dla każdego projektu; faktyczne kwalifikacje, pochodzenie i dostępną liczbę osób weryfikujemy w ramach projektu."
+}

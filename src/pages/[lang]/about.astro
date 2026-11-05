@@ -1,65 +1,76 @@
 ---
 import Base from '../../layouts/Base.astro';
-import Blocks from '../../components/Blocks.astro';
 import PageHeader from '../../components/inner/PageHeader.astro';
-import { pagePhoto } from '../../components/inner/photos';
-import { LANGS, getPage, t, type Lang } from '../../lib/content';
-import type { Block } from '../../lib/content';
+import SectionHead from '../../components/SectionHead.astro';
+import Markets from '../../components/Markets.astro';
+import DataTable from '../../components/DataTable.astro';
+import PhotoBand from '../../components/PhotoBand.astro';
+import ClosingBand from '../../components/ClosingBand.astro';
+import { LANGS, getAbout, getHome, getUi, type Lang } from '../../lib/content';
+
 export const getStaticPaths = () => LANGS.map((lang) => ({ params: { lang } }));
-
 const lang = Astro.params.lang as Lang;
-const p = getPage(lang, 'about');
-
-type ImageBlock = Extract<Block, { type: 'image' }>;
-const marks = p.blocks.filter((b): b is ImageBlock => b.type === 'image');
-const text = p.blocks.filter((b) => b.type !== 'image');
-// drop the leading heading that only repeats the page title
-while (text.length) {
-  const first = text[0];
-  if (first.type === 'heading' && first.text.trim() === p.title.trim()) text.shift();
-  else break;
-}
-// the header already carries the description — don't print it twice
-const key = p.description.replace(/[….]+$/, '').trim().slice(0, 45);
-if (key.length > 25) {
-  const dup = text.findIndex((b) => b.type === 'paragraph' && b.text.startsWith(key));
-  if (dup !== -1) text.splice(dup, 1);
-}
+const a = getAbout(lang);
+const ui = getUi(lang);
+const closing = getHome(lang).closing;
 ---
-<Base lang={lang} title={p.title} description={p.description}>
-  <PageHeader
-    eyebrow={t(lang, 'Od 2008 roku', 'Since 2008')}
-    title={p.title}
-    lede={p.description}
-    image={pagePhoto.about}
-    alt={t(lang, 'Kierownik zakładu z zespołem produkcyjnym', 'Plant manager with the production team')}
-  />
+<Base lang={lang} title={a.title} description={a.description}>
+  <PageHeader tag={ui.tags.about} title={a.title} lede={a.lede} image={a.photo} alt={a.alt} />
 
   <section class="sec">
-    <div class="wrap"><Blocks blocks={text} class="max-w-[68ch]" /></div>
+    <div class="wrap intro">
+      <SectionHead num="01" tag={ui.tags.about} headline={a.intro.headline} />
+      <p class="intro-text reveal">{a.intro.text}</p>
+    </div>
   </section>
 
-  {marks.length > 0 && (
-    <section class="marks">
-      <div class="wrap">
-        <p class="eyebrow reveal">{t(lang, 'Certyfikaty i akredytacje', 'Certificates and accreditations')}</p>
-        <div class="row reveal">
-          {marks.map((m) => <img src={m.src} alt={m.alt} loading="lazy" />)}
-        </div>
+  <section class="sec sec-line">
+    <div class="wrap">
+      <SectionHead num="02" tag={ui.tags.markets} headline={a.marketsHeadline} />
+      <Markets lang={lang} markets={a.markets} note={a.marketsNote} />
+    </div>
+  </section>
+
+  <section class="sec sec-line">
+    <div class="wrap"><div class="narrow">
+      <SectionHead num="03" tag={ui.tags.experience} headline={a.operating.headline} />
+      <DataTable columns={a.operating.columns} rows={a.operating.rows} note={a.operating.note} />
+    </div></div>
+  </section>
+
+  <PhotoBand photo={a.band.photo} alt={a.band.alt} text={a.band.text} />
+
+  <section class="sec">
+    <div class="wrap">
+      <SectionHead num="04" tag={ui.tags.team} headline={a.team.headline} />
+      <div class="team">
+        {a.team.groups.map((g) => (
+          <div class="tg reveal">
+            <h3 class="h3">{g.title}</h3>
+            {g.text && <p>{g.text}</p>}
+            {g.items.length > 0 && <ul>{g.items.map((it) => <li>{it}</li>)}</ul>}
+          </div>
+        ))}
       </div>
-    </section>
-  )}
+      <p class="team-foot reveal">{a.team.footer}</p>
+    </div>
+  </section>
+
+  <ClosingBand headline={closing.headline} sub={closing.sub} cta={ui.cta.contact} href={`/${lang}/contact/`} />
 </Base>
 
 <style>
-  .marks { border-top: 1px solid var(--line); padding-block: clamp(44px, 6vw, 80px); }
-  .row {
-    margin-top: 28px;
-    display: flex; flex-wrap: wrap; align-items: center; gap: clamp(26px, 4vw, 60px);
-  }
-  .row img {
-    height: clamp(34px, 4vw, 52px); width: auto; max-width: 150px; object-fit: contain;
-    filter: grayscale(1) opacity(0.55); mix-blend-mode: multiply; transition: filter 350ms ease-out;
-  }
-  .row img:hover { filter: none; }
+  .sec-line { border-top: 1px solid var(--line); }
+  .intro { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 96px); align-items: end; }
+  .intro .sh { margin-bottom: 0; }
+  .intro-text { margin: 0; font-size: clamp(18px, 1.5vw, 22px); line-height: 1.75; color: var(--muted); }
+  .narrow { max-width: 960px; }
+  .team { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(24px, 3vw, 48px); }
+  .tg { border-top: 1px solid var(--ink); padding-top: 22px; }
+  .tg p { margin: 14px 0 0; color: var(--muted); }
+  .tg ul { list-style: none; margin: 14px 0 0; padding: 0; display: flex; flex-direction: column; gap: 8px; color: var(--muted); }
+  .tg li::before { content: '— '; color: var(--faint); }
+  .team-foot { margin: clamp(36px, 4vw, 56px) 0 0; font-family: var(--display); font-weight: 700; font-size: clamp(20px, 2vw, 28px); color: var(--blue); }
+  :lang(zh) .team-foot { font-weight: 600; }
+  @media (max-width: 860px) { .intro, .team { grid-template-columns: 1fr; } }
 </style>

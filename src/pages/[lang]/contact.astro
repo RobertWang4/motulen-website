@@ -1,115 +1,39 @@
 ---
 import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/inner/PageHeader.astro';
-import { pagePhoto } from '../../components/inner/photos';
-import { LANGS, getPage, site, t, type Lang } from '../../lib/content';
+import { LANGS, getContact, getUi, site, type Lang } from '../../lib/content';
+
 export const getStaticPaths = () => LANGS.map((lang) => ({ params: { lang } }));
-
 const lang = Astro.params.lang as Lang;
-const p = getPage(lang, 'contact');
+const c = getContact(lang);
+const ui = getUi(lang);
 const tel = site.contact.phone.replace(/\s/g, '');
-const subject = encodeURIComponent(t(lang, 'Zapytanie ze strony', 'Enquiry from the website'));
 ---
-<Base lang={lang} title={p.title} description={p.description}>
-  <PageHeader
-    eyebrow={t(lang, 'Porozmawiajmy', "Let's talk")}
-    title={p.title}
-    lede={t(
-      lang,
-      'Opisz sytuację — odpowiemy konkretnie.',
-      'Describe the situation and we will answer with specifics.',
-    )}
-    image={pagePhoto.contact}
-    alt={t(lang, 'Rozmowa kierownictwa zakładu', 'Plant leadership in conversation')}
-  />
-
+<Base lang={lang} title={c.title} description={c.description}>
+  <PageHeader tag={ui.tags.contact} title={c.title} lede={c.lede} />
   <section class="sec">
-    <div class="wrap layout">
-      <div class="reveal">
-        <p class="eyebrow">{t(lang, 'Dane kontaktowe', 'Contact details')}</p>
-        <dl>
-          <div>
-            <dt>{t(lang, 'E-mail', 'Email')}</dt>
-            <dd><a href={`mailto:${site.contact.email}`} class="big">{site.contact.email}</a></dd>
-          </div>
-          <div>
-            <dt>{t(lang, 'Telefon', 'Phone')}</dt>
-            <dd><a href={`tel:${tel}`} class="big">{site.contact.phone}</a></dd>
-          </div>
-          <div>
-            <dt>{t(lang, 'Adres', 'Address')}</dt>
-            <dd>
-              <a href={`https://maps.google.com/?q=${encodeURIComponent(site.contact.address)}`}
-                 target="_blank" rel="noreferrer" class="big">{site.contact.address}</a>
-            </dd>
-          </div>
-        </dl>
-      </div>
-
-      <div class="reveal">
-        <p class="eyebrow">{t(lang, 'Napisz do nas', 'Write to us')}</p>
-        <form action={`mailto:${site.contact.email}?subject=${subject}`} method="post" enctype="text/plain">
-          <div class="field">
-            <label for="f-name">{t(lang, 'Imię i nazwisko', 'Name')}</label>
-            <input id="f-name" name={t(lang, 'Imie', 'Name')} type="text" required autocomplete="name"
-                   placeholder={t(lang, 'Jan Kowalski', 'Jane Doe')} />
-          </div>
-          <div class="field">
-            <label for="f-email">{t(lang, 'Adres e-mail', 'Email address')}</label>
-            <input id="f-email" name="Email" type="email" required autocomplete="email"
-                   placeholder={t(lang, 'jan@firma.pl', 'jane@company.com')} />
-          </div>
-          <div class="field">
-            <label for="f-msg">{t(lang, 'Wiadomość', 'Message')}</label>
-            <textarea id="f-msg" name={t(lang, 'Wiadomosc', 'Message')} rows="5" required
-                      placeholder={t(lang, 'Czego dotyczy zapytanie?', 'What is the enquiry about?')}></textarea>
-          </div>
-          <button type="submit" class="btn btn-p">{t(lang, 'Wyślij zapytanie', 'Send enquiry')}<i>→</i></button>
-          <p class="note">{t(
-            lang,
-            'Formularz otworzy Twój program pocztowy.',
-            'The form opens your own mail client.',
-          )}</p>
-        </form>
-      </div>
+    <div class="wrap ct">
+      <dl class="ct-list">
+        <div class="reveal"><dt class="tag">{c.labels.email}</dt><dd><a href={`mailto:${site.contact.email}`} class="big">{site.contact.email}</a></dd></div>
+        <div class="reveal"><dt class="tag">{c.labels.phone}</dt><dd><a href={`tel:${tel}`} class="big">{site.contact.phone}</a></dd></div>
+        <div class="reveal"><dt class="tag">{c.labels.address}</dt><dd class="big">{site.contact.address[lang]}</dd></div>
+      </dl>
+      <div class="ct-photo reveal"><img src={c.photo} alt={c.alt} /></div>
     </div>
   </section>
 </Base>
 
 <style>
-  .layout { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 7vw, 110px); }
-  @media (max-width: 860px) { .layout { grid-template-columns: 1fr; } }
-
-  dl { margin: 26px 0 0; }
-  dl > div { border-top: 1px solid var(--line); padding: 22px 0; }
-  dl > div:last-child { border-bottom: 1px solid var(--line); }
-  dt {
-    font-family: var(--mono); font-size: 12px; font-weight: 400;
-    letter-spacing: 0.12em; text-transform: uppercase; color: var(--faint);
-  }
-  dd { margin: 12px 0 0; }
-  .big {
-    display: inline-block;
-    font-family: var(--display); font-size: clamp(18px, 1.7vw, 24px); font-weight: 700;
-    letter-spacing: -0.02em; line-height: 1.2; transition: color 0.2s;
-  }
-  .big:hover { color: var(--blue); }
-
-  form { margin-top: 26px; }
-  .field + .field { margin-top: 24px; }
-  label {
-    display: block; font-family: var(--mono); font-size: 12px; font-weight: 400;
-    letter-spacing: 0.12em; text-transform: uppercase; color: var(--faint);
-  }
-  input, textarea {
-    margin-top: 8px; width: 100%;
-    border: 0; border-bottom: 1px solid var(--line); background: transparent;
-    padding: 11px 0; font: inherit; font-size: 16px; color: var(--ink);
-    transition: border-color 0.2s;
-  }
-  textarea { resize: vertical; }
-  input::placeholder, textarea::placeholder { color: var(--faint); }
-  input:focus, textarea:focus { border-color: var(--ink); }
-  form .btn { margin-top: 32px; cursor: pointer; font: inherit; font-size: 15px; font-weight: 600; }
-  .note { margin: 16px 0 0; font-size: 14px; color: var(--muted); }
+  .ct { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr); gap: clamp(40px, 6vw, 96px); align-items: start; }
+  .ct-list { margin: 0; display: flex; flex-direction: column; }
+  .ct-list > div { padding: clamp(24px, 3vw, 36px) 0; border-top: 1px solid var(--line); }
+  .ct-list > div:last-child { border-bottom: 1px solid var(--line); }
+  .ct-list dt { margin-bottom: 12px; }
+  .ct-list dd { margin: 0; }
+  .big { font-family: var(--display); font-weight: 700; font-size: clamp(24px, 2.8vw, 40px); line-height: 1.2; letter-spacing: -0.015em; overflow-wrap: anywhere; transition: color 0.2s; }
+  :lang(zh) .big { font-weight: 600; letter-spacing: 0; }
+  a.big:hover { color: var(--blue); }
+  .ct-photo { aspect-ratio: 4 / 5; overflow: hidden; border-radius: var(--r-sm); background: var(--surface); }
+  .ct-photo img { width: 100%; height: 100%; object-fit: cover; }
+  @media (max-width: 860px) { .ct { grid-template-columns: 1fr; } .ct-photo { aspect-ratio: 3 / 2; } }
 </style>

@@ -1,0 +1,112 @@
+{
+  "title": "O nas",
+  "description": "MOTULEN GROUP działa z siedzibą w Polsce i łączy firmy zagraniczne z projektami w Europie.",
+  "lede": "Odpowiadając na potrzeby firm w Europie w zakresie zatrudnienia, budowy i operacji, organizujemy personel i zasoby specjalistyczne oraz wspieramy realizację projektów.",
+  "photo": "/img/stock/header-building.jpg",
+  "alt": "",
+  "intro": {
+    "headline": "Łączymy firmy zagraniczne z projektami w Europie",
+    "text": "MOTULEN GROUP działa z siedzibą w Polsce. Świadczy dla firm w Europie usługi outsourcingu procesów biznesowych, outsourcingu HR, rekrutacji i sprowadzania specjalistów, a także rozwija działalność w obszarze inżynierii magazynowej, przestrzeni komercyjnych i serwisu technicznego urządzeń."
+  },
+  "markets": [
+    {
+      "name": "Polska",
+      "local": "Polska",
+      "role": "base"
+    },
+    {
+      "name": "Czechy",
+      "local": "Česko",
+      "role": "coverage"
+    },
+    {
+      "name": "Węgry",
+      "local": "Magyarország",
+      "role": "coverage"
+    },
+    {
+      "name": "Rumunia",
+      "local": "România",
+      "role": "coverage"
+    },
+    {
+      "name": "Chiny",
+      "local": "China",
+      "role": "coverage"
+    }
+  ],
+  "marketsHeadline": "Z siedzibą w Polsce, łączymy Europę i rynki zagraniczne",
+  "marketsNote": "Powyższe rynki to obszary działalności i współpracy transgranicznej; nie oznacza to posiadania biur ani takich samych uprawnień do prowadzenia działalności w każdym z tych krajów.",
+  "operating": {
+    "headline": "Dotychczasowe doświadczenie operacyjne wspiera rozwój działalności MOTULEN",
+    "columns": [
+      "Firma",
+      "Kraj",
+      "Rok"
+    ],
+    "rows": [
+      [
+        "MARASSI",
+        "Polska",
+        "2023"
+      ],
+      [
+        "Finex express",
+        "Polska",
+        "2023"
+      ],
+      [
+        "Armz s.r.o.",
+        "Czechy",
+        ""
+      ],
+      [
+        "Mariza",
+        "Polska",
+        "2024"
+      ],
+      [
+        "Armz s.r.o.",
+        "Niemcy",
+        ""
+      ],
+      [
+        "Vasi Planet",
+        "Węgry",
+        ""
+      ]
+    ],
+    "note": "Wymienione firmy to doświadczenie operacyjne związane z zespołem; nie oznacza to relacji spółki matki i spółki zależnej z MOTULEN."
+  },
+  "team": {
+    "headline": "Organizacja zespołów międzynarodowych",
+    "groups": [
+      {
+        "title": "Specjaliści i pracownicy techniczni z Chin",
+        "text": "Rozumieją standardy klienta, wspierają komunikację techniczną i realizację projektu.",
+        "items": []
+      },
+      {
+        "title": "Pracownicy z Azji i Afryki",
+        "text": "Organizujemy personel zgodnie z wymaganiami stanowiska, dopasowując umiejętności zawodowe i znajomość języków.",
+        "items": []
+      },
+      {
+        "title": "Koordynacja lokalna w Europie",
+        "text": "",
+        "items": [
+          "Komunikacja z klientem i na miejscu realizacji",
+          "Przyjęcie do pracy i weryfikacja dokumentów",
+          "Ewidencja czasu pracy i zaplecze logistyczne",
+          "Obsługa spraw dotyczących personelu"
+        ]
+      }
+    ],
+    "footer": "Skład zespołu dobieramy do potrzeb projektu."
+  },
+  "band": {
+    "text": "Komunikacja po polsku, angielsku, chińsku i w innych językach.",
+    "photo": "/img/stock/area-engineers.jpg",
+    "alt": ""
+  }
+}

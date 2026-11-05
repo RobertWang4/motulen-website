@@ -1,0 +1,34 @@
+{
+  "id": "operations-outsourcing",
+  "number": "01",
+  "title": "Outsourcing HR i operacji",
+  "short": "Zespoły długoterminowe, krótkoterminowe zwiększenie obsady, zaplecze administracyjne",
+  "subtitle": "Organizujemy odpowiednie zespoły do stałej obsługi operacyjnej i potrzeb etapowych",
+  "status": "current",
+  "photo": "/img/stock/header-team.jpg",
+  "alt": "Zespół obsługi magazynu",
+  "groups": [
+    {
+      "title": "Zespół operacyjny firmy",
+      "items": [
+        "Rekrutacja, przyjęcie do pracy, ewidencja czasu pracy i bieżąca koordynacja",
+        "Stałe monitorowanie dopasowania do stanowisk i stabilności obsady"
+      ]
+    },
+    {
+      "title": "Outsourcing etapów logistyki i magazynowania",
+      "items": [
+        "Realizacja zadań na stanowiskach magazynowych, logistycznych i produkcyjnych"
+      ]
+    },
+    {
+      "title": "Formy usługi",
+      "items": [
+        "Zespoły długoterminowe",
+        "Krótkoterminowe zwiększenie obsady",
+        "Zaplecze administracyjne"
+      ]
+    }
+  ],
+  "note": "Szczegółowy sposób organizacji outsourcingu operacyjnego i pracy tymczasowej, podmiot świadczący usługi oraz odpowiedzialność są ustalane dla każdego projektu."
+}

@@ -1,0 +1,33 @@
+---
+/** Three project stages joined by one hairline, each with a large mono number. */
+interface Props { stages: { title: string; items: string[] }[] }
+const { stages } = Astro.props;
+---
+<ol class="st">
+  {stages.map((s, i) => (
+    <li class="st-item reveal">
+      <span class="st-dot" aria-hidden="true"></span>
+      <span class="st-num">{String(i + 1).padStart(2, '0')}</span>
+      <h3 class="h3 st-title">{s.title}</h3>
+      <ul class="st-list">{s.items.map((it) => <li>{it}</li>)}</ul>
+    </li>
+  ))}
+</ol>
+
+<style>
+  .st { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(24px, 3vw, 48px); position: relative; }
+  .st::before { content: ''; position: absolute; left: 0; right: 0; top: 5px; height: 1px; background: var(--line); }
+  .st-item { position: relative; padding-top: 36px; }
+  .st-dot { position: absolute; top: 0; left: 0; width: 11px; height: 11px; border-radius: 50%; background: var(--blue); }
+  .st-num { display: block; font-family: var(--mono); font-size: clamp(40px, 4.4vw, 64px); line-height: 1; color: var(--line); font-variant-numeric: tabular-nums; }
+  .st-title { margin: 18px 0 0; }
+  .st-list { list-style: none; margin: 18px 0 0; padding: 0; display: flex; flex-direction: column; gap: 10px; color: var(--muted); font-size: 15px; }
+  .st-list li { padding-left: 16px; position: relative; }
+  .st-list li::before { content: ''; position: absolute; left: 0; top: 0.8em; width: 6px; height: 1px; background: var(--faint); }
+  @media (max-width: 800px) {
+    .st { grid-template-columns: 1fr; gap: 40px; }
+    .st::before { left: 5px; right: auto; top: 0; bottom: 0; width: 1px; height: auto; }
+    .st-item { padding: 0 0 0 36px; }
+    .st-dot { top: 6px; }
+  }
+</style>

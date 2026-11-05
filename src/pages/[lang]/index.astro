@@ -1,226 +1,150 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { AREAS } from '../../lib/areas';
-import { LANGS, getHome, getPage, getServiceIndex, t, type Lang, type Block } from '../../lib/content';
+import SectionHead from '../../components/SectionHead.astro';
+import ServiceIndex from '../../components/ServiceIndex.astro';
+import Markets from '../../components/Markets.astro';
+import Stages from '../../components/Stages.astro';
+import PhotoBand from '../../components/PhotoBand.astro';
+import ClosingBand from '../../components/ClosingBand.astro';
+import { LANGS, getHome, getUi, getAbout, getApproach, listServices, type Lang } from '../../lib/content';
 
 export const getStaticPaths = () => LANGS.map((lang) => ({ params: { lang } }));
 const lang = Astro.params.lang as Lang;
 const h = getHome(lang);
-
-type ImageBlock = Extract<Block, { type: 'image' }>;
-const allLogos = getPage(lang, 'clients').blocks.filter((b): b is ImageBlock => b.type === 'image');
-const logos = allLogos.slice(0, 12);
-
-const cats = getServiceIndex(lang).categories;
-const serviceCount = cats.reduce((n, c) => n + c.services.length, 0);
-const credentials = [
-  { k: t(lang, 'Na rynku', 'In business'), v: t(lang, 'Od 2008', 'Since 2008') },
-  { k: t(lang, 'System zarządzania', 'Management system'), v: t(lang, 'Certyfikat ISO', 'ISO certified') },
-  { k: t(lang, 'Laboratorium', 'Laboratory'), v: t(lang, 'Akredytacja PCA', 'PCA accredited') },
-  {
-    k: t(lang, 'Zakres', 'Scope'),
-    v: t(lang, `${cats.length} dziedzin · ${serviceCount} usług`, `${cats.length} disciplines · ${serviceCount} services`),
-  },
-];
-
-const areas = AREAS.map((a) => ({ ...a, href: `/${lang}/services/c/${a.categories[0]}/` }));
-
-const hero = '/img/stock/hero-aerial.jpg';
+const ui = getUi(lang);
+const about = getAbout(lang);
+const approach = getApproach(lang);
+const services = listServices(lang);
 ---
 <Base lang={lang} title={h.title} description={h.description}>
-  <!-- hero -->
+  <!-- who we are -->
   <section class="hero">
-    <img src={hero} alt={t(lang, 'Zrobotyzowane stanowisko spawalnicze', 'Robotic welding cell')} />
+    <img src={h.hero.photo} alt={h.hero.alt} />
     <div class="hero-veil"></div>
     <div class="hero-in wrap">
       <h1 class="h1 hero-title">{h.hero.headline}</h1>
-      <p class="hero-lede">{t(lang, 'Bezpieczeństwo, zgodność i ludzie — od 2008 roku.', 'Safety, compliance and people — since 2008.')}</p>
-      <a href={`/${lang}/contact/`} class="btn btn-p">{t(lang, 'Porozmawiajmy', "Let's talk")}<i>→</i></a>
+      <p class="hero-lede">{h.hero.sub}</p>
+      <a href={`/${lang}/contact/`} class="btn btn-p">{ui.cta.contact}<i>→</i></a>
     </div>
   </section>
 
-  <!-- credentials -->
-  <section class="creds">
-    <div class="wrap creds-grid">
-      {credentials.map((c) => (
-        <div class="cred">
-          <p class="eyebrow">{c.k}</p>
-          <p class="cred-v">{c.v}</p>
+  <section class="facts">
+    <div class="wrap facts-grid">
+      {h.facts.map((f) => (
+        <div class="fact">
+          <p class="eyebrow">{f.k}</p>
+          <p class="fact-v">{f.v}</p>
         </div>
       ))}
     </div>
   </section>
 
-  <!-- what we do -->
+  <!-- positioning statement -->
   <section class="sec">
     <div class="wrap">
-      <div class="sechead reveal">
-        <span class="secnum">01</span>
-        <h2 class="h2">{t(lang, 'Trzy obszary, dziesięć dziedzin.', 'Three areas, ten disciplines.')}</h2>
-      </div>
-      <div class="tiles">
-        {areas.map((a) => (
-          <a href={a.href} class="tile reveal">
-            <span class="tile-shot"><img src={a.photo} alt="" loading="lazy" /></span>
-            <h3 class="h3">{a.title(lang)}</h3>
-            <p>{a.line(lang)}</p>
-            <span class="tile-more">{t(lang, 'Zobacz', 'View')}<i>→</i></span>
-          </a>
+      <p class="tag reveal"><b>01</b><span>/</span><span>{ui.tags.about}</span></p>
+      <p class="statement reveal">{h.statement}</p>
+      <a href={`/${lang}/about/`} class="ul reveal">{ui.cta.about}<i>→</i></a>
+    </div>
+  </section>
+
+  <!-- what we do -->
+  <section class="sec sec-line">
+    <div class="wrap">
+      <SectionHead num="02" tag={ui.tags.services} headline={h.services.headline} />
+      <ServiceIndex lang={lang} services={services} />
+    </div>
+  </section>
+
+  <PhotoBand photo={h.band.photo} alt={h.band.alt} text={h.band.text} />
+
+  <!-- where -->
+  <section class="sec">
+    <div class="wrap">
+      <SectionHead num="03" tag={ui.tags.markets} headline={h.markets.headline} />
+      <Markets lang={lang} markets={about.markets} note={about.marketsNote} />
+    </div>
+  </section>
+
+  <!-- how we work -->
+  <section class="sec sec-line">
+    <div class="wrap">
+      <SectionHead num="04" tag={ui.tags.approach} headline={h.approach.headline} />
+      <Stages stages={approach.stages} />
+      <a href={`/${lang}/approach/`} class="ul more reveal">{ui.cta.approach}<i>→</i></a>
+    </div>
+  </section>
+
+  <!-- why us -->
+  <section class="sec values">
+    <div class="wrap">
+      <SectionHead num="05" tag={ui.tags.values} headline={h.values.headline} />
+      <ul class="vals">
+        {approach.values.map((v) => (
+          <li class="val reveal">
+            <h3 class="val-title">{v.title}</h3>
+            <ul class="val-list">{v.items.map((it) => <li>{it}</li>)}</ul>
+          </li>
         ))}
-      </div>
-      <a href={`/${lang}/services/`} class="ul all">{t(lang, 'Cała oferta', 'All services')}<i>→</i></a>
+      </ul>
     </div>
   </section>
 
-  <!-- about teaser -->
-  <section class="about">
-    <div class="wrap">
-      <div class="sechead reveal">
-        <span class="secnum">02</span>
-        <h2 class="h2">{t(lang, 'O nas', 'About us')}</h2>
-      </div>
-      <div class="reveal">
-        <p class="about-line">{t(
-          lang,
-          'Od 2008 roku prowadzimy zakłady przemysłowe przez bezpieczeństwo maszyn, BHP i kulturę bezpieczeństwa.',
-          'Since 2008 we have guided industrial plants through machine safety, OHS and safety culture.',
-        )}</p>
-        <div class="about-links">
-          <a href={`/${lang}/about/`} class="ul">{t(lang, 'O firmie', 'About us')}<i>→</i></a>
-          <a href={`/${lang}/safety-culture/`} class="ul">{t(lang, 'Kultura bezpieczeństwa', 'Safety culture')}<i>→</i></a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- clients -->
-  <section class="sec clients">
-    <div class="wrap">
-      <div class="sechead reveal">
-        <span class="secnum">03</span>
-        <h2 class="h2">{t(lang, `Zaufało nam ${allLogos.length} organizacji.`, `Trusted by ${allLogos.length} organisations.`)}</h2>
-      </div>
-      <div class="logos reveal">
-        {logos.map((l) => <span class="logo"><img src={l.src} alt={l.alt} loading="lazy" /></span>)}
-      </div>
-      <a href={`/${lang}/clients/`} class="ul all">{t(lang, 'Wszyscy klienci', 'All clients')}<i>→</i></a>
-    </div>
-  </section>
-
-  <!-- contact band -->
-  <section class="cta-band">
-    <div class="wrap cta-in reveal">
-      <h2 class="h2">{t(lang, 'Zacznijmy od rozmowy.', 'Start with a conversation.')}</h2>
-      <a href={`/${lang}/contact/`} class="btn btn-p">{t(lang, 'Kontakt', 'Contact us')}<i>→</i></a>
-    </div>
-  </section>
+  <ClosingBand headline={h.closing.headline} sub={h.closing.sub} cta={ui.cta.contact} href={`/${lang}/contact/`} />
 </Base>
 
 <style>
-  /* hero — full-bleed photograph, text overlaid bottom-left */
-  .hero { position: relative; height: clamp(480px, 80vh, 860px); overflow: hidden; background: var(--surface); }
+  .hero { position: relative; height: clamp(520px, 86vh, 900px); overflow: hidden; background: var(--surface); }
   .hero > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
   .hero-veil {
     position: absolute; inset: 0;
     background:
-      linear-gradient(90deg, rgba(14, 17, 22, 0.55) 0%, rgba(14, 17, 22, 0.55) 42%, rgba(14, 17, 22, 0.3) 68%, rgba(14, 17, 22, 0) 100%),
-      linear-gradient(0deg, rgba(14, 17, 22, 0.55) 0%, rgba(14, 17, 22, 0.3) 38%, rgba(14, 17, 22, 0) 70%);
+      linear-gradient(90deg, rgba(14, 17, 22, 0.55) 0%, rgba(14, 17, 22, 0.45) 45%, rgba(14, 17, 22, 0) 85%),
+      linear-gradient(0deg, rgba(14, 17, 22, 0.55) 0%, rgba(14, 17, 22, 0) 65%);
   }
   .hero-in {
     position: relative; z-index: 2; height: 100%;
     display: flex; flex-direction: column; justify-content: flex-end; align-items: flex-start;
-    padding-bottom: clamp(40px, 6vw, 88px);
-    color: #fff;
+    padding-bottom: clamp(48px, 7vw, 104px); color: #fff;
   }
-  .hero-title { max-width: 16ch; color: #fff; text-wrap: balance; }
-  .hero-lede {
-    margin: clamp(18px, 2vw, 26px) 0 0; max-width: 44ch;
-    font-size: clamp(17px, 1.4vw, 20px); line-height: 1.55; color: rgba(255, 255, 255, 0.9);
-  }
-  .hero .btn { margin-top: clamp(26px, 3vw, 40px); }
+  .hero-title { max-width: 14ch; color: #fff; text-wrap: balance; font-size: clamp(42px, 6.4vw, 96px); }
+  .hero-lede { margin: clamp(18px, 2vw, 28px) 0 0; max-width: 40ch; font-size: clamp(17px, 1.4vw, 20px); line-height: 1.6; color: rgba(255, 255, 255, 0.9); }
+  .hero .btn { margin-top: clamp(28px, 3vw, 44px); }
   @media (max-width: 700px) {
-    .hero { height: clamp(460px, 74vh, 620px); }
-    .hero-veil {
-      background: linear-gradient(0deg, rgba(14, 17, 22, 0.72) 0%, rgba(14, 17, 22, 0.45) 45%, rgba(14, 17, 22, 0.12) 100%);
-    }
-    .hero-title { max-width: none; }
+    .hero-veil { background: linear-gradient(0deg, rgba(14, 17, 22, 0.75) 0%, rgba(14, 17, 22, 0.4) 55%, rgba(14, 17, 22, 0.1) 100%); }
   }
 
-  /* credentials */
-  .creds { border-bottom: 1px solid var(--line); }
-  .creds-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
-  .cred {
-    padding: clamp(24px, 2.6vw, 34px) clamp(16px, 2vw, 32px) clamp(24px, 2.6vw, 34px) 0;
-    border-right: 1px solid var(--line);
-  }
-  .cred:last-child { border-right: 0; }
-  .cred + .cred { padding-left: clamp(16px, 2vw, 32px); }
-  .cred-v {
-    margin: 8px 0 0; font-family: var(--display); font-weight: 700;
-    font-size: clamp(16px, 1.5vw, 22px); letter-spacing: -0.02em; line-height: 1.2;
-  }
+  .facts { border-bottom: 1px solid var(--line); }
+  .facts-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+  .fact { padding: clamp(24px, 2.6vw, 34px) clamp(16px, 2vw, 32px); border-right: 1px solid var(--line); }
+  .fact:first-child { padding-left: 0; }
+  .fact:last-child { border-right: 0; }
+  .fact .eyebrow { margin: 0; }
+  .fact-v { margin: 8px 0 0; font-family: var(--display); font-weight: 700; font-size: clamp(16px, 1.5vw, 22px); line-height: 1.3; }
+  :lang(zh) .fact-v { font-weight: 600; word-break: keep-all; }
   @media (max-width: 760px) {
-    .creds-grid { grid-template-columns: 1fr 1fr; }
-    .cred { padding-right: clamp(14px, 4vw, 26px); }
-    .creds-grid .cred:nth-child(odd) { padding-left: 0; }
-    .creds-grid .cred:nth-child(even) { padding-left: clamp(14px, 4vw, 26px); border-right: 0; }
-    .creds-grid .cred:nth-child(n + 3) { border-top: 1px solid var(--line); }
+    .facts-grid { grid-template-columns: 1fr 1fr; }
+    .fact { padding-left: 0; }
+    .fact:nth-child(even) { padding-left: 20px; border-right: 0; }
+    .fact:nth-child(n + 3) { border-top: 1px solid var(--line); }
   }
 
-  /* what we do */
-  .sechead { margin-bottom: clamp(42px, 5vw, 72px); }
-  .sechead .h2 { max-width: 18ch; }
-  .tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(20px, 2.6vw, 32px); }
-  .tile { display: block; }
-  .tile-shot {
-    display: block; overflow: hidden; background: var(--surface);
-    aspect-ratio: 3 / 2; border-radius: var(--r-sm);
+  .statement {
+    margin: 0 0 clamp(32px, 4vw, 48px); max-width: 22ch;
+    font-family: var(--display); font-weight: 700; font-size: clamp(32px, 5vw, 76px);
+    line-height: 1.12; letter-spacing: -0.025em; text-wrap: balance;
   }
-  .tile-shot img { width: 100%; height: 100%; object-fit: cover; transition: transform 350ms ease-out; }
-  .tile:hover .tile-shot img { transform: scale(1.03); }
-  .tile .h3 { margin: 20px 0 0; }
-  .tile p { margin: 8px 0 0; font-size: 15px; line-height: 1.6; color: var(--muted); max-width: 32ch; }
-  .tile-more {
-    display: inline-flex; align-items: center; gap: 8px; margin-top: 16px;
-    font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--faint); transition: color 0.2s;
-  }
-  .tile-more i { font-style: normal; }
-  .tile:hover .tile-more { color: var(--blue); }
-  @media (max-width: 860px) { .tiles { grid-template-columns: 1fr; } .tile p { max-width: none; } }
+  :lang(pl) .statement { max-width: 26ch; font-size: clamp(30px, 4vw, 60px); }
+  :lang(zh) .statement { max-width: 17em; font-weight: 600; letter-spacing: 0.01em; line-height: 1.3; }
+  .sec-line { border-top: 1px solid var(--line); }
+  .more { margin-top: clamp(40px, 5vw, 64px); }
 
-  .all { margin-top: clamp(36px, 4vw, 56px); }
-
-  /* about teaser */
-  .about { border-block: 1px solid var(--line); padding-block: clamp(72px, 10vw, 144px); }
-  .about-line {
-    margin: 0; max-width: 24ch;
-    font-family: var(--display); font-weight: 700;
-    font-size: clamp(24px, 3.2vw, 44px); letter-spacing: -0.025em; line-height: 1.1;
-  }
-  .about-links { display: flex; flex-wrap: wrap; gap: 32px; margin-top: 32px; }
-
-  /* clients */
-  .clients .logos {
-    margin-top: clamp(30px, 3vw, 44px);
-    display: grid; grid-template-columns: repeat(6, 1fr);
-    border: 1px solid var(--line); border-width: 1px 0 0 1px;
-  }
-  .logo {
-    display: flex; align-items: center; justify-content: center;
-    aspect-ratio: 16 / 10; padding: clamp(14px, 2vw, 26px);
-    border: 1px solid var(--line); border-width: 0 1px 1px 0;
-  }
-  .logo img {
-    max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain;
-    mix-blend-mode: multiply; filter: grayscale(1) opacity(0.55);
-    transition: filter 350ms ease-out;
-  }
-  .logo:hover img { filter: none; }
-  @media (max-width: 900px) { .clients .logos { grid-template-columns: repeat(3, 1fr); } }
-
-  /* contact band */
-  .cta-band { border-top: 1px solid var(--line); padding-block: clamp(72px, 10vw, 144px); }
-  .cta-in { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 28px; }
-  .cta-in .h2 { max-width: 16ch; }
+  .values { background: var(--surface); }
+  .vals { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(20px, 2.4vw, 36px); }
+  .val { border-top: 1px solid var(--ink); padding-top: 20px; }
+  .val-title { margin: 0; font-family: var(--display); font-weight: 700; font-size: 20px; line-height: 1.25; }
+  :lang(zh) .val-title { font-weight: 600; }
+  .val-list { list-style: none; margin: 12px 0 0; padding: 0; display: flex; flex-direction: column; gap: 6px; font-size: 15px; color: var(--muted); }
+  @media (max-width: 1000px) { .vals { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .vals { grid-template-columns: 1fr; } }
 </style>

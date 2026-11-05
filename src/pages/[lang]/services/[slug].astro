@@ -1,100 +1,109 @@
 ---
 import Base from '../../../layouts/Base.astro';
-import Blocks from '../../../components/Blocks.astro';
-import { LANGS, listServices, getServiceIndex, getService, sentenceCase, t, type Lang } from '../../../lib/content';
+import PageHeader from '../../../components/inner/PageHeader.astro';
+import ClosingBand from '../../../components/ClosingBand.astro';
+import { LANGS, getHome, getUi, listServices, type Lang } from '../../../lib/content';
 
-export const getStaticPaths = () =>
-  LANGS.flatMap((lang) => listServices(lang).map((s) => ({ params: { lang, slug: s.id }, props: { service: s } })));
-
+export function getStaticPaths() {
+  return LANGS.flatMap((lang) => listServices(lang).map((s) => ({ params: { lang, slug: s.id } })));
+}
 const lang = Astro.params.lang as Lang;
-const { service: s } = Astro.props;
-const cat = getServiceIndex(lang).categories.find((c) => c.id === s.category)!;
-const catLabel = sentenceCase(cat.label);
-const siblings = cat.services.map((id) => getService(lang, id)).filter((x) => x.hasPage);
-
-// the description is a truncated copy of the first paragraph — show only one of them
-const key = (s.description ?? '').replace(/[….]+$/, '').trim().slice(0, 45);
-const dup = key.length > 25 && s.blocks.some((b) => b.type === 'paragraph' && b.text.startsWith(key));
-const lede = dup ? undefined : s.description;
+const all = listServices(lang);
+const i = all.findIndex((s) => s.id === Astro.params.slug);
+const s = all[i];
+const next = all[(i + 1) % all.length];
+const ui = getUi(lang);
+const closing = getHome(lang).closing;
 ---
-<Base lang={lang} title={s.title} description={s.description}>
-  <div class="wrap crumb">
-    <a href={`/${lang}/services/`}>{t(lang, 'Oferta', 'Services')}</a>
-    <span>/</span>
-    <a href={`/${lang}/services/c/${cat.id}/`}>{catLabel}</a>
-  </div>
+<Base lang={lang} title={s.title} description={s.subtitle}>
+  <PageHeader
+    overlay
+    tag={`${s.number} / ${ui.tags.service}`}
+    tagHref={`/${lang}/services/`}
+    title={s.title}
+    lede={s.subtitle}
+    image={s.photo}
+    alt={s.alt}
+  >
+    {s.status === 'planned' && <span slot="after-title" class="chip-plan">{ui.status.planned}</span>}
+  </PageHeader>
 
-  <div class="wrap layout">
-    <article>
-      <h1 class="title">{s.title}</h1>
-      {lede && <p class="lede">{lede}</p>}
-      <div class="body"><Blocks blocks={s.blocks} /></div>
-      <a href={`/${lang}/contact/`} class="btn btn-p ask">{t(lang, 'Zapytaj o tę usługę', 'Ask about this service')}<i>→</i></a>
-    </article>
+  <section class="sec">
+    <div class="wrap sv">
+      <nav class="sv-nav" aria-label={ui.nav.services}>
+        <a href={`/${lang}/services/`} class="tag">{ui.cta.allServices}</a>
+        <ol>
+          {all.map((x) => (
+            <li>
+              <a href={`/${lang}/services/${x.id}/`} class:list={[x.id === s.id && 'cur']} aria-current={x.id === s.id ? 'page' : undefined}>
+                <span>{x.number}</span>{x.title}
+              </a>
+            </li>
+          ))}
+        </ol>
+      </nav>
 
-    <aside>
-      <p class="aside-h">{catLabel}</p>
-      <ul>
-        {siblings.map((x) => (
-          <li>
-            <a href={`/${lang}/services/${x.id}/`} class:list={['sib', x.id === s.id && 'here']}>
-              {x.menuLabel ?? x.title}
-            </a>
-          </li>
-        ))}
-      </ul>
-      <a href={`/${lang}/services/c/${cat.id}/`} class="back">{t(lang, 'Wróć do dziedziny', 'Back to category')}</a>
-    </aside>
-  </div>
+      <div class="sv-body">
+        <div class="sv-groups">
+          {s.groups.map((g) => (
+            <div class="sv-group reveal">
+              <h2 class="sv-gtitle">{g.title}</h2>
+              <ul>{g.items.map((it) => <li>{it}</li>)}</ul>
+            </div>
+          ))}
+        </div>
+        <p class="note reveal">{s.note}</p>
+      </div>
+    </div>
+  </section>
+
+  <a href={`/${lang}/services/${next.id}/`} class="nx">
+    <span class="wrap nx-in">
+      <span class="tag">{ui.cta.next}</span>
+      <span class="nx-title"><span class="nx-num">{next.number}</span>{next.title}<span class="nx-arrow" aria-hidden="true">→</span></span>
+    </span>
+  </a>
+
+  <ClosingBand headline={closing.headline} sub={closing.sub} cta={ui.cta.contact} href={`/${lang}/contact/`} />
 </Base>
 
 <style>
-  .crumb {
-    display: flex; align-items: center; gap: 9px; flex-wrap: wrap;
-    padding-top: clamp(24px, 3vw, 40px);
-    font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em;
-    text-transform: uppercase; color: var(--faint);
+  .sv { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: clamp(40px, 6vw, 112px); align-items: start; }
+  .sv-nav { position: sticky; top: calc(var(--nav-h) + 32px); }
+  .sv-nav ol { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+  .sv-nav li a {
+    display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line);
+    font-size: 15px; font-weight: 500; color: var(--muted); transition: color 0.2s;
   }
-  .crumb a { transition: color 0.2s; }
-  .crumb a:hover { color: var(--blue); }
-  .crumb span { color: var(--line); }
+  .sv-nav li a span { font-family: var(--mono); font-size: 12px; color: var(--faint); padding-top: 3px; }
+  .sv-nav li a:hover, .sv-nav li a.cur { color: var(--blue); }
+  .sv-nav li a.cur span { color: var(--blue); }
 
-  .layout {
-    display: grid; grid-template-columns: minmax(0, 1fr) 240px;
-    gap: clamp(32px, 6vw, 96px);
-    padding-block: clamp(28px, 4vw, 52px) clamp(64px, 9vw, 128px);
-    align-items: start;
-  }
-  .title {
-    margin: 0; max-width: 22ch; font-family: var(--display);
-    font-size: clamp(30px, 3.8vw, 52px); font-weight: 700;
-    letter-spacing: -0.025em; line-height: 1.04; text-wrap: balance;
-  }
-  .lede { margin: 24px 0 0; max-width: 52ch; font-size: clamp(17px, 1.4vw, 20px); line-height: 1.6; color: var(--muted); }
-  .body { margin-top: clamp(32px, 4vw, 52px); max-width: 68ch; }
-  .ask { margin-top: clamp(36px, 4vw, 56px); }
+  .sv-groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: clamp(32px, 4vw, 56px) clamp(24px, 3vw, 48px); }
+  .sv-group { border-top: 1px solid var(--ink); padding-top: 22px; }
+  .sv-gtitle { margin: 0; font-family: var(--display); font-weight: 700; font-size: clamp(22px, 2vw, 28px); line-height: 1.2; letter-spacing: -0.015em; }
+  :lang(zh) .sv-gtitle { font-weight: 600; letter-spacing: 0; }
+  .sv-group ul { list-style: none; margin: 20px 0 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+  .sv-group li { position: relative; padding-left: 18px; font-size: 17px; line-height: 1.6; }
+  .sv-group li::before { content: ''; position: absolute; left: 0; top: 0.8em; width: 8px; height: 1px; background: var(--blue); }
+  .sv-body .note { margin-top: clamp(40px, 5vw, 64px); padding-top: 20px; border-top: 1px solid var(--line); }
 
-  aside { position: sticky; top: calc(var(--nav-h) + 24px); }
-  .aside-h {
-    margin: 0 0 18px; font-family: var(--mono); font-size: 12px; font-weight: 400;
-    letter-spacing: 0.12em; text-transform: uppercase; color: var(--faint);
+  .nx { display: block; border-top: 1px solid var(--line); }
+  .nx-in { display: block; padding-block: clamp(48px, 7vw, 96px); }
+  .nx .tag { margin-bottom: 14px; }
+  .nx-title {
+    display: flex; align-items: baseline; flex-wrap: wrap; gap: 0 24px;
+    font-family: var(--display); font-weight: 700; font-size: clamp(32px, 5vw, 72px); line-height: 1.1; letter-spacing: -0.02em;
+    transition: color 200ms ease-out;
   }
-  aside ul { list-style: none; margin: 0; padding: 0; }
-  aside li { border-top: 1px solid var(--line); }
-  aside li:last-child { border-bottom: 1px solid var(--line); }
-  .sib { display: block; padding: 11px 0; font-size: 14px; line-height: 1.45; color: var(--muted); transition: color 0.2s; }
-  .sib:hover { color: var(--blue); }
-  .sib.here { color: var(--ink); font-weight: 600; }
-  .back {
-    display: inline-block; margin-top: 22px; padding-bottom: 3px;
-    border-bottom: 1px solid var(--line);
-    font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--faint); transition: color 0.2s, border-color 0.2s;
-  }
-  .back:hover { color: var(--blue); border-color: var(--blue); }
+  :lang(zh) .nx-title { font-weight: 600; letter-spacing: 0; }
+  .nx-num { font-family: var(--mono); font-weight: 400; font-size: 0.5em; color: var(--faint); }
+  .nx-arrow { transition: transform 200ms ease-out; }
+  .nx:hover .nx-title { color: var(--blue); }
+  .nx:hover .nx-arrow { transform: translateX(8px); }
 
   @media (max-width: 900px) {
-    .layout { grid-template-columns: 1fr; }
-    aside { position: static; order: 2; }
+    .sv { grid-template-columns: 1fr; }
+    .sv-nav { position: static; order: 2; }
   }
 </style>

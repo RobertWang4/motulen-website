@@ -1,0 +1,35 @@
+---
+/** Three-column table with a footnote; rows stack on small screens. Empty cells show "—". */
+interface Props { columns: string[]; rows: string[][]; note: string }
+const { columns, rows, note } = Astro.props;
+---
+<div class="dt reveal">
+  <table>
+    <thead><tr>{columns.map((c) => <th scope="col">{c}</th>)}</tr></thead>
+    <tbody>
+      {rows.map((r) => (
+        <tr>{r.map((cell, i) => (i === 0 ? <th scope="row">{cell || '—'}</th> : <td data-label={columns[i]}>{cell || '—'}</td>))}</tr>
+      ))}
+    </tbody>
+  </table>
+  <p class="note">{note}</p>
+</div>
+
+<style>
+  table { width: 100%; border-collapse: collapse; }
+  thead th {
+    text-align: left; font-family: var(--mono); font-size: 12px; font-weight: 400;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--faint);
+    padding: 0 16px 14px 0; border-bottom: 1px solid var(--ink);
+  }
+  tbody th, tbody td { text-align: left; padding: 20px 16px 20px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+  tbody th { font-family: var(--display); font-weight: 700; font-size: 19px; width: 32%; }
+  :lang(zh) tbody th { font-weight: 600; }
+  tbody td { font-size: 16px; color: var(--muted); }
+  @media (max-width: 700px) {
+    thead { display: none; }
+    tbody tr { display: block; padding: 18px 0; border-bottom: 1px solid var(--line); }
+    tbody th, tbody td { display: block; width: auto; padding: 4px 0; border: 0; }
+    tbody td::before { content: attr(data-label) ' · '; color: var(--faint); font-size: 13px; }
+  }
+</style>

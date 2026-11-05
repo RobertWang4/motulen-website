@@ -1,0 +1,22 @@
+---
+/** Edge-to-edge photograph with one line of large text bottom-left on the DESIGN.md gradient. */
+interface Props { photo: string; alt: string; text: string }
+const { photo, alt, text } = Astro.props;
+---
+<section class="pb">
+  <img src={photo} alt={alt} loading="lazy" />
+  <div class="pb-veil"></div>
+  <div class="wrap pb-in"><p class="pb-text reveal">{text}</p></div>
+</section>
+
+<style>
+  .pb { position: relative; height: clamp(320px, 42vw, 560px); overflow: hidden; background: var(--surface); }
+  .pb > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .pb-veil { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(14, 17, 22, 0.55) 0%, rgba(14, 17, 22, 0.2) 45%, rgba(14, 17, 22, 0) 75%); }
+  .pb-in { position: relative; height: 100%; display: flex; align-items: flex-end; padding-bottom: clamp(32px, 5vw, 72px); }
+  .pb-text {
+    margin: 0; max-width: 22ch; color: #fff;
+    font-family: var(--display); font-weight: 700; font-size: clamp(26px, 3.4vw, 48px); line-height: 1.15; letter-spacing: -0.02em;
+  }
+  :lang(zh) .pb-text { font-weight: 600; letter-spacing: 0.02em; }
+</style>
