@@ -1,0 +1,41 @@
+name: Deploy to SEOHOST
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: seohost-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+        env:
+          SITE_URL: https://motulengroup.com
+      - run: npm run verify
+      - run: sudo apt-get update && sudo apt-get install -y lftp
+      - name: Upload website over FTPS
+        env:
+          LFTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          lftp --env-password -u 'deploy@motulengroup.com' ftp://h104.seohost.pl -e '
+            set ftp:ssl-force true;
+            set ftp:ssl-protect-data true;
+            set ssl:verify-certificate true;
+            set cmd:fail-exit true;
+            mirror --reverse --no-perms --ignore-time dist/ ./;
+            bye
+          '
