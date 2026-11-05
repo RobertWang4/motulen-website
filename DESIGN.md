@@ -53,7 +53,7 @@
 - **Business index:** six full-width numbered rows with hairlines; desktop shows the hovered row's photo in a sticky frame (CSS `:has()`, opacity 200ms). Planned lines carry a quiet grey chip.
 - **Markets row:** five country names in large type; Poland marked "base" with a blue top rule. No map, so nothing implies offices.
 - **Stages:** three columns joined by one hairline with blue dots and large `line`-grey numerals.
-- **Service detail:** photo header with title overlaid; sticky six-item side nav; grouped lists with blue dash bullets; full-width "next service" link.
+- **Service detail:** no tall header. Side list of the six services and the content start right under the nav; side list is sticky at the same offset it starts at, so switching services never moves it. Content: tag, h1 + planned chip, subtitle, 16:7 photo, grouped lists with blue dash bullets, note; then a full-width "next service" link. On switch only the content crossfades (view-transition names `svc-nav`, `svc-body`).
 - **Footnotes:** compliance and scope notes use `.note` (14px muted) and are never hidden.
 
 ## Motion

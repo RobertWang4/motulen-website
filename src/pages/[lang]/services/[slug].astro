@@ -1,6 +1,5 @@
 ---
 import Base from '../../../layouts/Base.astro';
-import PageHeader from '../../../components/inner/PageHeader.astro';
 import ClosingBand from '../../../components/ClosingBand.astro';
 import { LANGS, getHome, getUi, listServices, type Lang } from '../../../lib/content';
 
@@ -16,19 +15,9 @@ const ui = getUi(lang);
 const closing = getHome(lang).closing;
 ---
 <Base lang={lang} title={s.title} description={s.subtitle}>
-  <PageHeader
-    overlay
-    tag={`${s.number} / ${ui.tags.service}`}
-    tagHref={`/${lang}/services/`}
-    title={s.title}
-    lede={s.subtitle}
-    image={s.photo}
-    alt={s.alt}
-  >
-    {s.status === 'planned' && <span slot="after-title" class="chip-plan">{ui.status.planned}</span>}
-  </PageHeader>
-
-  <section class="sec">
+  <!-- Side list and content start at the top, so switching services never jumps:
+       the list stays put (own view-transition name) and only the content crossfades. -->
+  <section class="sv-sec">
     <div class="wrap sv">
       <nav class="sv-nav" aria-label={ui.nav.services}>
         <a href={`/${lang}/services/`} class="tag">{ui.cta.allServices}</a>
@@ -43,17 +32,24 @@ const closing = getHome(lang).closing;
         </ol>
       </nav>
 
-      <div class="sv-body">
+      <article class="sv-body">
+        <p class="tag"><b>{s.number}</b><span>/</span><span>{ui.tags.service}</span></p>
+        <h1 class="sv-title">
+          {s.title}
+          {s.status === 'planned' && <span class="chip-plan">{ui.status.planned}</span>}
+        </h1>
+        <p class="sv-lede">{s.subtitle}</p>
+        <figure class="sv-photo"><img src={s.photo} alt={s.alt} /></figure>
         <div class="sv-groups">
           {s.groups.map((g) => (
-            <div class="sv-group reveal">
+            <div class="sv-group">
               <h2 class="sv-gtitle">{g.title}</h2>
               <ul>{g.items.map((it) => <li>{it}</li>)}</ul>
             </div>
           ))}
         </div>
-        <p class="note reveal">{s.note}</p>
-      </div>
+        <p class="note">{s.note}</p>
+      </article>
     </div>
   </section>
 
@@ -68,8 +64,18 @@ const closing = getHome(lang).closing;
 </Base>
 
 <style>
+  .sv-sec { padding-block: clamp(40px, 6vw, 88px) clamp(72px, 10vw, 144px); }
   .sv { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: clamp(40px, 6vw, 112px); align-items: start; }
-  .sv-nav { position: sticky; top: calc(var(--nav-h) + 32px); }
+  .sv-nav { position: sticky; top: calc(var(--nav-h) + clamp(40px, 6vw, 88px)); view-transition-name: svc-nav; }
+  .sv-body { view-transition-name: svc-body; min-width: 0; }
+  .sv-title {
+    margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 20px; min-width: 0; overflow-wrap: anywhere;
+    font-family: var(--display); font-weight: 700; font-size: clamp(36px, 4.8vw, 72px); line-height: 1.08; letter-spacing: -0.025em;
+  }
+  :lang(zh) .sv-title { font-weight: 600; letter-spacing: 0.01em; line-height: 1.2; }
+  .sv-lede { margin: 20px 0 0; max-width: 46ch; color: var(--muted); font-size: clamp(17px, 1.4vw, 21px); line-height: 1.6; }
+  .sv-photo { margin: clamp(32px, 4vw, 48px) 0 clamp(40px, 5vw, 64px); aspect-ratio: 16 / 7; overflow: hidden; border-radius: var(--r-sm); background: var(--surface); }
+  .sv-photo img { width: 100%; height: 100%; object-fit: cover; }
   .sv-nav ol { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
   .sv-nav li a {
     display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line);
@@ -105,5 +111,6 @@ const closing = getHome(lang).closing;
   @media (max-width: 900px) {
     .sv { grid-template-columns: 1fr; }
     .sv-nav { position: static; order: 2; }
+    .sv-photo { aspect-ratio: 3 / 2; }
   }
 </style>

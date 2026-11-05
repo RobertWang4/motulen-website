@@ -1,7 +1,6 @@
 ---
 /**
- * Inner page header. Default: white type block (tag, h1, lede) then an edge-to-edge photo band.
- * overlay: the photo is the header and the type sits bottom-left on the DESIGN.md gradient.
+ * Inner page header: white type block (tag, h1, lede) then an edge-to-edge photo band.
  */
 interface Props {
   tag?: string;
@@ -10,32 +9,17 @@ interface Props {
   lede?: string;
   image?: string;
   alt?: string;
-  overlay?: boolean;
 }
-const { tag, tagHref, title, lede, image, alt = '', overlay = false } = Astro.props;
+const { tag, tagHref, title, lede, image, alt = '' } = Astro.props;
 ---
-{overlay && image ? (
-  <header class="pho">
-    <img src={image} alt={alt} />
-    <div class="pho-veil"></div>
-    <div class="wrap pho-in">
-      {tag && <p class="tag pho-tag">{tagHref ? <a href={tagHref}>{tag}</a> : tag}</p>}
-      <h1 class="ph-title pho-title">{title}<slot name="after-title" /></h1>
-      {lede && <p class="ph-lede pho-lede">{lede}</p>}
-    </div>
-  </header>
-) : (
-  <>
-    <header class="ph">
-      <div class="ph-in wrap">
-        {tag && <p class="tag reveal">{tagHref ? <a href={tagHref}>{tag}</a> : tag}</p>}
-        <h1 class="ph-title reveal">{title}</h1>
-        {lede && <p class="ph-lede reveal">{lede}</p>}
-      </div>
-    </header>
-    {image && <div class="ph-band"><img src={image} alt={alt} /></div>}
-  </>
-)}
+<header class="ph">
+  <div class="ph-in wrap">
+    {tag && <p class="tag reveal">{tagHref ? <a href={tagHref}>{tag}</a> : tag}</p>}
+    <h1 class="ph-title reveal">{title}</h1>
+    {lede && <p class="ph-lede reveal">{lede}</p>}
+  </div>
+</header>
+{image && <div class="ph-band"><img src={image} alt={alt} /></div>}
 
 <style>
   .ph { border-bottom: 1px solid var(--line); }
@@ -52,17 +36,4 @@ const { tag, tagHref, title, lede, image, alt = '', overlay = false } = Astro.pr
   .ph-band { height: clamp(280px, 42vw, 600px); overflow: hidden; background: var(--surface); }
   .ph-band img { width: 100%; height: 100%; object-fit: cover; }
 
-  .pho { position: relative; height: clamp(440px, 72vh, 760px); overflow: hidden; background: var(--surface); }
-  .pho > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-  .pho-veil {
-    position: absolute; inset: 0;
-    background:
-      linear-gradient(90deg, rgba(14, 17, 22, 0.55) 0%, rgba(14, 17, 22, 0.35) 50%, rgba(14, 17, 22, 0) 85%),
-      linear-gradient(0deg, rgba(14, 17, 22, 0.6) 0%, rgba(14, 17, 22, 0) 65%);
-  }
-  .pho-in { position: relative; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; padding-bottom: clamp(40px, 6vw, 88px); }
-  .pho-tag { color: rgba(255, 255, 255, 0.7); }
-  .pho-tag a:hover { color: #fff; }
-  .pho-title { color: #fff; min-width: 0; overflow-wrap: anywhere; display: flex; flex-wrap: wrap; align-items: center; gap: 0 20px; }
-  .pho-lede { color: rgba(255, 255, 255, 0.88); }
 </style>
