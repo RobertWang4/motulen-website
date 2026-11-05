@@ -18,7 +18,9 @@
     "allServices": "Wszystkie usługi",
     "next": "Następna usługa",
     "approach": "Poznaj zasady współpracy",
-    "about": "O nas"
+    "about": "O nas",
+    "projects": "Zobacz doświadczenie projektowe",
+    "team": "Zobacz organizację zespołów międzynarodowych"
   },
   "status": {
     "planned": "W rozwoju"
@@ -37,11 +39,14 @@
     "experience": "Experience",
     "projects": "Projects",
     "contact": "Contact",
-    "service": "Service"
+    "service": "Service",
+    "lifecycle": "Lifecycle"
   },
   "footer": {
     "tagline": "Usługi dla firm w Europie: organizacja personelu i outsourcing operacyjny, realizacja prac inżynieryjnych i rozwój usług technicznych.",
     "navTitle": "Nawigacja",
     "contactTitle": "Kontakt"
-  }
+  },
+  "nextStep": "Następny krok",
+  "relatedProjects": "Powiązane projekty"
 }

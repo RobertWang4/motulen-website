@@ -53,6 +53,8 @@
 - **Business index:** six full-width numbered rows with hairlines; desktop shows the hovered row's photo in a sticky frame (CSS `:has()`, opacity 200ms). Planned lines carry a quiet grey chip.
 - **Markets row:** five country names in large type; Poland marked "base" with a blue top rule. No map, so nothing implies offices.
 - **Stages:** three columns joined by one hairline with blue dots and large `line`-grey numerals.
+- **Lifecycle:** five steps joined by one hairline (like Stages: blue dot, `line`-grey mono numeral, h3), each with a short text and a hairline-topped link to its service; a closing sentence + `.ul` link below. Stacks as a vertical list under 900px.
+- **Next step link:** full-width link before the closing band (mono label, large title with arrow, hairline on top; arrow nudges 8px on hover). Follows the talk track: home > about > services > service 01..06 > approach > projects > contact.
 - **Service detail:** no tall header. Side list of the six services and the content start right under the nav; side list is sticky at the same offset it starts at, so switching services never moves it. Content: tag, h1 + planned chip, subtitle, 16:7 photo, grouped lists with blue dash bullets, note; then a full-width "next service" link. On switch only the content crossfades (view-transition names `svc-nav`, `svc-body`).
 - **Footnotes:** compliance and scope notes use `.note` (14px muted) and are never hidden.
 

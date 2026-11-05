@@ -3,6 +3,7 @@ import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/inner/PageHeader.astro';
 import SectionHead from '../../components/SectionHead.astro';
 import DataTable from '../../components/DataTable.astro';
+import NextStep from '../../components/NextStep.astro';
 import ClosingBand from '../../components/ClosingBand.astro';
 import { LANGS, getProjects, getHome, getUi, type Lang } from '../../lib/content';
 
@@ -20,5 +21,7 @@ const closing = getHome(lang).closing;
       <DataTable columns={p.columns} rows={p.rows} note={p.note} />
     </div></div>
   </section>
+  <NextStep href={`/${lang}/contact/`} label={ui.nextStep} title={ui.nav.contact} />
+
   <ClosingBand headline={closing.headline} sub={closing.sub} cta={ui.cta.contact} href={`/${lang}/contact/`} />
 </Base>

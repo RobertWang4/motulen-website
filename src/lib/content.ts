@@ -27,37 +27,42 @@ const Ui = z.object({
   }),
   langName: z.record(z.enum(LANGS), z.string()),
   menu: z.string(),
-  cta: z.object({ contact: z.string(), more: z.string(), allServices: z.string(), next: z.string(), approach: z.string(), about: z.string() }),
+  cta: z.object({ contact: z.string(), more: z.string(), allServices: z.string(), next: z.string(), approach: z.string(), about: z.string(), projects: z.string(), team: z.string() }),
   status: z.object({ planned: z.string() }),
   roles: z.object({ base: z.string(), coverage: z.string() }),
   tags: z.object({
     about: z.string(), services: z.string(), markets: z.string(), approach: z.string(),
-    values: z.string(), team: z.string(), experience: z.string(), projects: z.string(), contact: z.string(), service: z.string(),
+    values: z.string(), team: z.string(), experience: z.string(), projects: z.string(), contact: z.string(), service: z.string(), lifecycle: z.string(),
   }),
+  nextStep: z.string(),
+  relatedProjects: z.string(),
   footer: z.object({ tagline: z.string(), navTitle: z.string(), contactTitle: z.string() }),
 });
+
+const Market = z.object({ name: z.string(), local: z.string(), role: z.enum(['base', 'coverage']) });
 
 const Home = z.object({
   ...Meta,
   hero: z.object({ headline: z.string(), sub: z.string(), ...Photo }),
   facts: z.array(z.object({ k: z.string(), v: z.string() })),
   statement: z.string(),
+  lifecycle: z.object({
+    headline: z.string(),
+    steps: z.array(z.object({ title: z.string(), text: z.string(), service: z.string() })).length(5),
+    footer: z.string(),
+    footerService: z.string(),
+  }),
   services: z.object({ headline: z.string() }),
   band: z.object({ text: z.string(), ...Photo }),
-  markets: z.object({ headline: z.string() }),
+  markets: z.object({ headline: z.string(), items: z.array(Market), note: z.string() }),
   approach: z.object({ headline: z.string() }),
   values: z.object({ headline: z.string() }),
   closing: z.object({ headline: z.string(), sub: z.string() }),
 });
 
-const Market = z.object({ name: z.string(), local: z.string(), role: z.enum(['base', 'coverage']) });
-
 const About = z.object({
   ...Meta, lede: z.string(), ...Photo,
   intro: z.object({ headline: z.string(), text: z.string() }),
-  markets: z.array(Market),
-  marketsHeadline: z.string(),
-  marketsNote: z.string(),
   operating: z.object({ headline: z.string(), ...Table }),
   team: z.object({
     headline: z.string(),
@@ -76,7 +81,8 @@ const Approach = z.object({
   values: z.array(Group),
 });
 
-const Projects = z.object({ ...Meta, lede: z.string(), ...Photo, headline: z.string(), ...Table });
+const Projects = z.object({ ...Meta, lede: z.string(), ...Photo, headline: z.string(), ...Table, rowServices: z.array(z.array(z.string())) })
+  .refine((p) => p.rowServices.length === p.rows.length, { message: 'rowServices must be parallel to rows', path: ['rowServices'] });
 
 const Contact = z.object({
   ...Meta, lede: z.string(), ...Photo,

@@ -19,13 +19,13 @@ npm run verify     # 检查 dist/：页面齐全、语言互链、无旧站文�
 src/content/
   site.json                 品牌名、联系方式（邮箱 / 电话 / 两种语言的地址）、默认语言
   zh/ pl/
-    ui.json                 导航、按钮、标签、页脚等界面文字
-    home.json               首页：hero / facts / statement / services / band / markets / approach / values / closing
-    about.json              关于：定位、五个市场、现有运营经验表、跨国团队
+    ui.json                 导航、按钮、标签、页脚等界面文字（含 nextStep、relatedProjects、cta.projects、cta.team、tags.lifecycle）
+    home.json               首页：hero / facts / statement / lifecycle（五步 + 链接到业务 id）/ services / band / markets（headline / items / note）/ approach / values / closing
+    about.json              关于：定位、现有运营经验表、跨国团队（五个市场在 home.markets）
     services.json           业务页文案 + 六条业务的顺序（order）
     services/<id>.json      每条业务：编号、标题、副标题、status(current|planned)、photo、groups[]、note
     approach.json           合作方式：三阶段 stages + 五项价值 values（首页也读这里）
-    projects.json           项目经验表
+    projects.json           项目经验表 + rowServices（与 rows 等长，每行对应的业务 id，用于业务页“相关项目”）
     contact.json            联系页文案
 public/img/stock/           当前使用的生成图；换实拍时放新图，改 JSON 里的 photo 字段
 ```

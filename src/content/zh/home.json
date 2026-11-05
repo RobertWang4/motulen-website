@@ -26,6 +26,38 @@
     }
   ],
   "statement": "围绕企业在欧洲的用工、建设和运营需求，组织人员与专业资源，推进项目落地。",
+  "lifecycle": {
+    "headline": "一座仓库，从建设到日常运转",
+    "steps": [
+      {
+        "title": "建设",
+        "text": "货架拆装、设备安装、强弱电工程与 IT",
+        "service": "warehouse-engineering"
+      },
+      {
+        "title": "配套",
+        "text": "办公区域、员工更衣区与活动区域",
+        "service": "commercial-spaces"
+      },
+      {
+        "title": "招人",
+        "text": "定向招聘专业人才与管理人员，中国人才引进",
+        "service": "recruitment"
+      },
+      {
+        "title": "运营",
+        "text": "仓储、物流及生产岗位的长期团队与短期增员",
+        "service": "operations-outsourcing"
+      },
+      {
+        "title": "维护",
+        "text": "设备日常检查与保养、故障排查支持",
+        "service": "robotics-service"
+      }
+    ],
+    "footer": "跨国团队与欧洲本地协调贯穿全程，一个项目接口对接。",
+    "footerService": "cross-border-teams"
+  },
   "services": {
     "headline": "持续运营与技术服务能力建设"
   },
@@ -35,7 +67,35 @@
     "alt": ""
   },
   "markets": {
-    "headline": "立足波兰，连接欧洲与海外"
+    "headline": "立足波兰，连接欧洲与海外",
+    "items": [
+      {
+        "name": "波兰",
+        "local": "Polska",
+        "role": "base"
+      },
+      {
+        "name": "捷克",
+        "local": "Česko",
+        "role": "coverage"
+      },
+      {
+        "name": "匈牙利",
+        "local": "Magyarország",
+        "role": "coverage"
+      },
+      {
+        "name": "罗马尼亚",
+        "local": "România",
+        "role": "coverage"
+      },
+      {
+        "name": "中国",
+        "local": "China",
+        "role": "coverage"
+      }
+    ],
+    "note": "以上为业务覆盖与跨境协作市场，不代表在各国均设有办公室或持有同样经营资质。"
   },
   "approach": {
     "headline": "一个项目接口，贯穿启动与日常运营"

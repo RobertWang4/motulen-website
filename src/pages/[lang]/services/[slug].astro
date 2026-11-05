@@ -1,7 +1,9 @@
 ---
 import Base from '../../../layouts/Base.astro';
+import NextStep from '../../../components/NextStep.astro';
+import ProjectList from '../../../components/ProjectList.astro';
 import ClosingBand from '../../../components/ClosingBand.astro';
-import { LANGS, getHome, getUi, listServices, type Lang } from '../../../lib/content';
+import { LANGS, getHome, getProjects, getUi, listServices, type Lang } from '../../../lib/content';
 
 export function getStaticPaths() {
   return LANGS.flatMap((lang) => listServices(lang).map((s) => ({ params: { lang, slug: s.id } })));
@@ -10,8 +12,10 @@ const lang = Astro.params.lang as Lang;
 const all = listServices(lang);
 const i = all.findIndex((s) => s.id === Astro.params.slug);
 const s = all[i];
-const next = all[(i + 1) % all.length];
+const next = all[i + 1];
 const ui = getUi(lang);
+const proj = getProjects(lang);
+const related = proj.rows.filter((_, k) => proj.rowServices[k].includes(s.id)).map((r) => [r[0], r[1], '']);
 const closing = getHome(lang).closing;
 ---
 <Base lang={lang} title={s.title} description={s.subtitle}>
@@ -48,17 +52,20 @@ const closing = getHome(lang).closing;
             </div>
           ))}
         </div>
+        {related.length > 0 && (
+          <section class="sv-rel">
+            <h2 class="sv-gtitle">{ui.relatedProjects}</h2>
+            <ProjectList lang={lang} rows={related} note={proj.note} />
+          </section>
+        )}
         <p class="note">{s.note}</p>
       </article>
     </div>
   </section>
 
-  <a href={`/${lang}/services/${next.id}/`} class="nx" data-swap="nx">
-    <span class="wrap nx-in">
-      <span class="tag">{ui.cta.next}</span>
-      <span class="nx-title"><span class="nx-num">{next.number}</span>{next.title}<span class="nx-arrow" aria-hidden="true">→</span></span>
-    </span>
-  </a>
+  {next
+    ? <NextStep href={`/${lang}/services/${next.id}/`} label={ui.cta.next} title={next.title} num={next.number} swap />
+    : <NextStep href={`/${lang}/approach/`} label={ui.nextStep} title={ui.nav.approach} swap />}
 
   <ClosingBand headline={closing.headline} sub={closing.sub} cta={ui.cta.contact} href={`/${lang}/contact/`} />
 </Base>
@@ -153,21 +160,10 @@ const closing = getHome(lang).closing;
   .sv-group ul { list-style: none; margin: 20px 0 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
   .sv-group li { position: relative; padding-left: 18px; font-size: 17px; line-height: 1.6; }
   .sv-group li::before { content: ''; position: absolute; left: 0; top: 0.8em; width: 8px; height: 1px; background: var(--blue); }
-  .sv-body .note { margin-top: clamp(40px, 5vw, 64px); padding-top: 20px; border-top: 1px solid var(--line); }
+  .sv-body > .note { margin-top: clamp(40px, 5vw, 64px); padding-top: 20px; border-top: 1px solid var(--line); }
 
-  .nx { display: block; border-top: 1px solid var(--line); }
-  .nx-in { display: block; padding-block: clamp(48px, 7vw, 96px); }
-  .nx .tag { margin-bottom: 14px; }
-  .nx-title {
-    display: flex; align-items: baseline; flex-wrap: wrap; gap: 0 24px;
-    font-family: var(--display); font-weight: 700; font-size: clamp(32px, 5vw, 72px); line-height: 1.1; letter-spacing: -0.02em;
-    transition: color 200ms ease-out;
-  }
-  :lang(zh) .nx-title { font-weight: 600; letter-spacing: 0; }
-  .nx-num { font-family: var(--mono); font-weight: 400; font-size: 0.5em; color: var(--faint); }
-  .nx-arrow { transition: transform 200ms ease-out; }
-  .nx:hover .nx-title { color: var(--blue); }
-  .nx:hover .nx-arrow { transform: translateX(8px); }
+  .sv-rel { margin-top: clamp(40px, 5vw, 64px); }
+  .sv-rel .sv-gtitle { margin-bottom: 20px; }
 
   @media (max-width: 900px) {
     .sv { grid-template-columns: 1fr; }

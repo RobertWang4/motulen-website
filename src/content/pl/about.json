@@ -8,35 +8,6 @@
     "headline": "Łączymy firmy zagraniczne z projektami w Europie",
     "text": "MOTULEN GROUP działa z Polski. Główną linią działalności jest organizacja personelu i outsourcing operacyjny; prowadzimy też headhunting i rekrutację celowaną, a działalność rozwijamy w obszarze inżynierii magazynowej, projektów przestrzeni komercyjnych i serwisu technicznego urządzeń."
   },
-  "markets": [
-    {
-      "name": "Polska",
-      "local": "Polska",
-      "role": "base"
-    },
-    {
-      "name": "Czechy",
-      "local": "Česko",
-      "role": "coverage"
-    },
-    {
-      "name": "Węgry",
-      "local": "Magyarország",
-      "role": "coverage"
-    },
-    {
-      "name": "Rumunia",
-      "local": "România",
-      "role": "coverage"
-    },
-    {
-      "name": "Chiny",
-      "local": "China",
-      "role": "coverage"
-    }
-  ],
-  "marketsHeadline": "Działamy z Polski, łączymy Europę i rynki zagraniczne",
-  "marketsNote": "Powyższe rynki to obszary działalności i współpracy transgranicznej; nie oznacza to posiadania biur ani takich samych uprawnień do prowadzenia działalności w każdym z tych krajów.",
   "operating": {
     "headline": "Dotychczasowe doświadczenie operacyjne wspiera rozwój działalności MOTULEN",
     "columns": [

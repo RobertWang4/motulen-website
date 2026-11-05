@@ -18,7 +18,9 @@
     "allServices": "全部业务",
     "next": "下一项业务",
     "approach": "了解合作方式",
-    "about": "关于我们"
+    "about": "关于我们",
+    "projects": "查看项目经验",
+    "team": "查看跨国团队组织"
   },
   "status": {
     "planned": "发展中"
@@ -37,11 +39,14 @@
     "experience": "Experience",
     "projects": "Projects",
     "contact": "Contact",
-    "service": "Service"
+    "service": "Service",
+    "lifecycle": "Lifecycle"
   },
   "footer": {
     "tagline": "欧洲企业服务：人员组织与运营外包，工程实施与技术服务拓展。",
     "navTitle": "导航",
     "contactTitle": "联系"
-  }
+  },
+  "nextStep": "下一步",
+  "relatedProjects": "相关项目"
 }

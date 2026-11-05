@@ -1,0 +1,52 @@
+---
+/** Five lifecycle steps joined by one hairline (same language as Stages), each linking to its service. */
+import { getService, getUi, type Lang } from '../lib/content';
+interface Props { lang: Lang; steps: { title: string; text: string; service: string }[]; footer: string; footerService: string }
+const { lang, steps, footer, footerService } = Astro.props;
+const ui = getUi(lang);
+const items = steps.map((s) => ({ ...s, svc: getService(lang, s.service) }));
+const fs = getService(lang, footerService);
+---
+<div class="lc">
+  <ol class="lc-row">
+    {items.map((s, i) => (
+      <li class="lc-item reveal">
+        <span class="lc-dot" aria-hidden="true"></span>
+        <span class="lc-num">{String(i + 1).padStart(2, '0')}</span>
+        <h3 class="h3 lc-title">{s.title}</h3>
+        <p class="lc-text">{s.text}</p>
+        <a href={`/${lang}/services/${s.svc.id}/`} class="lc-link">
+          <span class="lc-n">{s.svc.number}</span>{s.svc.title}
+          {s.svc.status === 'planned' && <span class="chip-plan">{ui.status.planned}</span>}
+        </a>
+      </li>
+    ))}
+  </ol>
+  <div class="lc-foot reveal">
+    <p>{footer}</p>
+    <a href={`/${lang}/services/${fs.id}/`} class="ul"><span class="lc-n">{fs.number}</span>{fs.title}<i>→</i></a>
+  </div>
+</div>
+
+<style>
+  .lc-row { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(20px, 2.4vw, 40px); position: relative; }
+  .lc-row::before { content: ''; position: absolute; left: 0; right: 0; top: 5px; height: 1px; background: var(--line); }
+  .lc-item { position: relative; padding-top: 36px; }
+  .lc-dot { position: absolute; top: 0; left: 0; width: 11px; height: 11px; border-radius: 50%; background: var(--blue); }
+  .lc-num { display: block; font-family: var(--mono); font-size: clamp(36px, 3.6vw, 56px); line-height: 1; color: var(--line); font-variant-numeric: tabular-nums; }
+  .lc-title { margin: 18px 0 0; }
+  .lc-text { margin: 14px 0 0; color: var(--muted); font-size: 15px; line-height: 1.6; }
+  .lc-link { display: block; margin-top: 18px; padding-top: 12px; border-top: 1px solid var(--line); font-size: 14px; font-weight: 500; color: var(--ink); transition: color 0.2s; }
+  .lc-link:hover { color: var(--blue); }
+  .lc-n { font-family: var(--mono); font-size: 12px; color: var(--faint); margin-right: 8px; }
+  .lc-foot { margin-top: clamp(40px, 5vw, 64px); padding-top: 24px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; align-items: baseline; gap: 16px 40px; }
+  .lc-foot p { margin: 0; max-width: 46ch; font-family: var(--display); font-weight: 700; font-size: clamp(18px, 1.8vw, 24px); line-height: 1.4; }
+  :lang(zh) .lc-foot p { font-weight: 600; }
+  @media (max-width: 1100px) and (min-width: 900px) { .lc-row { gap: 16px; } }
+  @media (max-width: 899px) {
+    .lc-row { grid-template-columns: 1fr; gap: 40px; }
+    .lc-row::before { left: 5px; right: auto; top: 0; bottom: 0; width: 1px; height: auto; }
+    .lc-item { padding: 0 0 0 36px; }
+    .lc-dot { top: 6px; }
+  }
+</style>

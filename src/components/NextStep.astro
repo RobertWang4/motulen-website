@@ -1,0 +1,27 @@
+---
+/** Full-width "next" link before the closing band: mono label, big title with arrow, hairline on top. */
+interface Props { href: string; label: string; title: string; num?: string; swap?: boolean }
+const { href, label, title, num, swap = false } = Astro.props;
+---
+<a href={href} class="nx" data-swap={swap ? 'nx' : undefined}>
+  <span class="wrap nx-in">
+    <span class="tag">{label}</span>
+    <span class="nx-title">{num && <span class="nx-num">{num}</span>}{title}<span class="nx-arrow" aria-hidden="true">→</span></span>
+  </span>
+</a>
+
+<style>
+  .nx { display: block; border-top: 1px solid var(--line); }
+  .nx-in { display: block; padding-block: clamp(48px, 7vw, 96px); }
+  .nx .tag { margin-bottom: 14px; }
+  .nx-title {
+    display: flex; align-items: baseline; flex-wrap: wrap; gap: 0 24px;
+    font-family: var(--display); font-weight: 700; font-size: clamp(32px, 5vw, 72px); line-height: 1.1; letter-spacing: -0.02em;
+    transition: color 200ms ease-out;
+  }
+  :lang(zh) .nx-title { font-weight: 600; letter-spacing: 0; }
+  .nx-num { font-family: var(--mono); font-weight: 400; font-size: 0.5em; color: var(--faint); }
+  .nx-arrow { transition: transform 200ms ease-out; }
+  .nx:hover .nx-title { color: var(--blue); }
+  .nx:hover .nx-arrow { transform: translateX(8px); }
+</style>

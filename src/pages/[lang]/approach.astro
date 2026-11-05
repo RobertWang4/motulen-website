@@ -3,6 +3,7 @@ import Base from '../../layouts/Base.astro';
 import PageHeader from '../../components/inner/PageHeader.astro';
 import SectionHead from '../../components/SectionHead.astro';
 import Stages from '../../components/Stages.astro';
+import NextStep from '../../components/NextStep.astro';
 import ClosingBand from '../../components/ClosingBand.astro';
 import { LANGS, getApproach, getHome, getUi, type Lang } from '../../lib/content';
 
@@ -37,6 +38,8 @@ const closing = getHome(lang).closing;
       </ol>
     </div>
   </section>
+
+  <NextStep href={`/${lang}/projects/`} label={ui.nextStep} title={ui.nav.projects} />
 
   <ClosingBand headline={closing.headline} sub={closing.sub} cta={ui.cta.contact} href={`/${lang}/contact/`} />
 </Base>

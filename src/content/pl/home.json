@@ -26,6 +26,38 @@
     }
   ],
   "statement": "Organizujemy personel i zasoby specjalistyczne na potrzeby zatrudnienia, budowy i operacji firm w Europie.",
+  "lifecycle": {
+    "headline": "Jeden magazyn, od budowy do codziennej pracy",
+    "steps": [
+      {
+        "title": "Budowa",
+        "text": "Montaż i demontaż regałów, instalacja urządzeń, instalacje silno- i słaboprądowe oraz IT",
+        "service": "warehouse-engineering"
+      },
+      {
+        "title": "Zaplecze",
+        "text": "Strefy biurowe, szatnie dla pracowników i strefy aktywności",
+        "service": "commercial-spaces"
+      },
+      {
+        "title": "Rekrutacja",
+        "text": "Celowana rekrutacja specjalistów i kadry zarządzającej, pozyskiwanie talentów z Chin",
+        "service": "recruitment"
+      },
+      {
+        "title": "Operacje",
+        "text": "Stałe zespoły i krótkoterminowe uzupełnianie obsady na stanowiskach magazynowych, logistycznych i produkcyjnych",
+        "service": "operations-outsourcing"
+      },
+      {
+        "title": "Utrzymanie",
+        "text": "Bieżące kontrole i konserwacja urządzeń, wsparcie w diagnozowaniu awarii",
+        "service": "robotics-service"
+      }
+    ],
+    "footer": "Zespoły międzynarodowe i lokalna koordynacja w Europie towarzyszą projektowi na każdym etapie, z jednym punktem kontaktu w projekcie.",
+    "footerService": "cross-border-teams"
+  },
   "services": {
     "headline": "Stała obsługa operacyjna i usługi techniczne"
   },
@@ -35,7 +67,35 @@
     "alt": ""
   },
   "markets": {
-    "headline": "Działamy z Polski, łączymy Europę i rynki zagraniczne"
+    "headline": "Działamy z Polski, łączymy Europę i rynki zagraniczne",
+    "items": [
+      {
+        "name": "Polska",
+        "local": "Polska",
+        "role": "base"
+      },
+      {
+        "name": "Czechy",
+        "local": "Česko",
+        "role": "coverage"
+      },
+      {
+        "name": "Węgry",
+        "local": "Magyarország",
+        "role": "coverage"
+      },
+      {
+        "name": "Rumunia",
+        "local": "România",
+        "role": "coverage"
+      },
+      {
+        "name": "Chiny",
+        "local": "China",
+        "role": "coverage"
+      }
+    ],
+    "note": "Powyższe rynki to obszary działalności i współpracy transgranicznej; nie oznacza to posiadania biur ani takich samych uprawnień do prowadzenia działalności w każdym z tych krajów."
   },
   "approach": {
     "headline": "Jeden punkt kontaktu w projekcie, od uruchomienia po bieżącą obsługę"
