@@ -68,6 +68,6 @@ const closing = getHome(lang).closing;
   .tg li::before { content: '— '; color: var(--faint); }
   .team-foot { margin: clamp(36px, 4vw, 56px) 0 0; font-family: var(--display); font-weight: 700; font-size: clamp(20px, 2vw, 28px); color: var(--blue); }
   .team-more { margin-top: 20px; }
-  :lang(zh) .team-foot { font-weight: 600; }
+  :global(:lang(zh)) .team-foot { font-weight: 600; }
   @media (max-width: 860px) { .intro, .team { grid-template-columns: 1fr; } }
 </style>

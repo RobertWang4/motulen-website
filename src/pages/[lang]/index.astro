@@ -142,7 +142,7 @@ const services = listServices(lang);
   .fact:last-child { border-right: 0; }
   .fact .eyebrow { margin: 0; }
   .fact-v { margin: 8px 0 0; font-family: var(--display); font-weight: 700; font-size: clamp(16px, 1.5vw, 22px); line-height: 1.3; }
-  :lang(zh) .fact-v { font-weight: 600; word-break: keep-all; }
+  :global(:lang(zh)) .fact-v { font-weight: 600; word-break: keep-all; }
   @media (max-width: 760px) {
     .facts-grid { grid-template-columns: 1fr 1fr; }
     .fact { padding-left: 0; }
@@ -155,8 +155,8 @@ const services = listServices(lang);
     font-family: var(--display); font-weight: 700; font-size: clamp(32px, 5vw, 76px);
     line-height: 1.12; letter-spacing: -0.025em; text-wrap: balance;
   }
-  :lang(pl) .statement { max-width: 26ch; font-size: clamp(30px, 4vw, 60px); }
-  :lang(zh) .statement { max-width: 17em; font-weight: 600; letter-spacing: 0.01em; line-height: 1.3; }
+  :global(:lang(pl)) .statement { max-width: 26ch; font-size: clamp(30px, 4vw, 60px); }
+  :global(:lang(zh)) .statement { max-width: 17em; font-weight: 600; letter-spacing: 0.01em; line-height: 1.3; }
   .sec-line { border-top: 1px solid var(--line); }
   .more { margin-top: clamp(40px, 5vw, 64px); }
 
@@ -164,7 +164,7 @@ const services = listServices(lang);
   .vals { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(20px, 2.4vw, 36px); }
   .val { border-top: 1px solid var(--ink); padding-top: 20px; }
   .val-title { margin: 0; font-family: var(--display); font-weight: 700; font-size: 20px; line-height: 1.25; }
-  :lang(zh) .val-title { font-weight: 600; }
+  :global(:lang(zh)) .val-title { font-weight: 600; }
   .val-list { list-style: none; margin: 12px 0 0; padding: 0; display: flex; flex-direction: column; gap: 6px; font-size: 15px; color: var(--muted); }
   @media (max-width: 1000px) { .vals { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 560px) { .vals { grid-template-columns: 1fr; } }

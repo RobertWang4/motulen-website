@@ -19,7 +19,7 @@ const { href, label, title, num, swap = false } = Astro.props;
     font-family: var(--display); font-weight: 700; font-size: clamp(32px, 5vw, 72px); line-height: 1.1; letter-spacing: -0.02em;
     transition: color 200ms ease-out;
   }
-  :lang(zh) .nx-title { font-weight: 600; letter-spacing: 0; }
+  :global(:lang(zh)) .nx-title { font-weight: 600; letter-spacing: 0; }
   .nx-num { font-family: var(--mono); font-weight: 400; font-size: 0.5em; color: var(--faint); }
   .nx-arrow { transition: transform 200ms ease-out; }
   .nx:hover .nx-title { color: var(--blue); }

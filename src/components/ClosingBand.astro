@@ -17,6 +17,6 @@ const { headline, sub, cta, href } = Astro.props;
   .cb { background: var(--navy); color: #fff; padding-block: clamp(80px, 11vw, 160px); border-bottom: 1px solid rgba(255, 255, 255, 0.12); }
   .cb-in { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 36px; }
   .cb-title { max-width: 20ch; color: #fff; text-wrap: balance; }
-  :lang(zh) .cb-title { max-width: 9.4em; }
+  :global(:lang(zh)) .cb-title { max-width: 9.4em; }
   .cb-sub { margin: 22px 0 0; color: rgba(255, 255, 255, 0.66); font-size: clamp(16px, 1.3vw, 19px); }
 </style>

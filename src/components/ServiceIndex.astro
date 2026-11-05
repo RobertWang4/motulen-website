@@ -53,7 +53,7 @@ const ui = getUi(lang);
   .sx-arrow { font-size: 22px; color: var(--faint); transition: color 200ms ease-out, transform 200ms ease-out; }
   .sx-row:hover .sx-num, .sx-row:hover .sx-title, .sx-row:hover .sx-arrow { color: var(--blue); }
   .sx-row:hover .sx-arrow { transform: translateX(4px); }
-  :lang(zh) .sx-title { font-weight: 600; letter-spacing: 0; }
+  :global(:lang(zh)) .sx-title { font-weight: 600; letter-spacing: 0; }
 
   .sx-media {
     position: sticky; top: calc(var(--nav-h) + 32px);

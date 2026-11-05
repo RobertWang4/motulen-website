@@ -23,7 +23,7 @@ const ui = getUi(lang);
   .pl-list { list-style: none; margin: 0; padding: 0; border-bottom: 1px solid var(--line); }
   .pl-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.5fr); gap: 8px clamp(16px, 3vw, 48px); padding: 18px 0; border-top: 1px solid var(--line); align-items: baseline; }
   .pl-name { font-family: var(--display); font-weight: 700; font-size: clamp(18px, 1.6vw, 22px); }
-  :lang(zh) .pl-name { font-weight: 600; }
+  :global(:lang(zh)) .pl-name { font-weight: 600; }
   .pl-sc, .pl-ex { font-size: 15px; color: var(--muted); }
   .pl .note { margin-top: 20px; }
   .pl .more { margin-top: clamp(28px, 3vw, 40px); }

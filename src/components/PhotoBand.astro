@@ -18,5 +18,5 @@ const { photo, alt, text } = Astro.props;
     margin: 0; max-width: 22ch; color: #fff;
     font-family: var(--display); font-weight: 700; font-size: clamp(26px, 3.4vw, 48px); line-height: 1.15; letter-spacing: -0.02em;
   }
-  :lang(zh) .pb-text { font-weight: 600; letter-spacing: 0.02em; }
+  :global(:lang(zh)) .pb-text { font-weight: 600; letter-spacing: 0.02em; }
 </style>
