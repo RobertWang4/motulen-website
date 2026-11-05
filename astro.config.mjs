@@ -45,6 +45,9 @@ export default defineConfig({
   trailingSlash: 'always',
   // load the next page on hover so the transition starts from a ready document
   prefetch: { prefetchAll: true, defaultStrategy: 'hover' },
+  // Inline CSS into every page. GitHub Pages swaps all hashed assets on each deploy, so a cached
+  // or prefetched old page would otherwise request a stylesheet that no longer exists and render unstyled.
+  build: { inlineStylesheets: 'always' },
   integrations: [sitemap(), rewriteBase()],
   vite: { plugins: [tailwindcss()] },
 });

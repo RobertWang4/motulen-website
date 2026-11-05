@@ -32,7 +32,7 @@ const closing = getHome(lang).closing;
         </ol>
       </nav>
 
-      <article class="sv-body">
+      <article class="sv-body" data-swap="body">
         <p class="tag"><b>{s.number}</b><span>/</span><span>{ui.tags.service}</span></p>
         <h1 class="sv-title">
           {s.title}
@@ -53,7 +53,7 @@ const closing = getHome(lang).closing;
     </div>
   </section>
 
-  <a href={`/${lang}/services/${next.id}/`} class="nx">
+  <a href={`/${lang}/services/${next.id}/`} class="nx" data-swap="nx">
     <span class="wrap nx-in">
       <span class="tag">{ui.cta.next}</span>
       <span class="nx-title"><span class="nx-num">{next.number}</span>{next.title}<span class="nx-arrow" aria-hidden="true">→</span></span>
@@ -62,6 +62,67 @@ const closing = getHome(lang).closing;
 
   <ClosingBand headline={closing.headline} sub={closing.sub} cta={ui.cta.contact} href={`/${lang}/contact/`} />
 </Base>
+
+<script>
+  /**
+   * Switch services in place: clicking the side list (or "next service") fetches the
+   * target page and swaps only the content column and the next-link, so the scroll
+   * position and the side list stay where they are. Plain links still work without JS.
+   */
+  const swap = async (url: string, push: boolean) => {
+    let doc: Document;
+    try {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(String(res.status));
+      doc = new DOMParser().parseFromString(await res.text(), 'text/html');
+    } catch {
+      location.href = url;
+      return;
+    }
+    const apply = () => {
+      for (const key of ['body', 'nx']) {
+        const cur = document.querySelector(`[data-swap="${key}"]`);
+        const next = doc.querySelector(`[data-swap="${key}"]`);
+        if (cur && next) cur.replaceWith(document.importNode(next, true));
+      }
+      document.querySelectorAll<HTMLAnchorElement>('.sv-nav ol a').forEach((a) => {
+        const on = new URL(a.href).pathname === new URL(url, location.href).pathname;
+        a.classList.toggle('cur', on);
+        if (on) a.setAttribute('aria-current', 'page');
+        else a.removeAttribute('aria-current');
+      });
+      // keep title, description, hreflang and the language switch pointing at the new service
+      document.title = doc.title;
+      const desc = doc.querySelector('meta[name="description"]')?.getAttribute('content') ?? '';
+      document.querySelector('meta[name="description"]')?.setAttribute('content', desc);
+      const pairs: [string, string][] = [['link[rel="alternate"]', 'href'], ['[data-alt]', 'href']];
+      for (const [sel, attr] of pairs) {
+        const olds = document.querySelectorAll(sel);
+        const news = doc.querySelectorAll(sel);
+        olds.forEach((el, i) => news[i] && el.setAttribute(attr, news[i].getAttribute(attr) ?? ''));
+      }
+      if (push) history.pushState({ svc: true }, '', url);
+      // if the reader has scrolled past the top of the content, bring the new content's top into view
+      const body = document.querySelector('[data-swap="body"]') as HTMLElement;
+      const navH = (document.getElementById('site-nav') as HTMLElement).offsetHeight;
+      const top = body.getBoundingClientRect().top;
+      if (top < navH) window.scrollBy({ top: top - navH - 24, behavior: 'smooth' });
+    };
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if ('startViewTransition' in document && !reduce) (document as any).startViewTransition(apply);
+    else apply();
+  };
+
+  document.addEventListener('click', (e) => {
+    const a = (e.target as Element).closest<HTMLAnchorElement>('.sv-nav ol a, [data-swap="nx"]');
+    if (!a || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || (e as MouseEvent).button !== 0) return;
+    if (a.getAttribute('aria-current') === 'page') { e.preventDefault(); return; }
+    e.preventDefault();
+    swap(a.href, true);
+  });
+  history.replaceState({ svc: true }, '');
+  window.addEventListener('popstate', (e) => { if (e.state?.svc) swap(location.href, false); });
+</script>
 
 <style>
   .sv-sec { padding-block: clamp(40px, 6vw, 88px) clamp(72px, 10vw, 144px); }

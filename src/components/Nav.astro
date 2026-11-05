@@ -19,7 +19,7 @@ const other = otherLang(lang);
       {links.map((n) => (
         <a href={n.href} class:list={['navlink', current.startsWith(n.href) && 'current']} aria-current={current.startsWith(n.href) ? 'page' : undefined}>{n.label}</a>
       ))}
-      <a href={altHref} class="lang" hreflang={other === 'zh' ? 'zh-CN' : 'pl'} lang={other === 'zh' ? 'zh-CN' : 'pl'}>{ui.langName[other]}</a>
+      <a href={altHref} data-alt class="lang" hreflang={other === 'zh' ? 'zh-CN' : 'pl'} lang={other === 'zh' ? 'zh-CN' : 'pl'}>{ui.langName[other]}</a>
       <a href={`/${lang}/contact/`} class="navcta">{ui.nav.contact}</a>
     </nav>
 
@@ -30,7 +30,7 @@ const other = otherLang(lang);
 
   <nav id="nav-mobile" class="navmobile" hidden>
     {all.map((n) => <a href={n.href}>{n.label}</a>)}
-    <a href={altHref} class="lang">{ui.langName[lang]} / {ui.langName[other]}</a>
+    <a href={altHref} data-alt class="lang">{ui.langName[lang]} / {ui.langName[other]}</a>
   </nav>
 </header>
 
