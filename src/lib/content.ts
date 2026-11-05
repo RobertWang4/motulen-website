@@ -27,7 +27,7 @@ const Ui = z.object({
   }),
   langName: z.record(z.enum(LANGS), z.string()),
   menu: z.string(),
-  cta: z.object({ contact: z.string(), more: z.string(), allServices: z.string(), next: z.string(), approach: z.string(), about: z.string(), projects: z.string(), team: z.string() }),
+  cta: z.object({ contact: z.string(), more: z.string(), allServices: z.string(), approach: z.string(), about: z.string(), projects: z.string(), team: z.string() }),
   status: z.object({ planned: z.string() }),
   roles: z.object({ base: z.string(), coverage: z.string() }),
   tags: z.object({

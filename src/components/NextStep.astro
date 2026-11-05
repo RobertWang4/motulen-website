@@ -1,9 +1,9 @@
 ---
 /** Full-width "next" link before the closing band: mono label, big title with arrow, hairline on top. */
-interface Props { href: string; label: string; title: string; num?: string; swap?: boolean }
-const { href, label, title, num, swap = false } = Astro.props;
+interface Props { href: string; label: string; title: string; num?: string }
+const { href, label, title, num } = Astro.props;
 ---
-<a href={href} class="nx" data-swap={swap ? 'nx' : undefined}>
+<a href={href} class="nx">
   <span class="wrap nx-in">
     <span class="tag">{label}</span>
     <span class="nx-title">{num && <span class="nx-num">{num}</span>}{title}<span class="nx-arrow" aria-hidden="true">→</span></span>

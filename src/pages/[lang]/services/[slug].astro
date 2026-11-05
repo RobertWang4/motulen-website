@@ -12,7 +12,6 @@ const lang = Astro.params.lang as Lang;
 const all = listServices(lang);
 const i = all.findIndex((s) => s.id === Astro.params.slug);
 const s = all[i];
-const next = all[i + 1];
 const ui = getUi(lang);
 const proj = getProjects(lang);
 const related = proj.rows.filter((_, k) => proj.rowServices[k].includes(s.id)).map((r) => [r[0], r[1], '']);
@@ -63,17 +62,16 @@ const closing = getHome(lang).closing;
     </div>
   </section>
 
-  {next
-    ? <NextStep href={`/${lang}/services/${next.id}/`} label={ui.cta.next} title={next.title} num={next.number} swap />
-    : <NextStep href={`/${lang}/approach/`} label={ui.nextStep} title={ui.nav.approach} swap />}
+  <!-- services switch in the side list, so the page ends by moving on to the next part of the story -->
+  <NextStep href={`/${lang}/approach/`} label={ui.nextStep} title={ui.nav.approach} />
 
   <ClosingBand headline={closing.headline} sub={closing.sub} cta={ui.cta.contact} href={`/${lang}/contact/`} />
 </Base>
 
 <script>
   /**
-   * Switch services in place: clicking the side list (or "next service") fetches the
-   * target page and swaps only the content column and the next-link, so the scroll
+   * Switch services in place: clicking the side list fetches the
+   * target page and swaps only the content column, so the scroll
    * position and the side list stay where they are. Plain links still work without JS.
    */
   const swap = async (url: string, push: boolean) => {
@@ -87,7 +85,7 @@ const closing = getHome(lang).closing;
       return;
     }
     const apply = () => {
-      for (const key of ['body', 'nx']) {
+      for (const key of ['body']) {
         const cur = document.querySelector(`[data-swap="${key}"]`);
         const next = doc.querySelector(`[data-swap="${key}"]`);
         if (cur && next) {
@@ -126,7 +124,7 @@ const closing = getHome(lang).closing;
   };
 
   document.addEventListener('click', (e) => {
-    const a = (e.target as Element).closest<HTMLAnchorElement>('.sv-nav ol a, [data-swap="nx"]');
+    const a = (e.target as Element).closest<HTMLAnchorElement>('.sv-nav ol a');
     if (!a || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || (e as MouseEvent).button !== 0) return;
     if (a.getAttribute('aria-current') === 'page') { e.preventDefault(); return; }
     e.preventDefault();

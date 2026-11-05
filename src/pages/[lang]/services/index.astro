@@ -11,7 +11,6 @@ export const getStaticPaths = () => LANGS.map((lang) => ({ params: { lang } }));
 const lang = Astro.params.lang as Lang;
 const p = getServicesPage(lang);
 const ui = getUi(lang);
-const first = listServices(lang)[0];
 const closing = getHome(lang).closing;
 ---
 <Base lang={lang} title={p.title} description={p.description}>
@@ -22,7 +21,7 @@ const closing = getHome(lang).closing;
       <ServiceIndex lang={lang} services={listServices(lang)} />
     </div>
   </section>
-  <NextStep href={`/${lang}/services/${first.id}/`} label={ui.nextStep} title={first.title} num={first.number} />
+  <NextStep href={`/${lang}/approach/`} label={ui.nextStep} title={ui.nav.approach} />
 
   <ClosingBand headline={closing.headline} sub={closing.sub} cta={ui.cta.contact} href={`/${lang}/contact/`} />
 </Base>
