@@ -59,6 +59,7 @@
 ## Motion
 - **Approach:** minimal-functional.
 - **Allowed:** opacity/translateY(12px) reveal on scroll via IntersectionObserver; hover colour/underline; image hover scale ≤ 1.03.
+- **Page transitions (2026-11-04):** cross-document view transition. Old page fades out 180ms ease-in, new page fades up 12px over 360ms ease-out; the header does not animate. Links prefetch on hover.
 - **Forbidden:** marquees, ken-burns, parallax, count-ups, drag rails, scroll-pinned sections.
 - **Easing:** enter ease-out, exit ease-in, move ease-in-out. **Duration:** micro 100ms · short 200ms · medium 350ms · long 600ms (reveals).
 - Respect `prefers-reduced-motion`: reveals render immediately.
@@ -74,5 +75,6 @@
 | 2026-09-13 | Initial design system created via /design-consultation | Based on user brief: white-dominant, minimal, "现代、智能、领先", tender-ready; reference xchanneltech.com |
 | 2026-09-13 | Font: Satoshi chosen over Geist / General Sans / Cabinet / Clash / Manrope | User picked A from demo/font-preview.html |
 | 2026-09-13 | Hero: full-bleed photo with overlaid text (not split layout) | User preference |
+| 2026-11-04 | Page crossfade + hover prefetch; market names smaller and on one line | User: switching pages felt abrupt; 罗马尼亚 wrapped |
 | 2026-11-04 | Rebrand to MOTULEN GROUP, languages zh + pl, page patterns above | User: keep this visual style, rebuild from the MOTULEN deck, make it more 大气 while telling the story |
 | 2026-09-13 | Colour: white primary, blue as accent beyond just the CTA | User: "白蓝，白色为主，蓝色点缀" |

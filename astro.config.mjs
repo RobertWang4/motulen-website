@@ -43,6 +43,8 @@ export default defineConfig({
   site: SITE,
   base: BASE,
   trailingSlash: 'always',
+  // load the next page on hover so the transition starts from a ready document
+  prefetch: { prefetchAll: true, defaultStrategy: 'hover' },
   integrations: [sitemap(), rewriteBase()],
   vite: { plugins: [tailwindcss()] },
 });
