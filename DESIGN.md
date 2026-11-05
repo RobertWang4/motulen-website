@@ -1,10 +1,10 @@
 # Design System — AIoT P.S.A.
 
 ## Product Context
-- **What this is:** Corporate website for AIoT P.S.A., a Polish occupational-safety / BHP outsourcing company (machinery safety, OHS, fire, environment, measurements, occupational medicine, staffing, ISO, ADR). Bilingual PL/EN, 105 static pages, content from JSON.
-- **Who it's for:** Procurement and tender reviewers, plant and EHS managers comparing vendors. Desktop-first, in a hurry, opened from a bid document.
-- **Space/industry:** Industrial services / EHS consulting. Peers: xchanneltech.com (reference), Siemens / ABB corporate sites (ambition level).
-- **Project type:** Marketing site with deep service catalogue.
+- **What this is:** Corporate website for MOTULEN GROUP, a Poland-based European enterprise-services company: staffing and operations outsourcing, warehouse engineering, commercial fit-out, headhunting (incl. talent from China), with warehouse-robot service and cross-border teams in development. Bilingual **Chinese / Polish**, 24 static pages, content from JSON. Source of all copy: the company's Chinese corporate deck.
+- **Who it's for:** Overseas (mainly Chinese) companies building or running operations in Europe, and Polish/European employers needing staff and site services. Often opened from a link sent after a first conversation.
+- **Space/industry:** Cross-border B2B services (HR outsourcing, logistics, site works).
+- **Project type:** Marketing site, six business-line pages.
 
 ## Aesthetic Direction
 - **Direction:** Industrial modernism — white ground, large photography, precise typography.
@@ -18,6 +18,8 @@
 - **Body:** Instrument Sans 400/500/600 (Google Fonts) — clear, neutral, pairs with Satoshi's geometry. Line-height 1.6.
 - **UI/Labels:** Instrument Sans 500/600.
 - **Data / numerals / eyebrows:** IBM Plex Mono 400/500 (Google Fonts), 12px, letter-spacing .12em, uppercase, tabular-nums. Used sparingly: section numbers (01–10), credentials strip, counts, eyebrow labels. Never for running text.
+- **Chinese:** no CJK webfont. Every stack falls back to `"PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC"` after the Latin face. Under `:lang(zh)`: headings weight 600, letter-spacing 0, line-height 1.2; body line-height 1.75. Width limits for Chinese headings use `em`, not `ch`.
+- **Polish:** no automatic hyphenation on display type; `overflow-wrap: break-word` only.
 - **Loading:** `https://api.fontshare.com/v2/css?f[]=satoshi@500,700&display=swap` and `https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap`. Fallback stacks: system-ui / ui-monospace.
 - **Scale:** h1 clamp(40px, 6vw, 84px) · h2 clamp(30px, 3.8vw, 52px) · h3 24px · lede 20px · body 16px · small 14px · label 12px mono.
 
@@ -45,6 +47,15 @@
 - **Border radius:** sm 2px (images), md 4px (buttons, inputs); no pill shapes, no large radii.
 - **Copy budget:** home ≤ 60 words of body text; one idea per section; depth lives on subpages.
 
+## Page Patterns (2026-11-04)
+- **Mono section tag:** `02 / SERVICES` in Plex Mono above every h2 (number in blue). Tags are English on both language versions.
+- **Statement screen:** one positioning sentence set at clamp(32px, 5vw, 76px), nothing else.
+- **Business index:** six full-width numbered rows with hairlines; desktop shows the hovered row's photo in a sticky frame (CSS `:has()`, opacity 200ms). Planned lines carry a quiet grey chip.
+- **Markets row:** five country names in large type; Poland marked "base" with a blue top rule. No map, so nothing implies offices.
+- **Stages:** three columns joined by one hairline with blue dots and large `line`-grey numerals.
+- **Service detail:** photo header with title overlaid; sticky six-item side nav; grouped lists with blue dash bullets; full-width "next service" link.
+- **Footnotes:** compliance and scope notes use `.note` (14px muted) and are never hidden.
+
 ## Motion
 - **Approach:** minimal-functional.
 - **Allowed:** opacity/translateY(12px) reveal on scroll via IntersectionObserver; hover colour/underline; image hover scale ≤ 1.03.
@@ -63,4 +74,5 @@
 | 2026-09-13 | Initial design system created via /design-consultation | Based on user brief: white-dominant, minimal, "现代、智能、领先", tender-ready; reference xchanneltech.com |
 | 2026-09-13 | Font: Satoshi chosen over Geist / General Sans / Cabinet / Clash / Manrope | User picked A from demo/font-preview.html |
 | 2026-09-13 | Hero: full-bleed photo with overlaid text (not split layout) | User preference |
+| 2026-11-04 | Rebrand to MOTULEN GROUP, languages zh + pl, page patterns above | User: keep this visual style, rebuild from the MOTULEN deck, make it more 大气 while telling the story |
 | 2026-09-13 | Colour: white primary, blue as accent beyond just the CTA | User: "白蓝，白色为主，蓝色点缀" |

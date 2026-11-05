@@ -7,7 +7,6 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "scrape": "python3 scripts/scrape.py",
     "verify": "node scripts/verify.mjs"
   },
   "dependencies": {
