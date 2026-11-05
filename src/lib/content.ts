@@ -32,7 +32,7 @@ const Ui = z.object({
   roles: z.object({ base: z.string(), coverage: z.string() }),
   tags: z.object({
     about: z.string(), services: z.string(), markets: z.string(), approach: z.string(),
-    values: z.string(), team: z.string(), experience: z.string(), projects: z.string(), contact: z.string(), service: z.string(), lifecycle: z.string(),
+    values: z.string(), team: z.string(), experience: z.string(), projects: z.string(), contact: z.string(), service: z.string(),
   }),
   nextStep: z.string(),
   relatedProjects: z.string(),
@@ -52,7 +52,6 @@ const Home = z.object({
     footer: z.string(),
     footerService: z.string(),
   }),
-  services: z.object({ headline: z.string() }),
   band: z.object({ text: z.string(), ...Photo }),
   markets: z.object({ headline: z.string(), items: z.array(Market), note: z.string() }),
   approach: z.object({ headline: z.string() }),

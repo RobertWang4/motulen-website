@@ -1,7 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
 import SectionHead from '../../components/SectionHead.astro';
-import ServiceIndex from '../../components/ServiceIndex.astro';
 import Markets from '../../components/Markets.astro';
 import Lifecycle from '../../components/Lifecycle.astro';
 import ProjectList from '../../components/ProjectList.astro';
@@ -9,7 +8,7 @@ import NextStep from '../../components/NextStep.astro';
 import Stages from '../../components/Stages.astro';
 import PhotoBand from '../../components/PhotoBand.astro';
 import ClosingBand from '../../components/ClosingBand.astro';
-import { LANGS, getHome, getUi, getApproach, getProjects, listServices, type Lang } from '../../lib/content';
+import { LANGS, getHome, getUi, getApproach, getProjects, type Lang } from '../../lib/content';
 
 export const getStaticPaths = () => LANGS.map((lang) => ({ params: { lang } }));
 const lang = Astro.params.lang as Lang;
@@ -17,7 +16,6 @@ const h = getHome(lang);
 const ui = getUi(lang);
 const projects = getProjects(lang);
 const approach = getApproach(lang);
-const services = listServices(lang);
 ---
 <Base lang={lang} title={h.title} description={h.description}>
   <!-- who we are -->
@@ -54,25 +52,19 @@ const services = listServices(lang);
   <!-- one warehouse, end to end -->
   <section class="sec sec-line">
     <div class="wrap">
-      <SectionHead num="02" tag={ui.tags.lifecycle} headline={h.lifecycle.headline} />
+      <SectionHead num="02" tag={ui.tags.services} headline={h.lifecycle.headline} />
       <Lifecycle lang={lang} steps={h.lifecycle.steps} footer={h.lifecycle.footer} footerService={h.lifecycle.footerService} />
+      <a href={`/${lang}/services/`} class="ul more reveal">{ui.cta.allServices}<i>→</i></a>
     </div>
   </section>
 
-  <!-- what we do -->
-  <section class="sec sec-line">
-    <div class="wrap">
-      <SectionHead num="03" tag={ui.tags.services} headline={h.services.headline} />
-      <ServiceIndex lang={lang} services={services} />
-    </div>
-  </section>
 
   <PhotoBand photo={h.band.photo} alt={h.band.alt} text={h.band.text} />
 
   <!-- where -->
   <section class="sec">
     <div class="wrap">
-      <SectionHead num="04" tag={ui.tags.markets} headline={h.markets.headline} />
+      <SectionHead num="03" tag={ui.tags.markets} headline={h.markets.headline} />
       <Markets lang={lang} markets={h.markets.items} note={h.markets.note} />
     </div>
   </section>
@@ -80,7 +72,7 @@ const services = listServices(lang);
   <!-- how we work -->
   <section class="sec sec-line">
     <div class="wrap">
-      <SectionHead num="05" tag={ui.tags.approach} headline={h.approach.headline} />
+      <SectionHead num="04" tag={ui.tags.approach} headline={h.approach.headline} />
       <Stages stages={approach.stages} />
       <a href={`/${lang}/approach/`} class="ul more reveal">{ui.cta.approach}<i>→</i></a>
     </div>
@@ -89,7 +81,7 @@ const services = listServices(lang);
   <!-- experience -->
   <section class="sec sec-line">
     <div class="wrap">
-      <SectionHead num="06" tag={ui.tags.projects} headline={projects.headline} />
+      <SectionHead num="05" tag={ui.tags.projects} headline={projects.headline} />
       <ProjectList lang={lang} rows={projects.rows} note={projects.note} />
     </div>
   </section>
@@ -97,7 +89,7 @@ const services = listServices(lang);
   <!-- why us -->
   <section class="sec values">
     <div class="wrap">
-      <SectionHead num="07" tag={ui.tags.values} headline={h.values.headline} />
+      <SectionHead num="06" tag={ui.tags.values} headline={h.values.headline} />
       <ul class="vals">
         {approach.values.map((v) => (
           <li class="val reveal">

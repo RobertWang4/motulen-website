@@ -1,5 +1,5 @@
 ---
-/** Five lifecycle steps joined by one hairline (same language as Stages), each linking to its service. */
+/** Home services block: five lifecycle steps, each with its service photo, joined by one hairline rail and linking to the service. */
 import { getService, getUi, type Lang } from '../lib/content';
 interface Props { lang: Lang; steps: { title: string; text: string; service: string }[]; footer: string; footerService: string }
 const { lang, steps, footer, footerService } = Astro.props;
@@ -11,7 +11,8 @@ const fs = getService(lang, footerService);
   <ol class="lc-row">
     {items.map((s, i) => (
       <li class="lc-item reveal">
-        <span class="lc-dot" aria-hidden="true"></span>
+        <a href={`/${lang}/services/${s.svc.id}/`} class="lc-shot" tabindex="-1" aria-hidden="true"><img src={s.svc.photo} alt="" loading="lazy" /></a>
+        <span class="lc-rail" aria-hidden="true"><span class="lc-dot"></span></span>
         <span class="lc-num">{String(i + 1).padStart(2, '0')}</span>
         <h3 class="h3 lc-title">{s.title}</h3>
         <p class="lc-text">{s.text}</p>
@@ -29,9 +30,15 @@ const fs = getService(lang, footerService);
 </div>
 
 <style>
-  .lc-row { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(20px, 2.4vw, 40px); position: relative; }
-  .lc-row::before { content: ''; position: absolute; left: 0; right: 0; top: 5px; height: 1px; background: var(--line); }
-  .lc-item { position: relative; padding-top: 36px; }
+  .lc-row { --gap: clamp(20px, 2.4vw, 40px); list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--gap); }
+  .lc-item { position: relative; min-width: 0; }
+  .lc-shot { display: block; aspect-ratio: 4 / 5; overflow: hidden; border-radius: var(--r-sm); background: var(--surface); }
+  .lc-shot img { width: 100%; height: 100%; object-fit: cover; transition: transform 350ms ease-out; }
+  .lc-item:hover .lc-shot img { transform: scale(1.03); }
+  /* one continuous rail under the photos: each item draws its segment plus the gap to the next */
+  .lc-rail { position: relative; display: block; height: 11px; margin: 24px 0 22px; }
+  .lc-rail::before { content: ''; position: absolute; left: 0; right: calc(-1 * var(--gap)); top: 5px; height: 1px; background: var(--line); }
+  .lc-item:last-child .lc-rail::before { right: 0; }
   .lc-dot { position: absolute; top: 0; left: 0; width: 11px; height: 11px; border-radius: 50%; background: var(--blue); }
   .lc-num { display: block; font-family: var(--mono); font-size: clamp(36px, 3.6vw, 56px); line-height: 1; color: var(--line); font-variant-numeric: tabular-nums; }
   .lc-title { margin: 18px 0 0; }
@@ -44,9 +51,13 @@ const fs = getService(lang, footerService);
   :global(:lang(zh)) .lc-foot p { font-weight: 600; }
   @media (max-width: 1100px) and (min-width: 900px) { .lc-row { gap: 16px; } }
   @media (max-width: 899px) {
-    .lc-row { grid-template-columns: 1fr; gap: 40px; }
-    .lc-row::before { left: 5px; right: auto; top: 0; bottom: 0; width: 1px; height: auto; }
-    .lc-item { padding: 0 0 0 36px; }
-    .lc-dot { top: 6px; }
+    .lc-row { grid-template-columns: 1fr 1fr; gap: 40px 20px; }
+    .lc-shot { aspect-ratio: 4 / 3; }
+  }
+  @media (max-width: 600px) {
+    .lc-row { grid-template-columns: 1fr; gap: 44px; }
+    .lc-shot { aspect-ratio: 16 / 9; }
+    .lc-rail { margin: 16px 0 14px; }
+    .lc-rail::before { right: 0; }
   }
 </style>
