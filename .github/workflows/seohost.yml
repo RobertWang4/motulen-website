@@ -28,6 +28,7 @@ jobs:
       - run: npm run verify
       - run: sudo apt-get update && sudo apt-get install -y lftp
       - name: Upload website over FTPS
+        timeout-minutes: 3
         env:
           LFTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
         run: |
@@ -36,6 +37,8 @@ jobs:
             set ftp:ssl-protect-data true;
             set ssl:verify-certificate true;
             set cmd:fail-exit true;
+            set net:timeout 15;
+            set net:max-retries 2;
             mirror --reverse --no-perms --ignore-time dist/ ./;
             bye
           '
