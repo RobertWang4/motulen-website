@@ -4,20 +4,23 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import { site, otherLang, type Lang } from '../lib/content';
 
-interface Props { lang: Lang; title: string; description?: string; altPath?: string }
-const { lang, title, description = '', altPath } = Astro.props;
+interface Props { lang: Lang; title: string; description?: string }
+const { lang, title, description = '' } = Astro.props;
 const path = Astro.url.pathname;
-const alt = altPath ?? path.replace(`/${lang}/`, `/${otherLang(lang)}/`);
+const alt = path.replace(`/${lang}/`, `/${otherLang(lang)}/`);
+const hreflang = (l: Lang) => (l === 'zh' ? 'zh-CN' : 'pl');
+const fullTitle = title === site.brand.name ? title : `${title} · ${site.brand.name}`;
 ---
-<html lang={lang}>
+<html lang={hreflang(lang)}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title} · {site.brand.name}</title>
+    <title>{fullTitle}</title>
     <meta name="description" content={description} />
-    <link rel="icon" href={site.brand.logo} />
-    <link rel="alternate" hreflang={lang} href={new URL(path, Astro.site)} />
-    <link rel="alternate" hreflang={otherLang(lang)} href={new URL(alt, Astro.site)} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="alternate" hreflang={hreflang(lang)} href={new URL(path, Astro.site)} />
+    <link rel="alternate" hreflang={hreflang(otherLang(lang))} href={new URL(alt, Astro.site)} />
+    <script is:inline>document.documentElement.classList.add('js');</script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
@@ -27,7 +30,7 @@ const alt = altPath ?? path.replace(`/${lang}/`, `/${otherLang(lang)}/`);
   <body>
     <Nav lang={lang} altHref={alt} />
     <main><slot /></main>
-    <Footer lang={lang} />
+    <Footer lang={lang} altHref={alt} />
     <script>
       const io = new IntersectionObserver(
         (es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }),

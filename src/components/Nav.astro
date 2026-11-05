@@ -1,34 +1,35 @@
 ---
-import { site, otherLang, t, type Lang } from '../lib/content';
+import { site, getUi, otherLang, type Lang } from '../lib/content';
 interface Props { lang: Lang; altHref: string }
 const { lang, altHref } = Astro.props;
-const nav = site.nav[lang];
+const ui = getUi(lang);
 const current = Astro.url.pathname;
-const links = nav.filter((n) => n.id !== 'home' && n.id !== 'contact');
+const all = (['home', 'about', 'services', 'approach', 'projects', 'contact'] as const).map((id) => ({
+  id, label: ui.nav[id], href: id === 'home' ? `/${lang}/` : `/${lang}/${id}/`,
+}));
+const links = all.filter((n) => n.id !== 'home' && n.id !== 'contact');
+const other = otherLang(lang);
 ---
 <header id="site-nav" class="site-nav">
   <div class="nav-in">
-    <a href={`/${lang}/`} class="brand">
-      <img src={site.brand.logo} alt="" />
-      <span>{site.brand.name}</span>
-    </a>
+    <a href={`/${lang}/`} class="brand">{site.brand.name}</a>
 
     <nav class="navlinks">
       {links.map((n) => (
         <a href={n.href} class:list={['navlink', current.startsWith(n.href) && 'current']}>{n.label}</a>
       ))}
-      <a href={altHref} class="lang">{otherLang(lang)}</a>
-      <a href={`/${lang}/contact/`} class="navcta">{t(lang, 'Kontakt', 'Contact')}</a>
+      <a href={altHref} class="lang" hreflang={other === 'zh' ? 'zh-CN' : 'pl'} lang={other === 'zh' ? 'zh-CN' : 'pl'}>{ui.langName[other]}</a>
+      <a href={`/${lang}/contact/`} class="navcta">{ui.nav.contact}</a>
     </nav>
 
-    <button id="nav-toggle" class="navtoggle" aria-label="Menu" aria-expanded="false">
+    <button id="nav-toggle" class="navtoggle" aria-label={ui.menu} aria-expanded="false">
       <span></span><span></span>
     </button>
   </div>
 
   <nav id="nav-mobile" class="navmobile" hidden>
-    {nav.map((n) => <a href={n.href}>{n.label}</a>)}
-    <a href={altHref} class="lang">{lang.toUpperCase()} / {otherLang(lang).toUpperCase()}</a>
+    {all.map((n) => <a href={n.href}>{n.label}</a>)}
+    <a href={altHref} class="lang">{ui.langName[lang]} / {ui.langName[other]}</a>
   </nav>
 </header>
 
@@ -42,9 +43,10 @@ const links = nav.filter((n) => n.id !== 'home' && n.id !== 'contact');
     display: flex; align-items: center; gap: 24px;
     height: var(--nav-h); padding-inline: var(--pad);
   }
-  .brand { display: flex; align-items: center; gap: 11px; flex: none; }
-  .brand img { height: 26px; width: auto; }
-  .brand span { font-family: var(--display); font-size: 16px; font-weight: 700; letter-spacing: -0.02em; color: var(--ink); }
+  .brand {
+    flex: none; font-family: var(--display); font-size: 17px; font-weight: 700;
+    letter-spacing: 0.04em; color: var(--ink); white-space: nowrap;
+  }
 
   .navlinks { margin-left: auto; display: flex; align-items: center; gap: clamp(16px, 2vw, 34px); }
   .navlink { font-size: 15px; font-weight: 500; color: var(--ink); position: relative; white-space: nowrap; }
@@ -56,10 +58,7 @@ const links = nav.filter((n) => n.id !== 'home' && n.id !== 'contact');
   .navlink:hover { color: var(--blue); }
   .navlink:hover::after, .navlink.current::after { transform: scaleX(1); }
   .navlink.current { color: var(--blue); }
-  .lang {
-    font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.12em;
-    font-size: 12px; font-weight: 500; color: var(--faint);
-  }
+  .lang { font-size: 14px; font-weight: 500; color: var(--muted); white-space: nowrap; }
   .lang:hover { color: var(--blue); }
   .navcta {
     border: 1px solid var(--ink); border-radius: var(--r-md);
@@ -86,7 +85,7 @@ const links = nav.filter((n) => n.id !== 'home' && n.id !== 'contact');
   }
   .navmobile a:last-child {
     border-bottom: 0; color: var(--faint);
-    font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em;
+    font-size: 15px;
   }
 
   @media (max-width: 900px) {

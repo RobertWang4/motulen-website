@@ -1,64 +1,58 @@
 ---
-import { site, otherLang, t, type Lang } from '../lib/content';
-interface Props { lang: Lang }
-const { lang } = Astro.props;
-const path = Astro.url.pathname;
-const alt = path.replace(`/${lang}/`, `/${otherLang(lang)}/`);
+import { site, getUi, otherLang, type Lang } from '../lib/content';
+interface Props { lang: Lang; altHref: string }
+const { lang, altHref } = Astro.props;
+const ui = getUi(lang);
+const nav = (['home', 'about', 'services', 'approach', 'projects', 'contact'] as const).map((id) => ({
+  label: ui.nav[id], href: id === 'home' ? `/${lang}/` : `/${lang}/${id}/`,
+}));
 ---
 <footer class="site-footer">
   <div class="fgrid">
     <div class="fbrand">
-      <span class="chip"><img src={site.brand.logo} alt={site.brand.name} /></span>
-      <p>{t(lang,
-        'Bezpieczeństwo maszyn, BHP, ppoż. i środowisko — dla przemysłu od 2008 roku.',
-        'Machine safety, health and safety, fire and environment — for industry since 2008.')}</p>
+      <a href={`/${lang}/`} class="fmark">{site.brand.name}</a>
+      <p>{ui.footer.tagline}</p>
     </div>
     <div>
-      <h4>{t(lang, 'Nawigacja', 'Navigate')}</h4>
-      <ul>
-        {site.nav[lang].map((n) => <li><a href={n.href}>{n.label}</a></li>)}
-        <li><a href={`/${lang}/safety-culture/`}>{t(lang, 'Kultura bezpieczeństwa', 'Safety culture')}</a></li>
-      </ul>
+      <h4>{ui.footer.navTitle}</h4>
+      <ul>{nav.map((n) => <li><a href={n.href}>{n.label}</a></li>)}</ul>
     </div>
     <div>
-      <h4>{t(lang, 'Kontakt', 'Contact')}</h4>
+      <h4>{ui.footer.contactTitle}</h4>
       <ul>
         <li><a href={`mailto:${site.contact.email}`}>{site.contact.email}</a></li>
         <li><a href={`tel:${site.contact.phone.replace(/\s/g, '')}`}>{site.contact.phone}</a></li>
-        <li>{site.contact.address}</li>
-        <li><a href={alt}>{lang.toUpperCase()} / {otherLang(lang).toUpperCase()}</a></li>
+        <li>{site.contact.address[lang]}</li>
+        <li><a href={altHref}>{ui.langName[lang]} / {ui.langName[otherLang(lang)]}</a></li>
       </ul>
     </div>
   </div>
   <div class="fbot">
     <span>© {new Date().getFullYear()} {site.brand.name}</span>
-    <span>{t(lang, 'Certyfikat ISO · Akredytowane laboratorium PCA', 'ISO certified · PCA accredited laboratory')}</span>
   </div>
 </footer>
 
 <style>
   .site-footer {
-    background: var(--navy); color: rgba(255, 255, 255, 0.62);
+    background: var(--navy); color: rgba(255, 255, 255, 0.66);
     padding: clamp(56px, 8vw, 96px) var(--pad) 30px;
   }
   .fgrid {
     margin: 0 auto; max-width: 1360px;
     display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: clamp(28px, 5vw, 72px); align-items: start;
   }
-  .fbrand p { font-size: 15px; line-height: 1.65; max-width: 32ch; margin-top: 20px; }
+  .fmark { font-family: var(--display); font-weight: 700; font-size: 20px; letter-spacing: 0.04em; color: #fff; }
+  .fbrand p { font-size: 15px; line-height: 1.7; max-width: 30ch; margin-top: 20px; }
   .fgrid h4 {
     font-family: var(--mono); font-size: 12px; font-weight: 400;
     letter-spacing: 0.12em; text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.5); margin-bottom: 18px;
+    color: rgba(255, 255, 255, 0.5); margin: 0 0 18px;
   }
   .fgrid ul { list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 15px; margin: 0; padding: 0; }
   .fgrid a { transition: color 0.2s; }
   .fgrid a:hover { color: #fff; }
-  .chip { background: #fff; padding: 7px 10px; line-height: 0; display: inline-block; border-radius: var(--r-sm); }
-  .chip img { height: 28px; width: auto; }
   .fbot {
     margin: clamp(46px, 7vw, 80px) auto 0; max-width: 1360px;
-    display: flex; flex-wrap: wrap; gap: 14px; justify-content: space-between;
     padding-top: 22px; border-top: 1px solid rgba(255, 255, 255, 0.16);
     font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em; color: rgba(255, 255, 255, 0.5);
   }
