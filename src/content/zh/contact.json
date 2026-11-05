@@ -1,0 +1,12 @@
+{
+  "title": "联系我们",
+  "description": "联系 MOTULEN GROUP，沟通您在欧洲的用工、建设和运营需求。",
+  "lede": "告诉我们您在欧洲的用工、建设或运营需求。",
+  "photo": "/img/stock/header-team.jpg",
+  "alt": "",
+  "labels": {
+    "email": "邮箱",
+    "phone": "电话",
+    "address": "地址"
+  }
+}
