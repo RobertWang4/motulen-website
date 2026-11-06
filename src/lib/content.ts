@@ -11,7 +11,7 @@ export const otherLang = (lang: Lang): Lang => (lang === 'zh' ? 'pl' : 'zh');
 const Meta = { title: z.string(), description: z.string() };
 const Photo = { photo: z.string(), alt: z.string() };
 const Group = z.object({ title: z.string(), items: z.array(z.string()) });
-const Table = { columns: z.array(z.string()).length(3), rows: z.array(z.array(z.string()).length(3)), note: z.string() };
+const Table = { columns: z.array(z.string()).length(3), rows: z.array(z.array(z.string()).length(3)), note: z.string().optional() };
 
 const Site = z.object({
   brand: z.object({ name: z.string(), short: z.string() }),

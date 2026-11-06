@@ -42,7 +42,6 @@ const must = [
   ['zh/platform/', '不代表'],
   ['zh/projects/', '具体合作主体和范围'],
   ['pl/services/equipment-service/', 'Plan rozwoju usług'],
-  ['pl/platform/', 'spółki matki'],
   ['pl/platform/', 'posiadania biur'],
   ['pl/projects/', 'Strony i zakres współpracy'],
 ];

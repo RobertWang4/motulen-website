@@ -1,6 +1,6 @@
 ---
-/** Three-column table with a footnote; rows stack on small screens. Empty cells show "—". */
-interface Props { columns: string[]; rows: string[][]; note: string }
+/** Three-column table with an optional footnote; rows stack on small screens. Empty cells show "—". */
+interface Props { columns: string[]; rows: string[][]; note?: string }
 const { columns, rows, note } = Astro.props;
 ---
 <div class="dt reveal">
@@ -12,7 +12,7 @@ const { columns, rows, note } = Astro.props;
       ))}
     </tbody>
   </table>
-  <p class="note">{note}</p>
+  {note && <p class="note">{note}</p>}
 </div>
 
 <style>
