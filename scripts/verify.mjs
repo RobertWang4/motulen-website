@@ -78,5 +78,10 @@ for (const f of walk(DIST).filter((f) => f.endsWith('.html'))) {
   }
 }
 
+// the site root must show the default-language home itself, not a redirect page
+const root = readFileSync(join(DIST, 'index.html'), 'utf8');
+if (/http-equiv="refresh"|Redirecting/.test(root)) problems.push('/: root is a redirect page');
+if (!/<link rel="canonical" href="[^"]*\/zh\/"/.test(root)) problems.push('/: canonical does not point to /zh/');
+
 if (problems.length) { console.error(`FAIL — ${problems.length} problem(s)\n- ` + problems.slice(0, 60).join('\n- ')); process.exit(1); }
 console.log(`PASS — ${LANGS.length * PAGES.length} pages checked`);

@@ -1,4 +1,6 @@
 ---
+// The root shows the default-language home directly (no redirect page); its canonical URL is /<lang>/.
+import HomePage from '../components/HomePage.astro';
 import { site } from '../lib/content';
-return Astro.redirect(`/${site.defaultLanguage}/`);
 ---
+<HomePage lang={site.defaultLanguage} />
