@@ -16,25 +16,25 @@ const closing = getHome(lang).closing;
 <Base lang={lang} title={v.title} description={v.description}>
   <PageHeader tag={ui.tags.value} title={v.title} lede={v.lede} />
 
-  <section class="sec values">
+  <section class="sec">
     <div class="wrap">
       <SectionHead num="01" tag={ui.tags.value} headline={v.values.headline} />
       <ol class="vl">
         {v.values.items.map((it, i) => (
           <li class="vl-row reveal">
             <span class="vl-num">{String(i + 1).padStart(2, '0')}</span>
-            <h3 class="vl-title">{it.title}</h3>
-            {it.items.length > 0 && <ul>{it.items.map((x) => <li>{x}</li>)}</ul>}
+            <h3 class="gh vl-title">{it.title}</h3>
+            {it.items.length > 0 && <ul class="copy">{it.items.map((x) => <li>{x}</li>)}</ul>}
           </li>
         ))}
       </ol>
     </div>
   </section>
 
-  <section class="sec sec-line">
+  <section class="sec sec-alt">
     <div class="wrap">
       <SectionHead num="02" tag={ui.tags.management} headline={v.management.headline} />
-      <p class="mg-lede reveal">{v.management.lede}</p>
+      <p class="lede mg-lede reveal">{v.management.lede}</p>
       <Stages stages={v.management.stages} />
       <p class="note reveal stages-note">{v.management.note}</p>
     </div>
@@ -46,18 +46,14 @@ const closing = getHome(lang).closing;
 
 <style>
   .stages-note { margin-top: clamp(40px, 5vw, 64px); }
-  .sec-line { border-top: 1px solid var(--line); }
-  .mg-lede { margin: -24px 0 clamp(40px, 5vw, 64px); color: var(--teal); font-weight: 600; font-size: clamp(17px, 1.4vw, 21px); }
-  .values { background: var(--surface); }
+  .mg-lede { margin: -24px 0 clamp(40px, 5vw, 64px); }
   .vl { list-style: none; margin: 0; padding: 0; border-bottom: 1px solid var(--line); }
   .vl-row {
     display: grid; grid-template-columns: clamp(56px, 6vw, 96px) minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 16px clamp(16px, 3vw, 48px);
     padding: clamp(24px, 2.6vw, 36px) 0; border-top: 1px solid var(--line); align-items: baseline;
   }
   .vl-num { font-family: var(--mono); font-size: clamp(20px, 2vw, 28px); color: var(--faint); }
-  .vl-title { margin: 0; font-family: var(--display); font-weight: 700; font-size: clamp(22px, 2.2vw, 32px); line-height: 1.2; }
-  :global(:lang(zh)) .vl-title { font-family: var(--display-zh); font-weight: 700; }
-  .vl-row ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; font-size: 17px; color: var(--muted); }
+  .vl-row ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
   @media (max-width: 760px) {
     .vl-row { grid-template-columns: 48px minmax(0, 1fr); }
     .vl-row ul { grid-column: 2; }

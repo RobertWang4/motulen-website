@@ -28,7 +28,7 @@ const cases = p.cases.map((c) => ({ ...c, tags: c.services.map((id) => getServic
                 {c.tags.map((s) => <li><a href={`/${lang}/services/${s.id}/`}>{s.title}</a></li>)}
               </ul>
             </div>
-            <div class="cs-body">{c.paragraphs.map((t) => <p>{t}</p>)}</div>
+            <div class="cs-body copy">{c.paragraphs.map((t, i) => <p class={i === 0 ? 'lede' : undefined}>{t}</p>)}</div>
           </li>
         ))}
       </ol>
@@ -49,14 +49,14 @@ const cases = p.cases.map((c) => ({ ...c, tags: c.services.map((id) => getServic
     padding: clamp(32px, 4vw, 56px) 0; border-top: 1px solid var(--line);
     scroll-margin-top: calc(var(--nav-h) + 24px);
   }
-  .cs-num { display: block; font-family: var(--mono); font-size: clamp(40px, 4.4vw, 64px); line-height: 1; color: var(--line); font-variant-numeric: tabular-nums; }
-  .cs-title { margin: 18px 0 0; font-family: var(--display); font-weight: 700; font-size: clamp(22px, 2.2vw, 32px); line-height: 1.25; letter-spacing: -0.015em; }
+  .cs-num { display: block; font-family: var(--mono); font-size: clamp(40px, 4.4vw, 64px); line-height: 1; color: var(--teal); font-variant-numeric: tabular-nums; }
+  .cs-title { margin: 18px 0 0; font-family: var(--display); font-weight: 700; font-size: clamp(22px, 2.2vw, 32px); line-height: 1.25; letter-spacing: -0.015em; color: var(--navy); }
   :global(:lang(zh)) .cs-title { font-family: var(--display-zh); font-weight: 700; letter-spacing: 0; word-break: keep-all; overflow-wrap: anywhere; }
   .cs-tags { list-style: none; margin: 18px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
   .cs-tags a { display: inline-block; font-size: 13px; padding: 6px 10px; border: 1px solid var(--line); border-radius: var(--r-sm); color: var(--muted); transition: color 0.2s, border-color 0.2s; }
   .cs-tags a:hover { color: var(--teal); border-color: var(--teal); }
-  .cs-body p { margin: 0 0 18px; font-size: 17px; line-height: 1.8; color: var(--muted); }
+  .cs-body p { margin: 0 0 18px; }
   .cs-body p:last-child { margin-bottom: 0; }
-  .cs + .note { margin-top: 0; padding-top: 24px; border-top: 1px solid var(--line); }
+  .cs + .note { margin-top: 0; }
   @media (max-width: 860px) { .cs-row { grid-template-columns: 1fr; } }
 </style>

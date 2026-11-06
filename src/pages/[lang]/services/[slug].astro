@@ -42,7 +42,7 @@ const [main, ...rest] = s.photos;
       <article class="sv-body" data-swap="body">
         <p class="tag"><b>{s.number}</b><span>/</span><span>{ui.tags.service}</span></p>
         <h1 class="sv-title">{s.title}{s.plan && <span class="chip-plan">{ui.status.planned}</span>}</h1>
-        <p class="sv-lede">{s.subtitle}</p>
+        <p class="lede sv-lede">{s.subtitle}</p>
         <figure class="sv-gallery">
           <img class="sv-main" src={main.src} alt={main.alt} />
           {rest.length > 0 && (
@@ -56,7 +56,7 @@ const [main, ...rest] = s.photos;
         {s.link && <a href={s.link.href} class="ul sv-link" target="_blank" rel="noopener">{s.link.label}<i>↗</i></a>}
         {related.length > 0 && (
           <section class="sv-rel">
-            <h2 class="sv-gtitle">{ui.relatedProjects}</h2>
+            <h2 class="gh sv-gtitle">{ui.relatedProjects}</h2>
             <ProjectList lang={lang} cases={related} />
           </section>
         )}
@@ -138,7 +138,7 @@ const [main, ...rest] = s.photos;
 </script>
 
 <style>
-  .sv-sec { padding-block: clamp(40px, 6vw, 88px) clamp(72px, 10vw, 144px); }
+  .sv-sec { padding-block: clamp(40px, 6vw, 88px) clamp(72px, 9vw, 128px); }
   .sv { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: clamp(40px, 6vw, 112px); align-items: start; }
   .sv-nav { position: sticky; top: calc(var(--nav-h) + clamp(40px, 6vw, 88px)); view-transition-name: svc-nav; }
   .sv-body { view-transition-name: svc-body; min-width: 0; }
@@ -147,13 +147,13 @@ const [main, ...rest] = s.photos;
     font-family: var(--display); font-weight: 700; font-size: clamp(36px, 4.8vw, 72px); line-height: 1.08; letter-spacing: -0.025em;
   }
   :global(:lang(zh)) .sv-title { font-family: var(--display-zh); font-weight: 700; letter-spacing: 0.01em; line-height: 1.2; }
-  .sv-lede { margin: 20px 0 0; max-width: 46ch; color: var(--muted); font-size: clamp(17px, 1.4vw, 21px); line-height: 1.6; }
+  .sv-lede { margin: 20px 0 0; }
   .sv-gallery { margin: clamp(32px, 4vw, 48px) 0 clamp(40px, 5vw, 64px); }
   .sv-gallery img { width: 100%; object-fit: cover; border-radius: var(--r-sm); background: var(--surface); }
   .sv-main { aspect-ratio: 16 / 9; }
   .sv-thumbs { margin-top: 12px; display: grid; grid-template-columns: repeat(var(--n), minmax(0, 1fr)); gap: 12px; }
   .sv-thumbs img { aspect-ratio: 4 / 3; }
-  .sv-cap { margin-top: 10px; font-size: 13px; color: var(--muted); }
+  .sv-cap { margin-top: 10px; font-size: 13px; color: var(--note-c); }
   .sv-nav .sv-group + .sv-group { margin-top: 28px; }
   .sv-nav .tag { margin-bottom: 12px; }
   .sv-nav ol { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
@@ -165,9 +165,7 @@ const [main, ...rest] = s.photos;
   .sv-nav li a:hover, .sv-nav li a.cur { color: var(--teal); }
   .sv-nav li a.cur span { color: var(--teal); }
 
-  .sv-gtitle { margin: 0; font-family: var(--display); font-weight: 700; font-size: clamp(22px, 2vw, 28px); line-height: 1.2; letter-spacing: -0.015em; }
-  :global(:lang(zh)) .sv-gtitle { font-family: var(--display-zh); font-weight: 700; letter-spacing: 0; }
-  .sv-body > .note { margin-top: clamp(40px, 5vw, 64px); padding-top: 20px; border-top: 1px solid var(--line); }
+  .sv-body > .note { margin-top: clamp(40px, 5vw, 64px); }
 
   .sv-link { margin-top: clamp(32px, 4vw, 48px); }
   .sv-rel { margin-top: clamp(40px, 5vw, 64px); }

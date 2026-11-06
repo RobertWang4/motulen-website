@@ -38,22 +38,22 @@ const groups = groupedServices(lang);
     </div>
   </section>
 
-  <section class="sec sec-line">
+  <section class="sec sec-alt">
     <div class="wrap">
       <SectionHead num="02" tag={ui.tags.projects} headline={h.projects.headline} />
-      <p class="intro reveal">{projects.intro}</p>
+      <p class="lede intro reveal">{projects.intro}</p>
       <ProjectList lang={lang} cases={projects.cases} />
       <a href={`/${lang}/projects/`} class="ul more reveal">{ui.cta.allCases}<i>→</i></a>
     </div>
   </section>
 
-  <section class="sec values">
+  <section class="sec">
     <div class="wrap">
       <SectionHead num="03" tag={ui.tags.value} headline={h.value.headline} />
-      <ul class="vals">
+      <ul class="vals copy">
         {value.values.items.map((v) => (
           <li class="val reveal">
-            <h3 class="val-title">{v.title}</h3>
+            <h3 class="gh val-title">{v.title}</h3>
             {v.items.length > 0 && <p class="val-text">{v.items[0]}</p>}
           </li>
         ))}
@@ -62,7 +62,7 @@ const groups = groupedServices(lang);
     </div>
   </section>
 
-  <section class="sec">
+  <section class="sec sec-alt">
     <div class="wrap">
       <SectionHead num="04" tag={ui.tags.markets} headline={h.platform.headline} />
       <Markets lang={lang} markets={platform.markets.items} note={platform.markets.note} />
@@ -114,16 +114,11 @@ const groups = groupedServices(lang);
     .hero-lede, :global(:lang(pl)) .hero-title { max-width: 100%; }
   }
 
-  .sec-line { border-top: 1px solid var(--line); }
   .more { margin-top: clamp(40px, 5vw, 64px); }
-  .intro { margin: -24px 0 clamp(32px, 4vw, 48px); max-width: 72ch; color: var(--muted); font-size: clamp(16px, 1.3vw, 19px); line-height: 1.75; }
+  .intro { margin: -24px 0 clamp(32px, 4vw, 48px); }
 
-  .values { background: var(--surface); }
   .vals { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(20px, 2.4vw, 36px); }
-  .val { border-top: 1px solid var(--ink); padding-top: 20px; }
-  .val-title { margin: 0; font-family: var(--display); font-weight: 700; font-size: 20px; line-height: 1.25; }
-  :global(:lang(zh)) .val-title { font-family: var(--display-zh); font-weight: 700; }
-  .val-text { margin: 12px 0 0; font-size: 15px; color: var(--muted); }
+  .val-text { margin: 12px 0 0; font-size: 16px; }
   @media (max-width: 1000px) { .vals { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 560px) { .vals { grid-template-columns: 1fr; } }
 </style>

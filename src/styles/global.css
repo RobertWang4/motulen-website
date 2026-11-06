@@ -19,6 +19,9 @@
   --faint: #9aa0a9;
   --line: #e5e7eb;
   --surface: #f5f6f8;
+  --surface-alt: #f4f6f9;
+  --body-c: #4a5260;
+  --note-c: #656c77;
   --navy: #041734;
   --teal: #015c5f;
   --teal-hover: #01474a;
@@ -65,9 +68,17 @@ a { color: inherit; text-decoration: none; }
 .h2 { font-size: clamp(30px, 3.8vw, 52px); }
 .h3 { font-size: 24px; line-height: 1.15; }
 .lede {
-  font-size: clamp(17px, 1.4vw, 20px); line-height: 1.6;
-  color: var(--muted); max-width: 52ch;
+  font-size: clamp(18px, 1.6vw, 22px); font-weight: 500; line-height: 1.6;
+  color: rgba(14, 17, 22, 0.85); max-width: 60ch;
 }
+/* body copy: set on the list / block, children inherit */
+.copy { font-size: 17px; line-height: 1.65; color: var(--body-c); }
+/* group title: navy 700 with a short teal bar above (same language as the mega-menu group names) */
+.gh {
+  position: relative; padding-top: 18px; margin: 0;
+  font-family: var(--display); font-weight: 700; font-size: 20px; line-height: 1.3; letter-spacing: -0.01em; color: var(--navy);
+}
+.gh::before { content: ''; position: absolute; top: 0; left: 0; width: 24px; height: 3px; background: var(--teal); }
 .hl { color: var(--teal); }
 
 /* oversized mono section numeral */
@@ -84,9 +95,9 @@ a { color: inherit; text-decoration: none; }
 .tag {
   display: flex; align-items: center; gap: 10px;
   font-family: var(--mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
-  font-variant-numeric: tabular-nums; color: var(--faint); margin: 0 0 20px;
+  font-variant-numeric: tabular-nums; color: rgba(4, 23, 52, 0.55); margin: 0 0 20px;
 }
-.tag b { font-weight: 500; color: var(--teal); }
+.tag b { font-weight: 700; color: var(--teal); }
 
 /* "in development" chip for planned business lines */
 .chip-plan {
@@ -103,13 +114,15 @@ a { color: inherit; text-decoration: none; }
 }
 .gtitle::before { content: ''; position: absolute; top: 0; left: 0; width: 24px; height: 2px; background: var(--teal); }
 
-/* hairline footnote under tables / lists */
-.note { font-size: 14px; line-height: 1.7; color: var(--muted); max-width: 72ch; margin: 24px 0 0; }
+/* footnote under tables / lists: clearly secondary */
+.note { font-size: 13px; line-height: 1.7; color: var(--note-c); max-width: 72ch; margin: 24px 0 0; padding-top: 12px; border-top: 1px solid var(--line); }
 
 /* ---------- Chinese / Polish typography ---------- */
 :lang(zh) body, body:lang(zh) { line-height: 1.75; }
+:lang(zh) .copy { line-height: 1.8; }
+:lang(zh) .gh { font-family: var(--display-zh); letter-spacing: 0; }
 :lang(zh) :is(.h1, .h2, .h3, h1, h2, h3, .display) { font-family: var(--display-zh); letter-spacing: 0; font-weight: 700; line-height: 1.22; }
-:lang(zh) .lede { line-height: 1.8; }
+:lang(zh) .lede { max-width: 40em; }
 :lang(pl) :is(.h1, .h2, .h3, h1, h2, h3, .display) { overflow-wrap: break-word; }
 :lang(zh) .h2 { max-width: 18em; text-wrap: pretty; }
 
@@ -138,7 +151,11 @@ a { color: inherit; text-decoration: none; }
 
 /* ---------- layout ---------- */
 .wrap { margin: 0 auto; max-width: 1360px; padding-inline: var(--pad); }
-.sec { padding-block: clamp(72px, 10vw, 144px); }
+.sec { padding-block: clamp(72px, 9vw, 128px); }
+.sec-alt { background: var(--surface-alt); }
+/* every section that opens with a SectionHead starts with a 1px navy rule across the content width */
+.sec:has(.sh) > .wrap { position: relative; padding-top: 20px; }
+.sec:has(.sh) > .wrap::before { content: ''; position: absolute; top: 0; left: var(--pad); right: var(--pad); height: 1px; background: var(--navy); }
 
 /* ---------- page transitions ----------
    Cross-document view transitions: the old page fades out, the new one fades up.

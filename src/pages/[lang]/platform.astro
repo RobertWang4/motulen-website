@@ -21,22 +21,22 @@ const closing = getHome(lang).closing;
   <section class="sec">
     <div class="wrap">
       <SectionHead num="01" tag={ui.tags.markets} headline={p.markets.headline} />
-      <p class="sub reveal">{p.markets.sub}</p>
+      <p class="lede sub reveal">{p.markets.sub}</p>
       <Markets lang={lang} markets={p.markets.items} note={p.markets.note} />
     </div>
   </section>
 
-  <section class="sec sec-line">
+  <section class="sec sec-alt">
     <div class="wrap"><div class="narrow">
       <SectionHead num="02" tag={ui.tags.experience} headline={p.operating.headline} />
       <DataTable columns={p.operating.columns} rows={p.operating.rows} note={p.operating.note} />
     </div></div>
   </section>
 
-  <section class="sec sec-line">
+  <section class="sec">
     <div class="wrap">
       <SectionHead num="03" tag={ui.tags.team} headline={p.team.headline} />
-      <p class="sub reveal">{p.team.lede}</p>
+      <p class="lede sub reveal">{p.team.lede}</p>
       <figure class="team-photo reveal">
         <img src={p.team.photo} alt={p.team.alt} loading="lazy" />
         <figcaption class="note">{p.team.caption}</figcaption>
@@ -45,10 +45,10 @@ const closing = getHome(lang).closing;
     </div>
   </section>
 
-  <section class="sec sec-line">
+  <section class="sec sec-alt">
     <div class="wrap">
       <SectionHead num="04" tag={ui.tags.talent} headline={p.talent.headline} badge={ui.status.planned} />
-      <ul class="talent">{p.talent.items.map((it) => <li class="reveal">{it}</li>)}</ul>
+      <ul class="talent copy">{p.talent.items.map((it) => <li class="reveal">{it}</li>)}</ul>
       <a href={`/${lang}/services/recruitment/`} class="ul more reveal">{p.talent.linkLabel}<i>→</i></a>
     </div>
   </section>
@@ -58,13 +58,12 @@ const closing = getHome(lang).closing;
 </Base>
 
 <style>
-  .sec-line { border-top: 1px solid var(--line); }
   .narrow { max-width: 960px; }
-  .sub { margin: -24px 0 clamp(32px, 4vw, 48px); color: var(--muted); font-size: clamp(17px, 1.4vw, 21px); }
+  .sub { margin: -24px 0 clamp(32px, 4vw, 48px); }
   .team-photo { margin: 0 0 clamp(40px, 5vw, 64px); }
   .team-photo img { width: 100%; aspect-ratio: 16 / 6; object-fit: cover; border-radius: var(--r-sm); background: var(--surface); }
-  .team-photo .note { margin-top: 10px; font-size: 13px; }
+  .team-photo .note { margin-top: 10px; }
   .talent { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
-  .talent li { border-top: 1px solid var(--ink); padding-top: 18px; font-size: 17px; }
+  .talent li { border-top: 1px solid var(--ink); padding-top: 18px; }
   .more { margin-top: clamp(32px, 4vw, 48px); }
 </style>

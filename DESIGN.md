@@ -22,12 +22,13 @@
 - **Chinese:** headings use Noto Sans SC 700 (hero title 800), loaded from Google Fonts (`--display-zh`); PingFang only reaches Semibold, which is too light. Body stays on the system CJK stack (PingFang SC, Hiragino Sans GB, Microsoft YaHei). Under `:lang(zh)`: headings letter-spacing 0, line-height 1.2; body line-height 1.75. Width limits for Chinese headings use `em`, not `ch`.
 - **Polish:** no automatic hyphenation on display type; `overflow-wrap: break-word` only.
 - **Loading:** `https://api.fontshare.com/v2/css?f[]=satoshi@500,700&display=swap` and `https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@700;800&display=swap`. Fallback stacks: system-ui / ui-monospace.
-- **Scale:** h1 clamp(40px, 6vw, 84px) · h2 clamp(30px, 3.8vw, 52px) · h3 24px · lede 20px · body 16px · small 14px · label 12px mono.
+- **Scale:** h1 clamp(40px, 6vw, 84px) · h2 clamp(30px, 3.8vw, 52px) · h3 24px · label 12px mono. Three levels below the headings (2026-11-05): **lede** (`.lede`) clamp(18px, 1.6vw, 22px), weight 500, ink at 85%, line-height 1.6, max 60ch (zh 40em), used for every intro directly under a heading or page title and for the first paragraph of each case; **group title** (`.gh`) navy 700 20px with a 24×3px teal bar above; **body** (`.copy`) 17px #4A5260, line-height 1.65 (zh 1.8); **note** (`.note`) 13px #656C77 (AA on white and the grey band) with a 1px `line` top border and 12px padding-top. IBM Plex Mono is also loaded at 700 for the bold section numeral.
 
 ## Color
 - **Approach:** restrained: white ground, brand navy for headings and dark surfaces, brand teal for action and accents.
 - **Ground:** white #FFFFFF; surface #F5F6F8 (quiet bands, hover); line #E5E7EB (hairlines).
-- **Ink:** #0E1116 text; muted #5B6270 secondary text; faint #9AA0A9 labels.
+- **Ink:** #0E1116 text; body copy #4A5260; muted #5B6270 secondary text; note #656C77 (footnotes only; passes AA on white and #F4F6F9); faint #9AA0A9 labels.
+- **Alt band:** #F4F6F9 (`.sec-alt`), the cool grey of every second major section.
 - **Navy:** #041734 (logo navy): headings on white, footer, closing band overlay, hero overlay, nav link text.
 - **Teal:** #015C5F (logo teal): primary button (white text), highlighted headline word, section numerals, current/hover nav underline, link hover, focus outline, planned chip border and text, dots and rules. Hover #01474A.
 - **Hero overlay:** `linear-gradient(90deg, rgba(4,23,52,.92) 0%, rgba(4,23,52,.78) 38%, rgba(4,23,52,0) 72%)`; bottom-up on mobile. Closing band: photo under rgba(4,23,52,.82).
@@ -45,7 +46,7 @@
 - **Home hero:** under the white nav, height min(88vh, 860px), min 560px. Looping muted video (poster fallback) with the people on the right; left-aligned two-line white headline clamp(44px, 6vw, 96px), a 600-weight sub line, a small paragraph and one teal button, vertically centred, over the navy left-side gradient. Polish headline is set smaller to stay on two lines.
 - **Inner page header:** white type block (mono eyebrow, h1, lede), optionally followed by an edge-to-edge photo band ≤ 640px tall. Only use a photo that carries real content; value and platform pages have none (their deck images read as empty bands).
 - **Navigation:** white 76px bar with a hairline, logo left; right: Home, About and European services (mega menu buttons), global platform, language, teal Contact button.
-- **Section anchor pattern:** oversized mono numeral (01, 02…) in `line` grey beside the h2.
+- **Section anchor pattern (2026-11-05):** sections alternate white / #F4F6F9 edge to edge: pages add `.sec-alt` to every second `.sec` in order (first is white). Each section that opens with a SectionHead starts with a 1px navy rule across `.wrap` (global `.sec:has(.sh) > .wrap::before`), with the tag row under it: number bold teal, "/" and English tag navy at 55%. Section padding clamp(72px, 9vw, 128px). The inner page header has no bottom hairline; the closing band and next-step link keep their own styling.
 - **Border radius:** sm 2px (images), md 4px (buttons, inputs); no pill shapes, no large radii.
 - **Copy budget:** home ≤ 60 words of body text; one idea per section; depth lives on subpages.
 
@@ -61,7 +62,9 @@
 - **Group grid:** titled lists as in the deck's columns; a group the deck calls a development direction carries the grey "expanding" chip. Service pages may add sub-sections (headline, optional lede and 16:6 photo, group grid) — service 01 carries the team and admin & logistics sections, as in the deck.
 - **Next step link:** full-width link before the closing band (mono label, large title with arrow, hairline on top; arrow nudges 8px on hover). Follows the talk track between big sections: home > about > services > projects > direction > approach > contact (the deck's page-number order). The services page and every service page point to projects; single services are switched in the side list, never by a bottom link.
 - **Service detail:** no tall header. Side list of the six services and the content start right under the nav; side list is sticky at the same offset it starts at, so switching services never moves it. Content: tag, h1 + planned chip, subtitle, 16:7 photo, grouped lists with teal dash bullets, note; then the next-step link to approach. On switch only the content crossfades (view-transition names `svc-nav`, `svc-body`).
-- **Footnotes:** compliance and scope notes use `.note` (14px muted) and are never hidden.
+- **Footnotes:** compliance and scope notes use `.note` (13px #656C77, hairline above) and are never hidden.
+- **Group titles:** GroupGrid, Stages, value items, home values and about scope items use `.gh` (teal bar above, no ink top rule).
+- **Projects page:** case number in teal, title navy, first paragraph set as lede, the rest as body.
 
 ## Motion
 - **Approach:** minimal-functional.
@@ -81,6 +84,7 @@
 ## Decisions Log
 | Date | Decision | Rationale |
 |------|----------|-----------|
+| 2026-11-05 | Stronger section separation and three-level type hierarchy | User: sections and text levels blended together; numbered navy rule + alternating bands, lede / body / note levels, teal-bar group titles |
 | 2026-11-05 | Rebuilt to the client's website brief: brand navy/teal, mega menu, Human & Hunter style hero, anonymised cases, Noto Sans SC headings | User: client's website requirements document |
 | 2026-11-05 | Rebuilt on the 20-slide deck: 4 business lines, direction page, approach = cooperation + management + value; talk track follows the deck's page numbers | User: build strictly from the deck's content and logic |
 | 2026-11-04 | Page crossfade + hover prefetch; market names smaller and on one line | User: switching pages felt abrupt; 罗马尼亚 wrapped |
