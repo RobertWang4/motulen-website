@@ -16,7 +16,7 @@ const tel = site.contact.phone.replace(/\s/g, '');
       <dl class="ct-list">
         <div class="reveal"><dt class="tag">{c.labels.email}</dt><dd><a href={`mailto:${site.contact.email}`} class="big">{site.contact.email}</a></dd></div>
         <div class="reveal"><dt class="tag">{c.labels.phone}</dt><dd><a href={`tel:${tel}`} class="big">{site.contact.phone}</a></dd></div>
-        <div class="reveal"><dt class="tag">{c.labels.address}</dt><dd class="big">{site.contact.address[lang]}</dd></div>
+        <div class="reveal"><dt class="tag">{c.labels.address}</dt><dd class="big">{site.contact.address}</dd></div>
       </dl>
       <div class="ct-photo reveal"><img src={c.photo} alt={c.alt} /></div>
     </div>

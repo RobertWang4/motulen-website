@@ -15,7 +15,7 @@ const Table = { columns: z.array(z.string()).length(3), rows: z.array(z.array(z.
 
 const Site = z.object({
   brand: z.object({ name: z.string(), short: z.string() }),
-  contact: z.object({ email: z.string(), phone: z.string(), address: z.record(z.enum(LANGS), z.string()) }),
+  contact: z.object({ email: z.string(), phone: z.string(), address: z.string() }),
   languages: z.array(z.enum(LANGS)),
   defaultLanguage: z.enum(LANGS),
 });

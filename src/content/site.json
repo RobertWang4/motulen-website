@@ -6,10 +6,7 @@
   "contact": {
     "email": "office@motulengroup.com",
     "phone": "+48 692 243 933",
-    "address": {
-      "zh": "波兰 华沙 Bielany 区",
-      "pl": "Warszawa-Bielany, Polska"
-    }
+    "address": "ul. Henryka Sienkiewicza 22, 60-818 Poznań, Poland"
   },
   "languages": [
     "zh",

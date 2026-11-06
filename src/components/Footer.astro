@@ -32,7 +32,7 @@ const links = [
       <ul>
         <li><a href={`mailto:${site.contact.email}`}>{site.contact.email}</a></li>
         <li><a href={`tel:${site.contact.phone.replace(/\s/g, '')}`}>{site.contact.phone}</a></li>
-        <li>{site.contact.address[lang]}</li>
+        <li>{site.contact.address}</li>
         <li><a href={altHref} data-alt>{ui.langName[lang]} / {ui.langName[otherLang(lang)]}</a></li>
       </ul>
     </div>
