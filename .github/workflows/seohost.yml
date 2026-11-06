@@ -39,6 +39,6 @@ jobs:
             set cmd:fail-exit true;
             set net:timeout 15;
             set net:max-retries 2;
-            mirror --reverse --no-perms --ignore-time dist/ ./;
+            mirror --reverse --no-perms dist/ ./;
             bye
           '
